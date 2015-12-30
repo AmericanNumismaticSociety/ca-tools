@@ -1,0 +1,3 @@
+Mapping #,Search,Replace
+subject,(.*)\s[\[].*,$1
+subject_href,.*[\[](https?[^\]]+)[\]],$1

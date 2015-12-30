@@ -1,8 +1,7 @@
 Rule type,Source,CA table.element,Group,Options,Refinery,Refinery parameters,Original values,Replacement values,Source description,Notes
 Mapping,1,ca_list_items.idno,,,,,,,,
 Mapping,2,ca_list_items.preferred_labels,,,,,,,,
-Mapping,,ca_list_items.example_splitter,,,listItemSplitter,"{""list"": ""denomination_list"", ""listItemType"": ""concept""} ",,,,
-,,,,,,,,,,
+Constant,52,ca_list_items.list_id,,,,,,,,
 ,,,,,,,,,,
 ,Rule triggers,Rule actions,Description,Notes,,,,,,
 ,,,,,,,,,,

@@ -1,3 +1,4 @@
-Mapping #,Search,Replace
-subject,(.*)\s[\[].*,$1
-subject_href,.*[\[](https?[^\]]+)[\]],$1
+"Mapping #","Search","Replace"
+"subject","(.*)\s[\[].*","$1"
+"fromDate_issued_standardDate","^(-?\d+)-.*","$1"
+"toDate_issued_standardDate","^(-?\d+)-.*","$1"

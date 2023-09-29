@@ -1,177 +1,156 @@
-"Rule type","ID","Parent ID","Element","Source","Options","Notes"
-"Mapping","nuds",,"nuds",,,
-"Constant","recordType","nuds","@recordType","physical",,
-"Constant","namespace_nuds","nuds","@xmlns","http://nomisma.org/nuds",,
-"Constant","namespace_xs","nuds","@xmlns:xs","http://www.w3.org/2001/XMLSchema",,
-"Constant","namespace_xlink","nuds","@xmlns:xlink","http://www.w3.org/1999/xlink",,
-"Constant","namespace_mets","nuds","@xmlns:mets","http://www.loc.gov/METS/",,
-"Constant","namespace_tei","nuds","@xmlns:tei","http://www.tei-c.org/ns/1.0",,
-,,,,,,
-"#control",,,,,,
-"Mapping","control","nuds","control",,,
-"Mapping","recordId","control","recordId","ca_objects.idno",,
-"Constant","publicationStatus","control","publicationStatus","approved",,
-"Mapping","maintenanceStatus","control","maintenanceStatus","ca_objects.status","{ ""convertCodesToDisplayText"" : 1 }",
-"Mapping","maintenanceAgency","control","maintenanceAgency",,,
-"Constant","agencyName","maintenanceAgency","agencyName","American Numismatic Society",,
-,,,,,,
-"##MaintenanceHistory",,,,,,
-"Mapping","maintenanceHistory","control","maintenanceHistory",,,
-"Mapping","maintenanceEvent","maintenanceHistory","maintenanceEvent","ca_objects.lastModified.timestamp",,
-,,,,,,
-,,,,,,
-"#descMeta",,,,,,
-"Mapping","descMeta","nuds","descMeta",,,
-"Mapping","title","descMeta","title","ca_objects.preferred_labels",,
-"Constant","lang_title","title","@lang","en",,
-,,,,,,
-"#Description Set",,,,,,
-"Mapping","descriptionSet","descMeta","descriptionSet",,,
-"Mapping","narrative_description","descriptionSet","description","ca_objects.description",,
-"Constant","narrative_description_lang","narrative_description","@lang","en",,
-,,,,,,
-"#Subjects",,,,,,
-"Mapping","subjectSet","descMeta","subjectSet",,,
-"##Content Subjects",,,,,,
-"Mapping","subject","subjectSet","subject","subject_topic","{ ""context"": ""ca_objects.subject"" }",
-"Mapping","subject_localType","subject","@localType","subject_type","{ ""convertCodesToIdno"": 1}",
-"Mapping","subject_href","subject","@xlink:href","subject_topic.uri",,
-"Constant","subject_type","subject","@xlink:type","simple",,
-"##Curatorial Categories",,,,,,
-"Mapping","category","subjectSet","subject","category","{ ""convertCodesToDisplayText"" : 1, ""repeat_element_for_multiple_values"": 1 }",
-"Constant","category_localType","category","@localType","category",,
-,,,,,,
-"#Typological Description",,,,,,
-"Mapping","typeDesc","descMeta","typeDesc",,,
-"##Basic attributes",,,,,,
-"Mapping","objectType","typeDesc","objectType","type_id","{ ""convertCodesToDisplayText"" : 1 }",
-"Mapping","objectType_href","objectType","@xlink:href","concept_uri","{ ""context"" : ""type_id"" }",
-"Constant","objectType_type","objectType","@xlink:type","simple",,
-,,,,,,
-"##Date",,,,,,
-"Mapping","dateRange","typeDesc","dateRange",,,
-"Mapping","fromDate_issued","dateRange","fromDate","ca_objects.issue_dates.from_date",,
-"Mapping","fromDate_issued_standardDate","fromDate_issued","@standardDate","ca_objects.issue_dates.from_date","{ ""start_as_iso8601"" : 1, ""timeOmit"": 1 } ",
-"Mapping","toDate_issued","dateRange","toDate","ca_objects.issue_dates.to_date",,
-"Mapping","toDate_issued_standardDate","toDate_issued","@standardDate","ca_objects.issue_dates.to_date","{ ""start_as_iso8601"" : 1, ""timeOmit"": 1 } ",
-,,,,,,
-"##Date on Object",,,,,,
-"Mapping","dateOnObject","typeDesc","dateOnObject",,"{""omitIfEmpty"" : ""ca_objects.date_on_object.date_on_object_value""}",
-"Mapping","dateOnObject_date","dateOnObject","date","ca_objects.date_on_object.date_on_object_value",,
-"Mapping","dateOnObject_date_standardDate","dateOnObject_date","@standardDate","ca_objects.date_on_object.date_on_object_standard","{""omitIfEmpty"" : ""ca_objects.date_on_object.date_on_object_standard"", ""skipIfExpression"" : ""^ca_objects.date_on_object.date_on_object_standard =~ /BCE/"", ""start_as_iso8601"" : 1, ""timeOmit"": 1}",
-"Mapping","dateOnObject_date_notBefore","dateOnObject_date","@notBefore","ca_objects.date_on_object.date_on_object_standard","{""omitIfEmpty"" : ""ca_objects.date_on_object.date_on_object_standard"", ""skipIfExpression"" : ""^ca_objects.date_on_object.date_on_object_standard =~ /^[BCE]/"", ""start_as_iso8601"" : 1, ""timeOmit"": 1}",
-,,,,,,
-"Mapping","denomination","typeDesc","denomination","ca_objects.denomination","{ ""convertCodesToDisplayText"" : 1}",
-"Mapping","denomination_href","denomination","@xlink:href","ca_objects.denomination.concept_uri","{""omitIfEmpty"" : ""ca_objects.denomination.concept_uri""}",
-"Constant","denomination_type","denomination","@xlink:type","simple",,
-"Mapping","manufacture","typeDesc","manufacture","ca_objects.manufacture","{ ""convertCodesToDisplayText"" : 1}",
-"Mapping","manufacture_href","manufacture","@xlink:href","ca_objects.manufacture","{""omitIfEmpty"" : ""ca_objects.manufacture.concept_uri""}",
-"Constant","manufacture_type","manufacture","@xlink:type","simple",,
-"Mapping","material","typeDesc","material","ca_objects.material","{ ""convertCodesToDisplayText"" : 1,  ""repeat_element_for_multiple_values"": 1, ""context"" : ""ca_objects.material""}",
-"Mapping","material_href","material","@xlink:href","concept_uri",,
-"Constant","material_type","material","@xlink:type","simple",,
-"Mapping","shape","typeDesc","shape","ca_objects.shape","{ ""convertCodesToDisplayText"" : 1 }",
-,,,,,,
-"##Authority",,,,,,
-"Mapping","authority","typeDesc","authority",,,
-"Mapping","persname","authority","persname","ca_entities.preferred_labels","{ ""context"" : ""ca_entities"", ""restrictToTypes"" : [ ""individual"" ], ""omitIfEmpty"" : ""ca_entities.preferred_labels"" }",
-"Mapping","persname_role","persname","@xlink:role","relationship_type_code",,
-"Mapping","persname_href","persname","@xlink:href","concept_uri","{""omitIfEmpty"" : ""concept_uri""}",
-"Constant","persname_type","persname","@xlink:type","simple",,
-"Mapping","corpname","authority","corpname","ca_entities.preferred_labels","{ ""context"" : ""ca_entities"", ""restrictToTypes"" : [ ""organization"" ], ""omitIfEmpty"" : ""ca_entities.preferred_labels"" }",
-"Mapping","corpname_role","corpname","@xlink:role","relationship_type_code",,
-"Mapping","corpname_href","corpname","@xlink:href","concept_uri","{""omitIfEmpty"" : ""concept_uri""}",
-"Constant","corpname_type","corpname","@xlink:type","simple",,
-,,,,,,
-,,,,,,
-"##Geographic",,,,,,
-"Mapping","geographic","typeDesc","geographic",,,
-"Mapping","productionPlace","geographic","geogname","ca_places.preferred_labels","{ ""context"" : ""ca_places"", ""omitIfEmpty"" : ""ca_places.preferred_labels"" }",
-"Mapping","productionPlace_role","productionPlace","@xlink:role","relationship_type_code",,
-"Mapping","productionPlace_href","productionPlace","@xlink:href","concept_uri","{""omitIfEmpty"" : ""concept_uri""}",
-"Constant","productionPlace_type","productionPlace","@xlink:type","simple",,
-,,,,,,
-"##Obverse",,,,,,
-"Mapping","obverse","typeDesc","obverse",,,
-"Mapping","legend_obv","obverse","legend","ca_objects.obverse.obverse_legend","{ ""omitIfEmpty"" : ""ca_objects.obverse.obverse_legend"" }",
-"Mapping","type_obv","obverse","type",,"{ ""omitIfEmpty"" : ""ca_objects.obverse.obverse_type"" }",
-"Mapping","typeDescription_obv","type_obv","description","ca_objects.obverse.obverse_type","{ ""omitIfEmpty"" : ""ca_objects.obverse.obverse_type"" }",
-"Constant","lang_typeDescription_obv","typeDescription_obv","@lang","en",,
-"##Obverse Symbols",,,,,,
-"Mapping","obverse_symbol","obverse","symbol","obverse_symbol_label","{ ""context"": ""ca_objects.obverse_symbol""  }",
-"Mapping","obverse_symbol_href","obverse_symbol","@xlink:href","obverse_symbol_uri","{ ""omitIfEmpty"" : ""obverse_symbol_uri"" }",
-"Constant","obverse_symbol_type","obverse_symbol","@xlink:type","simple",,
-"Mapping","obverse_symbol_position","obverse_symbol","@position","obverse_symbol_position","{ ""convertCodesToIdno"": 1}",
-"Mapping","obverse_symbol_type","obverse_symbol","@localType","obverse_symbol_type","{ ""convertCodesToIdno"": 1}",
-,,,,,,
-"##Reverse",,,,,,
-"Mapping","reverse","typeDesc","reverse",,,
-"Mapping","legend_rev","reverse","legend","ca_objects.reverse.reverse_legend","{ ""omitIfEmpty"" : ""ca_objects.reverse.reverse_legend"" }",
-"Mapping","type_rev","reverse","type",,"{ ""omitIfEmpty"" : ""ca_objects.reverse.reverse_type"" }",
-"Mapping","typeDescription_rev","type_rev","description","ca_objects.reverse.reverse_type","{ ""omitIfEmpty"" : ""ca_objects.reverse.reverse_type"" }",
-"Constant","lang_typeDescription_rev","typeDescription_rev","@lang","en",,
-"##Reverse Symbols",,,,,,
-"Mapping","reverse_symbol","reverse","symbol","reverse_symbol_label","{ ""context"": ""ca_objects.reverse_symbol""  }",
-"Mapping","reverse_symbol_href","reverse_symbol","@xlink:href","reverse_symbol_uri","{ ""omitIfEmpty"" : ""reverse_symbol_uri"" }",
-"Constant","reverse_symbol_type","reverse_symbol","@xlink:type","simple",,
-"Mapping","reverse_symbol_position","reverse_symbol","@position","reverse_symbol_position","{ ""convertCodesToIdno"": 1}",
-"Mapping","reverse_symbol_type","reverse_symbol","@localType","reverse_symbol_type","{ ""convertCodesToIdno"": 1}",
-,,,,,,
-"#Physical Description",,,,,,
-"Mapping","physDesc","descMeta","physDesc",,,
-"Mapping","axis","physDesc","axis","ca_objects.measurements_numismatic.axis","{ ""omitIfEmpty"" : ""ca_objects.measurements_numismatic.axis""}",
-"##Measurements",,,,,,
-"Mapping","measurementsSet","physDesc","measurementsSet",,,
-"Mapping","weight","measurementsSet","weight","ca_objects.measurements_numismatic.weight","{ ""omitIfEmpty"" : ""ca_objects.measurements_numismatic.weight"" }",
-"Constant","weight_units","weight","@units","g",,
-"Mapping","diameter","measurementsSet","diameter","ca_objects.measurements_numismatic.diameter","{ ""omitIfEmpty"" : ""ca_objects.measurements_numismatic.diameter"" }",
-"Constant","diameter_units","diameter","@units","mm",,
-"Mapping","thickness","measurementsSet","thickness","ca_objects.measurements_numismatic.depth","{ ""omitIfEmpty"" : ""ca_objects.measurements_numismatic.depth"" }",
-"Constant","thickness_units","thickness","@units","mm",,
-"Mapping","length1","measurementsSet","length","ca_objects.measurements_numismatic.length1","{ ""omitIfEmpty"" : ""ca_objects.measurements_numismatic.length1"" }",
-"Constant","length1_units","length1","@units","mm",,
-"Mapping","length2","measurementsSet","length","ca_objects.measurements_numismatic.length2","{ ""omitIfEmpty"" : ""ca_objects.measurements_numismatic.length2"" }",
-"Constant","length2_units","length2","@units","mm",,
-"Mapping","length3","measurementsSet","length","ca_objects.measurements_numismatic.length3","{ ""omitIfEmpty"" : ""ca_objects.measurements_numismatic.length3"" }",
-"Constant","length3_units","length3","@units","mm",,
-,,,,,,
-"##Other physical descriptors",,,,,,
-"Mapping","authenticity","physDesc","authenticity","authenticity_value","{ ""context"" : ""ca_objects.authenticity""}",
-"Constant","authenticity_certainty","authenticity","@certainty","http://nomisma.org/id/uncertain_value","{""skipIfExpression"": ""^authenticity_uncertain = \""false\""""}",
-"Mapping","original_intended_use","physDesc","originalIntendedUse","original_intended_use_value","{ ""context"" : ""ca_objects.original_intended_use""}",
-"Constant","original_intended_use_certainty","original_intended_use","@certainty","uncertain","{""skipIfExpression"": ""^orig_use_uncertain = \""false\""""}",
-"#Conservation State",,,,,,
-"Mapping","conservationState","physDesc","conservationState",,,
-"Mapping","conservation","conservationState","description","ca_objects.conservation","{ ""omitIfEmpty"" : ""ca_objects.conservation""}",
-"Mapping","secondaryTreatment","conservationState","secondaryTreatment","post_manu_alt_value","{ ""context"" : ""ca_objects.post_manu_alt""}",
-"Constant","secondaryTreatment_uncertain","secondaryTreatment","@certainty","uncertain","{""skipIfExpression"": ""^post_manu_alt_uncertain = \""false\""""}",
-"#Other",,,,,,
-"Mapping","serialNumber","physDesc","serialNumber","ca_objects.serial_number","{ ""omitIfEmpty"" : ""ca_objects.serial_number"" }",
-"Mapping","watermark","physDesc","watermark","ca_objects.watermark","{ ""omitIfEmpty"" : ""ca_objects.watermark"" }",
-,,,,,,
-"#Findspot Description",,,,,,
-"Mapping","findspotDesc_hoard","descMeta","findspotDesc","ca_objects_x_objects.preferred_labels","{ ""restrictToTypes"" : [ ""nmo:Hoard"" ]}",
-,,,,,,
-"#References",,,,,,
-"Mapping","refDesc","descMeta","refDesc",,"{ ""omitIfEmpty"" : ""ca_objects.coin_type_uri""}",
-"Mapping","coinType","refDesc","reference",,"{""repeat_element_for_multiple_values"": 1, ""context"" : ""ca_objects.coin_type_uri""}",
-"Mapping","reference_href","coinType","@xlink:href","coin_type_href",,
-"Mapping","reference_variant","coinType","@variant","variant","{""skipIfExpression"": ""^variant = \""false\""""}",
-"Constant","reference_type","coinType","@xlink:type","simple",,
-"Constant","reference_arcrole","coinType","@xlink:arcrole","nmo:hasTypeSeriesItem",,
-"Mapping","coinType_test","refDesc","reference",,"{""context"": ""ca_objects.type_test"", ""repeat_element_for_multiple_values"": 1 }",
-"Mapping","coinType_test_href","coinType_test","@xlink:href","uri",,
-,,,,,,
-"#Administrative Description",,,,,,
-"Mapping","adminDesc","descMeta","adminDesc",,,
-"Mapping","accession","adminDesc","identifier","ca_objects.idno",,
-"Mapping","department","adminDesc","department","ca_objects.department","{ ""convertCodesToDisplayText"" : 1 }",
-"Constant","collection","adminDesc","collection","American Numismatic Society",,
-"Constant","collection_href","collection","@xlink:href","http://nomisma.org/id/ans",,
-"Constant","collection_type","collection","@xlink:type","simple",,
-,,,,,,
-,"Setting","Setting Value","Description","Notes",,
-"Setting","code","nuds","Alphanumeric code of the mapping",,,
-"Setting","name","NUDS/XML","Human readable name of the mapping",,,
-"Setting","table","ca_objects","Sets the table for the exported data",,,
-"Setting","exporter_format","XML",,,,
+Rule type,ID,Parent ID,Element,Source,Options
+Setting,exporter_format,XML,,,
+Setting,code,nuds,,,
+Setting,name,NUDS/XML,,,
+Setting,table,ca_objects,,,
+,,,,,
+Mapping,nuds,,nuds,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,recordType,nuds,@recordType,physical,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,namespace_nuds,nuds,@xmlns,http://nomisma.org/nuds,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,namespace_xs,nuds,@xmlns:xs,http://www.w3.org/2001/XMLSchema,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,namespace_xlink,nuds,@xmlns:xlink,http://www.w3.org/1999/xlink,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,namespace_mets,nuds,@xmlns:mets,http://www.loc.gov/METS/,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,namespace_tei,nuds,@xmlns:tei,http://www.tei-c.org/ns/1.0,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+,,,,,
+#control,,,,,
+Mapping,control,nuds,control,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,recordId,control,recordId,ca_objects.idno,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,publicationStatus,control,publicationStatus,approved,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,maintenanceStatus,control,maintenanceStatus,ca_objects.status,"{""convertCodesToDisplayText"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,maintenanceAgency,control,maintenanceAgency,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,agencyName,maintenanceAgency,agencyName,American Numismatic Society,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,maintenanceHistory,control,maintenanceHistory,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,maintenanceEvent,maintenanceHistory,maintenanceEvent,ca_objects.lastModified.timestamp,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+,,,,,
+#descMeta,,,,,
+Mapping,descMeta,nuds,descMeta,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,title,descMeta,title,ca_objects.preferred_labels,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,lang_title,title,@lang,en,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,descriptionSet,descMeta,descriptionSet,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,narrative_description,descriptionSet,description,ca_objects.description,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,narrative_description_lang,narrative_description,@lang,en,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+,,,,,
+Mapping,subjectSet,descMeta,subjectSet,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,subject,subjectSet,subject,subject_topic,"{""context"":""ca_objects.subject"",""original_values"":""(.*)\\s[\\[].*\n"",""replacement_values"":""$1\n""}"
+Mapping,subject_localType,subject,@localType,subject_type,"{""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,subject_href,subject,@xlink:href,subject_topic.uri,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,subject_type,subject,@xlink:type,simple,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,category,subjectSet,subject,category,"{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,category_localType,category,@localType,category,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+,,,,,
+#typeDesc,,,,,
+Mapping,typeDesc,descMeta,typeDesc,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,objectType,typeDesc,objectType,type_id,"{""convertCodesToDisplayText"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,objectType_href,objectType,@xlink:href,concept_uri,"{""context"":""type_id"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,objectType_type,objectType,@xlink:type,simple,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,dateRange,typeDesc,dateRange,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,fromDate_issued,dateRange,fromDate,ca_objects.issue_dates.from_date,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,fromDate_issued_standardDate,fromDate_issued,@standardDate,ca_objects.issue_dates.from_date,"{""start_as_iso8601"":1,""timeOmit"":1,""original_values"":""^(-?\\d+)-.*"",""replacement_values"":""$1""}"
+Mapping,toDate_issued,dateRange,toDate,ca_objects.issue_dates.to_date,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,toDate_issued_standardDate,toDate_issued,@standardDate,ca_objects.issue_dates.to_date,"{""start_as_iso8601"":1,""timeOmit"":1,""original_values"":""^(-?\\d+)-.*"",""replacement_values"":""$1""}"
+Mapping,dateOnObject,typeDesc,dateOnObject,,"{""omitIfEmpty"":""ca_objects.date_on_object.date_on_object_value"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,dateOnObject_date,dateOnObject,date,ca_objects.date_on_object.date_on_object_value,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,dateOnObject_date_standardDate,dateOnObject_date,@standardDate,ca_objects.date_on_object.date_on_object_standard,"{""omitIfEmpty"":""ca_objects.date_on_object.date_on_object_standard"",""skipIfExpression"":""^ca_objects.date_on_object.date_on_object_standard =~ \/BCE\/"",""start_as_iso8601"":1,""timeOmit"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,dateOnObject_date_notBefore,dateOnObject_date,@notBefore,ca_objects.date_on_object.date_on_object_standard,"{""omitIfEmpty"":""ca_objects.date_on_object.date_on_object_standard"",""skipIfExpression"":""^ca_objects.date_on_object.date_on_object_standard =~ \/^[BCE]\/"",""start_as_iso8601"":1,""timeOmit"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+,,,,,
+Mapping,denomination,typeDesc,denomination,ca_objects.denomination,"{""convertCodesToDisplayText"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,denomination_href,denomination,@xlink:href,ca_objects.denomination.concept_uri,"{""omitIfEmpty"":""ca_objects.denomination.concept_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,denomination_type,denomination,@xlink:type,simple,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,manufacture,typeDesc,manufacture,ca_objects.manufacture,"{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,manufacture_href,manufacture,@xlink:href,ca_objects.manufacture.concept_uri,"{""omitIfEmpty"":""ca_objects.manufacture.concept_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,manufacture_type,manufacture,@xlink:type,simple,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,material,typeDesc,material,value,"{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""context"":""ca_objects.material"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,material_href,material,@xlink:href,value.concept_uri,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,material_type,material,@xlink:type,simple,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,shape,typeDesc,shape,ca_objects.shape,"{""convertCodesToDisplayText"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+,,,,,
+#authority,,,,,
+Mapping,authority,typeDesc,authority,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,persname,authority,persname,ca_entities.preferred_labels,"{""context"":""ca_entities"",""restrictToTypes"":[""individual""],""omitIfEmpty"":""ca_entities.preferred_labels"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,persname_role,persname,@xlink:role,relationship_type_code,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,persname_href,persname,@xlink:href,concept_uri,"{""omitIfEmpty"":""concept_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,persname_type,persname,@xlink:type,simple,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,corpname,authority,corpname,ca_entities.preferred_labels,"{""context"":""ca_entities"",""restrictToTypes"":[""organization""],""omitIfEmpty"":""ca_entities.preferred_labels"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,corpname_role,corpname,@xlink:role,relationship_type_code,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,corpname_href,corpname,@xlink:href,concept_uri,"{""omitIfEmpty"":""concept_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,corpname_type,corpname,@xlink:type,simple,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+,,,,,
+#geographic,,,,,
+Mapping,geographic,typeDesc,geographic,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,productionPlace,geographic,geogname,ca_places.preferred_labels,"{""context"":""ca_places"",""omitIfEmpty"":""ca_places.preferred_labels"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,productionPlace_role,productionPlace,@xlink:role,relationship_type_code,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,productionPlace_href,productionPlace,@xlink:href,concept_uri,"{""omitIfEmpty"":""concept_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,productionPlace_type,productionPlace,@xlink:type,simple,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+,,,,,
+#obverse,,,,,
+Mapping,obverse,typeDesc,obverse,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,legend_obv,obverse,legend,ca_objects.obverse.obverse_legend,"{""omitIfEmpty"":""ca_objects.obverse.obverse_legend"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,type_obv,obverse,type,,"{""omitIfEmpty"":""ca_objects.obverse.obverse_type"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,typeDescription_obv,type_obv,description,ca_objects.obverse.obverse_type,"{""omitIfEmpty"":""ca_objects.obverse.obverse_type"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,lang_typeDescription_obv,typeDescription_obv,@lang,en,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,obverse_symbol,obverse,symbol,obverse_symbol_label,"{""context"":""ca_objects.obverse_symbol"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,obverse_symbol_href,obverse_symbol,@xlink:href,obverse_symbol_uri,"{""omitIfEmpty"":""obverse_symbol_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,obverse_symbol_type,obverse_symbol,@localType,obverse_symbol_type,"{""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,obverse_symbol_position,obverse_symbol,@position,obverse_symbol_position,"{""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+,,,,,
+#reverse,,,,,
+Mapping,reverse,typeDesc,reverse,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,legend_rev,reverse,legend,ca_objects.reverse.reverse_legend,"{""omitIfEmpty"":""ca_objects.reverse.reverse_legend"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,type_rev,reverse,type,,"{""omitIfEmpty"":""ca_objects.reverse.reverse_type"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,typeDescription_rev,type_rev,description,ca_objects.reverse.reverse_type,"{""omitIfEmpty"":""ca_objects.reverse.reverse_type"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,lang_typeDescription_rev,typeDescription_rev,@lang,en,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,reverse_symbol,reverse,symbol,reverse_symbol_label,"{""context"":""ca_objects.reverse_symbol"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,reverse_symbol_href,reverse_symbol,@xlink:href,reverse_symbol_uri,"{""omitIfEmpty"":""reverse_symbol_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,reverse_symbol_type,reverse_symbol,@localType,reverse_symbol_type,"{""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,reverse_symbol_position,reverse_symbol,@position,reverse_symbol_position,"{""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+,,,,,
+#physDesc,,,,,
+Mapping,physDesc,descMeta,physDesc,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,axis,physDesc,axis,ca_objects.measurements_numismatic.axis,"{""omitIfEmpty"":""ca_objects.measurements_numismatic.axis"",""original_values"":""\n"",""replacement_values"":""\n""}"
+#measurements,,,,,
+Mapping,measurementsSet,physDesc,measurementsSet,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,weight,measurementsSet,weight,ca_objects.measurements_numismatic.weight,"{""omitIfEmpty"":""ca_objects.measurements_numismatic.weight"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,weight_units,weight,@units,g,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,diameter,measurementsSet,diameter,ca_objects.measurements_numismatic.diameter,"{""omitIfEmpty"":""ca_objects.measurements_numismatic.diameter"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,diameter_units,diameter,@units,mm,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,thickness,measurementsSet,thickness,ca_objects.measurements_numismatic.depth,"{""omitIfEmpty"":""ca_objects.measurements_numismatic.depth"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,thickness_units,thickness,@units,mm,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,length1,measurementsSet,length,ca_objects.measurements_numismatic.length1,"{""omitIfEmpty"":""ca_objects.measurements_numismatic.length1"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,length1_units,length1,@units,mm,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,length2,measurementsSet,length,ca_objects.measurements_numismatic.length2,"{""omitIfEmpty"":""ca_objects.measurements_numismatic.length2"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,length2_units,length2,@units,mm,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,length3,measurementsSet,length,ca_objects.measurements_numismatic.length3,"{""omitIfEmpty"":""ca_objects.measurements_numismatic.length3"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,length3_units,length3,@units,mm,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+,,,,,
+#other descriptors,,,,,
+Mapping,authenticity,physDesc,authenticity,authenticity_value,"{""context"":""ca_objects.authenticity"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,authenticity_certainty,authenticity,@certainty,http://nomisma.org/id/uncertain_value,"{""skipIfExpression"":""^authenticity_uncertain = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,original_intended_use,physDesc,originalIntendedUse,original_intended_use_value,"{""context"":""ca_objects.original_intended_use"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,original_intended_use_certainty,original_intended_use,@certainty,uncertain,"{""skipIfExpression"":""^orig_use_uncertain = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,conservationState,physDesc,conservationState,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,conservation,conservationState,description,ca_objects.conservation,"{""omitIfEmpty"":""ca_objects.conservation"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,secondaryTreatment,conservationState,secondaryTreatment,post_manu_alt_value,"{""context"":""ca_objects.post_manu_alt"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,secondaryTreatment_uncertain,secondaryTreatment,@certainty,uncertain,"{""skipIfExpression"":""^post_manu_alt_uncertain = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,serialNumber,physDesc,serialNumber,ca_objects.serial_number,"{""omitIfEmpty"":""ca_objects.serial_number"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,watermark,physDesc,watermark,ca_objects.watermark,"{""omitIfEmpty"":""ca_objects.watermark"",""original_values"":""\n"",""replacement_values"":""\n""}"
+,,,,,
+#findspotDesc,,,,,
+Mapping,findspotDesc_hoard,descMeta,findspotDesc,ca_objects_x_objects.preferred_labels,"{""restrictToTypes"":[""nmo:Hoard""],""original_values"":""\n"",""replacement_values"":""\n""}"
+,,,,,
+#refDesc,,,,,
+Mapping,refDesc,descMeta,refDesc,,"{""omitIfEmpty"":""ca_objects.coin_type_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,coinType,refDesc,reference,,"{""repeat_element_for_multiple_values"":1,""context"":""ca_objects.coin_type_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,reference_href,coinType,@xlink:href,coin_type_href,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,reference_variant,coinType,@variant,variant,"{""skipIfExpression"":""^variant = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,reference_type,coinType,@xlink:type,simple,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,reference_arcrole,coinType,@xlink:arcrole,nmo:hasTypeSeriesItem,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,coinType_test,refDesc,reference,,"{""context"":""ca_objects.type_test"",""repeat_element_for_multiple_values"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,coinType_test_href,coinType_test,@xlink:href,uri,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+,,,,,
+#adminDesc,,,,,
+Mapping,adminDesc,descMeta,adminDesc,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,accession,adminDesc,identifier,ca_objects.idno,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,department,adminDesc,department,ca_objects.department,"{""convertCodesToDisplayText"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,collection,adminDesc,collection,American Numismatic Society,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,collection_href,collection,@xlink:href,http://nomisma.org/id/ans,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,collection_type,collection,@xlink:type,simple,"{""original_values"":""\n"",""replacement_values"":""\n""}"

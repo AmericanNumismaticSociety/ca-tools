@@ -26,12 +26,12 @@ Mapping,maintenanceEvent,maintenanceHistory,maintenanceEvent,ca_objects.lastModi
 Mapping,descMeta,nuds,descMeta,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
 Mapping,title,descMeta,title,ca_objects.preferred_labels,"{""original_values"":""\n"",""replacement_values"":""\n""}"
 Constant,lang_title,title,@lang,en,"{""original_values"":""\n"",""replacement_values"":""\n""}"
-Mapping,descriptionSet,descMeta,descriptionSet,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,descriptionSet,descMeta,descriptionSet,,"{""omitIfEmpty"": ""ca_objects.description"",""original_values"":""\n"",""replacement_values"":""\n""}"
 Mapping,narrative_description,descriptionSet,description,ca_objects.description,"{""original_values"":""\n"",""replacement_values"":""\n""}"
 Constant,narrative_description_lang,narrative_description,@lang,en,"{""original_values"":""\n"",""replacement_values"":""\n""}"
 ,,,,,
 Mapping,subjectSet,descMeta,subjectSet,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
-Mapping,subject,subjectSet,subject,subject_topic,"{""context"":""ca_objects.subject"",""original_values"":""(.*)\\s[\\[].*\n"",""replacement_values"":""$1\n""}"
+Mapping,subject,subjectSet,subject,subject_topic,"{""omitIfEmpty"":""ca_objects.subject"",""context"":""ca_objects.subject"",""original_values"":""(.*)\\s[\\[].*\n"",""replacement_values"":""$1\n""}"
 Mapping,subject_localType,subject,@localType,subject_type,"{""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
 Mapping,subject_href,subject,@xlink:href,subject_topic.uri,"{""original_values"":""\n"",""replacement_values"":""\n""}"
 Constant,subject_type,subject,@xlink:type,simple,"{""original_values"":""\n"",""replacement_values"":""\n""}"
@@ -40,8 +40,8 @@ Constant,category_localType,category,@localType,category,"{""original_values"":"
 ,,,,,
 #typeDesc,,,,,
 Mapping,typeDesc,descMeta,typeDesc,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
-Mapping,objectType,typeDesc,objectType,type_id,"{""convertCodesToDisplayText"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
-Mapping,objectType_href,objectType,@xlink:href,concept_uri,"{""context"":""type_id"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,objectType,typeDesc,objectType,ca_objects.object_type,"{""convertCodesToDisplayText"":1,""original_values"":""\n"",""replacement_values"":""\n"", ""context"":""ca_objects.object_type""}"
+Mapping,objectType_href,objectType,@xlink:href,ca_objects.object_type.concept_uri,"{""omitIfEmpty"":""ca_objects.object_type.concept_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
 Constant,objectType_type,objectType,@xlink:type,simple,"{""original_values"":""\n"",""replacement_values"":""\n""}"
 Mapping,dateRange,typeDesc,dateRange,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
 Mapping,fromDate_issued,dateRange,fromDate,ca_objects.issue_dates.from_date,"{""original_values"":""\n"",""replacement_values"":""\n""}"
@@ -62,7 +62,9 @@ Constant,manufacture_type,manufacture,@xlink:type,simple,"{""original_values"":"
 Mapping,material,typeDesc,material,value,"{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""context"":""ca_objects.material"",""original_values"":""\n"",""replacement_values"":""\n""}"
 Mapping,material_href,material,@xlink:href,value.concept_uri,"{""original_values"":""\n"",""replacement_values"":""\n""}"
 Constant,material_type,material,@xlink:type,simple,"{""original_values"":""\n"",""replacement_values"":""\n""}"
-Mapping,shape,typeDesc,shape,ca_objects.shape,"{""convertCodesToDisplayText"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,material_uncertain,material,@certainty,material_uncertain,"{""skipIfExpression"": ""^material_uncertain=0"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,color,typeDesc,color,ca_objects.color,"{""omitIfEmpty"":""ca_objects.color"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,shape,typeDesc,shape,ca_objects.shape,"{""convertCodesToDisplayText"":1,""omitIfEmpty"":""ca_objects.shape"",""original_values"":""\n"",""replacement_values"":""\n""}"
 ,,,,,
 #authority,,,,,
 Mapping,authority,typeDesc,authority,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
@@ -88,10 +90,14 @@ Mapping,legend_obv,obverse,legend,ca_objects.obverse.obverse_legend,"{""omitIfEm
 Mapping,type_obv,obverse,type,,"{""omitIfEmpty"":""ca_objects.obverse.obverse_type"",""original_values"":""\n"",""replacement_values"":""\n""}"
 Mapping,typeDescription_obv,type_obv,description,ca_objects.obverse.obverse_type,"{""omitIfEmpty"":""ca_objects.obverse.obverse_type"",""original_values"":""\n"",""replacement_values"":""\n""}"
 Constant,lang_typeDescription_obv,typeDescription_obv,@lang,en,"{""original_values"":""\n"",""replacement_values"":""\n""}"
-Mapping,obverse_symbol,obverse,symbol,obverse_symbol_label,"{""context"":""ca_objects.obverse_symbol"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,obverse_symbol,obverse,symbol,obverse_symbol_label,"{""omitIfEmpty"": ""obverse_symbol.obverse_symbol_label"",""context"":""ca_objects.obverse_symbol"",""original_values"":""\n"",""replacement_values"":""\n""}"
 Mapping,obverse_symbol_href,obverse_symbol,@xlink:href,obverse_symbol_uri,"{""omitIfEmpty"":""obverse_symbol_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
 Mapping,obverse_symbol_type,obverse_symbol,@localType,obverse_symbol_type,"{""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
 Mapping,obverse_symbol_position,obverse_symbol,@position,obverse_symbol_position,"{""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,obverse_entity,obverse,persname,obverse_entity_name,"{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""context"":""ca_objects.obverse_entity"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,obverse_entity_uri,obverse_entity,@xlink:href,obverse_entity_name.concept_uri,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,obverse_entity_role,obverse_entity,@xlink:role,obverse_entity_relationship,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,obverse_entity_type,obverse_entity,@xlink:type,simple,
 ,,,,,
 #reverse,,,,,
 Mapping,reverse,typeDesc,reverse,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
@@ -99,10 +105,19 @@ Mapping,legend_rev,reverse,legend,ca_objects.reverse.reverse_legend,"{""omitIfEm
 Mapping,type_rev,reverse,type,,"{""omitIfEmpty"":""ca_objects.reverse.reverse_type"",""original_values"":""\n"",""replacement_values"":""\n""}"
 Mapping,typeDescription_rev,type_rev,description,ca_objects.reverse.reverse_type,"{""omitIfEmpty"":""ca_objects.reverse.reverse_type"",""original_values"":""\n"",""replacement_values"":""\n""}"
 Constant,lang_typeDescription_rev,typeDescription_rev,@lang,en,"{""original_values"":""\n"",""replacement_values"":""\n""}"
-Mapping,reverse_symbol,reverse,symbol,reverse_symbol_label,"{""context"":""ca_objects.reverse_symbol"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,reverse_symbol,reverse,symbol,reverse_symbol_label,"{ ""context"":""ca_objects.reverse_symbol"",""original_values"":""\n"",""replacement_values"":""\n""}"
 Mapping,reverse_symbol_href,reverse_symbol,@xlink:href,reverse_symbol_uri,"{""omitIfEmpty"":""reverse_symbol_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
 Mapping,reverse_symbol_type,reverse_symbol,@localType,reverse_symbol_type,"{""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
 Mapping,reverse_symbol_position,reverse_symbol,@position,reverse_symbol_position,"{""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,reverse_entity,reverse,persname,reverse_entity_name,"{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""context"":""ca_objects.reverse_entity"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,reverse_entity_uri,reverse_entity,@xlink:href,reverse_entity_name.concept_uri,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,reverse_entity_role,reverse_entity,@xlink:role,reverse_entity_relationship,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Constant,reverse_entity_type,reverse_entity,@xlink:type,simple,
+,,,,,
+#edge,,,,,
+Mapping,edge,typeDesc,edge,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,edge_description,edge,description,ca_objects.edge.edge_description,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.edge.edge_description""}"
+Mapping,edge_legend,edge,legend,ca_objects.edge.edge_legend,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.edge.edge_legend""}"
 ,,,,,
 #physDesc,,,,,
 Mapping,physDesc,descMeta,physDesc,,"{""original_values"":""\n"",""replacement_values"":""\n""}"
@@ -139,9 +154,9 @@ Mapping,findspotDesc_hoard,descMeta,findspotDesc,ca_objects_x_objects.preferred_
 ,,,,,
 #refDesc,,,,,
 Mapping,refDesc,descMeta,refDesc,,"{""omitIfEmpty"":""ca_objects.coin_type_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
-Mapping,coinType,refDesc,reference,,"{""repeat_element_for_multiple_values"":1,""context"":""ca_objects.coin_type_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
-Mapping,reference_href,coinType,@xlink:href,coin_type_href,"{""original_values"":""\n"",""replacement_values"":""\n""}"
-Mapping,reference_variant,coinType,@variant,variant,"{""skipIfExpression"":""^variant = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,coinType,refDesc,reference,coin_type_href,"{""repeat_element_for_multiple_values"":1,""context"":""ca_objects.coin_type_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,reference_href,coinType,@xlink:href,coin_type_href.url,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+Mapping,reference_variant,coinType,@variant,variant,"{""skipIfExpression"":""^ca_objects.coin_type_uri.variant = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
 Constant,reference_type,coinType,@xlink:type,simple,"{""original_values"":""\n"",""replacement_values"":""\n""}"
 Constant,reference_arcrole,coinType,@xlink:arcrole,nmo:hasTypeSeriesItem,"{""original_values"":""\n"",""replacement_values"":""\n""}"
 Mapping,coinType_test,refDesc,reference,,"{""context"":""ca_objects.type_test"",""repeat_element_for_multiple_values"":1,""original_values"":""\n"",""replacement_values"":""\n""}"

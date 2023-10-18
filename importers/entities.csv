@@ -1,7 +1,7 @@
 Rule type,Source,CA table.element,Group,Options,Refinery,Refinery parameters,Original values,Replacement values,Source description,Notes
 Mapping,1,ca_entities.idno,,,,,,,,
 Mapping,2,ca_entities.preferred_labels,,,,,,,,
-Mapping,4,ca_entities.entity_type,,,,,,,,
+Mapping,4,ca_entities.type_id,,,,,,,,
 Mapping,5,ca_entities.concept_uri,,,,,,,,
 ,,,,,,,,,,
 ,Rule triggers,Rule actions,Description,Notes,,,,,,

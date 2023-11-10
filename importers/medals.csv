@@ -2,7 +2,7 @@ Rule type,Source,CA table.element,Group,Options,Refinery,Refinery parameters,Ori
 Constant,accession,ca_objects.item_status_id,,,,,,,,
 Mapping,1,ca_objects.idno,,,,,,,,
 Mapping,2,ca_objects.preferred_labels,,,,,,,,
-Mapping,3,ca_object_lots,,,objectLotSplitter,"{""matchOn"":""labels"", ""dontCreate"": 1}",,,,
+Mapping,3,ca_objects.lot_id,,,objectLotSplitter,"{""matchOn"":""idno"", ""dontCreate"": 1}",,,,
 Mapping,4,ca_objects.department,,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""department_list"", ""matchOn"": ""labels"", ""dontCreate"": 1}",,,,
 Mapping,5,ca_objects.object_type,,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""numismatic_object_types"", ""matchOn"": ""labels""}",,,,
 Mapping,6,ca_objects.material.value,material1,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""material_list"", ""matchOn"": ""labels""}",,,,

@@ -1,7 +1,10 @@
 <?php 
 /*****
+ * 
+ * NOTE: THIS SCRIPT WILL HAVE TO WAIT UNTIL COLLECTIVE ACCESS HAS BEEN DEPLOYED TO PRODUCTION SERVER
+ * 
  * Author: Ethan Gruber
- * Date: July 2021
+ * Date: January 2024
  * Function: Execute an API request to CollectiveAccess to get a list of records edited the previous day.
  * Among these, of the numismatic objects, either delete objects that are not public or execute CaUtils
  * to export each record as NUDS and write to eXist-db. Batches of 500 records will be indexed into Solr.
@@ -18,7 +21,7 @@
  *****/
 
 define("INDEX_COUNT", 500);
-define("CA_URL", "http://localhost/collectiveaccess/");
+define("CA_URL", "https://test.numismatics.org/collectiveaccess/");
 define("CA_UTILS", "/usr/local/projects/providence-1.7.12/support/bin/caUtils");
 define("SOLR_URL", "http://localhost:8983/solr/numishare/update/");
 define("NUMISHARE_URL", "http://localhost:8080/orbeon/numishare/");
@@ -112,7 +115,7 @@ if (($handle = fopen("ca_credentials.json", "r")) !== FALSE) {
 
 /***** FUNCTIONS *****/
 function login_to_ca($username, $password){
-    $login = "http://{$username}:{$password}@localhost/collectiveaccess/service.php/auth/login";
+    $login = "https://{$username}:{$password}@localhost/collectiveaccess/service.php/auth/login";
     
     $ch = curl_init($login);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

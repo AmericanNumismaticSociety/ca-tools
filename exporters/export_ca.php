@@ -69,7 +69,7 @@ if (($handle = fopen("ca_credentials.json", "r")) !== FALSE) {
         //var_dump($response);
         
         //begin parsing the JSON from CA
-        process_response($response, $collection, $q);
+        process_response($response, $q);
         
         //execute process for remaining accnums.
         /*if (count($accnums) > 0){
@@ -113,7 +113,7 @@ function login_to_ca($username, $password){
 /***** 
  * Process the JSON response from CollectiveAccess API
  *****/
-function process_response ($response, $collection, $q){
+function process_response ($response, $q){
     $json = json_decode($response);    
     
     
@@ -153,10 +153,10 @@ function process_response ($response, $collection, $q){
  * Execute caUtils to generate a NUDS XML record to post to eXist-db
  *****/
 function export_record($record){
-    $fileName = "/tmp/nuds/{$accnum}.xml";
-    
     $id = $record->id;
     $accnum = $record->idno;
+    
+    $fileName = "/tmp/nuds/{$accnum}.xml";
     
     $cmd = CA_UTILS . " export-data -m nuds -i {$id} -f {$fileName}";
     

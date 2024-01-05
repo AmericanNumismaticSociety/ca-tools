@@ -155,6 +155,9 @@ function process_response ($response, $collection, $q){
 function export_record($record){
     $fileName = "/tmp/nuds/{$accnum}.xml";
     
+    $id = $record->id;
+    $accnum = $record->idno;
+    
     $cmd = CA_UTILS . " export-data -m nuds -i {$id} -f {$fileName}";
     
     //execute the command to generate NUDS from the CA database using caUtils

@@ -18,6 +18,17 @@ define("INDEX_COUNT", 500);
 define("CA_URL", "https://test.numismatics.org/collectiveaccess/");
 define("CA_UTILS", "/usr/local/projects/providence-2.0/support/bin/caUtils");
 
+//read the image file list
+$image_files = array();
+$fp=fopen('/data/images/files.list', 'r');
+while (!feof($fp)){
+    $line=fgets($fp);
+    
+    if (preg_match('/^\d{4}\.\d+\.\d+\..*\.noscale\.jpg$/', $line)){
+        $image_files[] = trim($line);
+    }
+}
+fclose($fp);
 
 //array of created or updated accession numbers
 $accnums = array();
@@ -114,6 +125,7 @@ function login_to_ca($username, $password){
  * Process the JSON response from CollectiveAccess API
  *****/
 function process_response ($response, $q){
+    
     $json = json_decode($response);    
     
     
@@ -133,8 +145,12 @@ function process_response ($response, $q){
             if ($record->type_id != 'nmo:Hoard'){
                 //evaluate accessibility of the record. If it is publicly accessible, then create an update. If it is not, execute a deletion from eXist-db and Solr.                
                 if ($record->access == 'public_access'){
+                    $accnum = $record->idno;                    
+                    
                     export_record($record);
                     //update_record_in_numishare($record, $collection);
+                    
+                    
                 } else {
                     //delete_record_from_numishare($record, $collection);
                 }
@@ -153,8 +169,22 @@ function process_response ($response, $q){
  * Execute caUtils to generate a NUDS XML record to post to eXist-db
  *****/
 function export_record($record){
+    GLOBAL $image_files;
+    
+    $images = array();
     $id = $record->id;
     $accnum = $record->idno;
+    
+    //images are now read from files.list generated from image files on disk rather than from FileMaker
+    foreach ($image_files as $image){
+        $pattern = '/^' . str_replace('.', '\.', $accnum) . '\.(.*)\.noscale\.jpg$/';
+        if (preg_match($pattern, $image, $matches)){
+            echo "Found image {$image}: {$matches[1]}\n";
+            $images[$matches[1]] = $image;
+        }
+    }
+    
+    
     
     $fileName = "/tmp/nuds/{$accnum}.xml";
     
@@ -162,7 +192,169 @@ function export_record($record){
     
     //execute the command to generate NUDS from the CA database using caUtils
     echo "Generating {$accnum} NUDS.\n";
-    shell_exec($cmd);
+    
+    
+    //shell_exec($cmd);
+    
+    //generate images XML
+    if (count($images) > 0){
+        $accession_array = explode('.', $accnum);
+        $collection_year = $accession_array[0];
+        
+        switch ($collection_year) {
+            case $collection_year < 1900:
+                $image_path = '00001899';
+                break;
+            case $collection_year >= 1900 && $collection_year < 1950:
+                $image_path = '19001949';
+                break;
+            case $collection_year >= 1950 && $collection_year < 2000:
+                $image_path = '19501999';
+                break;
+            case $collection_year >= 2000 && $collection_year < 2050:
+                $image_path = '20002049';
+                break;
+        }
+        
+        $writer = new XMLWriter();
+        $writer->openURI("/tmp/nuds/{$accnum}-images.xml");
+        //$writer->openURI('php://output');
+        $writer->startDocument('1.0','UTF-8');
+        $writer->setIndent(true);
+        //now we need to define our Indent string,which is basically how many blank spaces we want to have for the indent
+        $writer->setIndentString("    ");
+        
+        $writer->startElement('digRep');
+            $writer->writeAttribute('xmlns', 'http://nomisma.org/nuds');
+            $writer->writeAttribute('xmlns:xs', "http://www.w3.org/2001/XMLSchema");
+            $writer->writeAttribute('xmlns:xlink', "http://www.w3.org/1999/xlink");
+            $writer->writeAttribute('xmlns:mets', "http://www.loc.gov/METS/");
+            $writer->writeAttribute('xmlns:tei', "http://www.tei-c.org/ns/1.0");
+            
+            $writer->startElement('mets:fileSec');
+        
+            //obverse images
+            if (array_key_exists('obv', $images)){
+                $writer->startElement('mets:fileGrp');
+                    $writer->writeAttribute('USE', 'obverse');
+                    //IIIF
+                    $writer->startElement('mets:file');
+                        $writer->writeAttribute('USE', 'iiif');
+                        $writer->startElement('mets:FLocat');
+                            $writer->writeAttribute('LOCYPE', 'URL');
+                            $writer->writeAttribute('xlink:href', "https://images.numismatics.org/collectionimages%2F{$image_path}%2F{$collection_year}%2F{$accnum}.obv.noscale.jpg");
+                        $writer->endElement();
+                    $writer->endElement();
+                    //archive
+                    $writer->startElement('mets:file');
+                        $writer->writeAttribute('USE', 'archive');
+                        $writer->writeAttribute('MIMETYPE', 'image/jpeg');
+                        $writer->startElement('mets:FLocat');
+                            $writer->writeAttribute('LOCYPE', 'URL');
+                            $writer->writeAttribute('xlink:href', "https://numismatics.org/collectionimages/{$image_path}/{$collection_year}/{$accnum}.obv.noscale.jpg");
+                        $writer->endElement();
+                    $writer->endElement();
+                    //reference
+                    $writer->startElement('mets:file');
+                        $writer->writeAttribute('USE', 'reference');
+                        $writer->writeAttribute('MIMETYPE', 'image/jpeg');
+                        $writer->startElement('mets:FLocat');
+                            $writer->writeAttribute('LOCYPE', 'URL');
+                            $writer->writeAttribute('xlink:href', "https://numismatics.org/collectionimages/{$image_path}/{$collection_year}/{$accnum}.obv.width350.jpg");
+                        $writer->endElement();
+                    $writer->endElement();
+                    //thumbnail
+                    $writer->startElement('mets:file');
+                        $writer->writeAttribute('USE', 'thumbnail');
+                        $writer->writeAttribute('MIMETYPE', 'image/jpeg');
+                        $writer->startElement('mets:FLocat');
+                            $writer->writeAttribute('LOCYPE', 'URL');
+                            $writer->writeAttribute('xlink:href', "https://numismatics.org/collectionimages/{$image_path}/{$collection_year}/{$accnum}.obv.width175.jpg");
+                        $writer->endElement();
+                    $writer->endElement();
+                $writer->endElement();
+            }
+            
+            //reverse images
+            if (array_key_exists('rev', $images)){
+                $writer->startElement('mets:fileGrp');
+                    $writer->writeAttribute('USE', 'reverse');
+                    //IIIF
+                    $writer->startElement('mets:file');
+                        $writer->writeAttribute('USE', 'iiif');
+                        $writer->startElement('mets:FLocat');
+                            $writer->writeAttribute('LOCYPE', 'URL');
+                            $writer->writeAttribute('xlink:href', "https://images.numismatics.org/collectionimages%2F{$image_path}%2F{$collection_year}%2F{$accnum}.rev.noscale.jpg");
+                        $writer->endElement();
+                    $writer->endElement();
+                    //archive
+                    $writer->startElement('mets:file');
+                        $writer->writeAttribute('USE', 'archive');
+                        $writer->writeAttribute('MIMETYPE', 'image/jpeg');
+                        $writer->startElement('mets:FLocat');
+                            $writer->writeAttribute('LOCYPE', 'URL');
+                            $writer->writeAttribute('xlink:href', "https://numismatics.org/collectionimages/{$image_path}/{$collection_year}/{$accnum}.rev.noscale.jpg");
+                        $writer->endElement();
+                    $writer->endElement();
+                    //reference
+                    $writer->startElement('mets:file');
+                        $writer->writeAttribute('USE', 'reference');
+                        $writer->writeAttribute('MIMETYPE', 'image/jpeg');
+                        $writer->startElement('mets:FLocat');
+                            $writer->writeAttribute('LOCYPE', 'URL');
+                            $writer->writeAttribute('xlink:href', "https://numismatics.org/collectionimages/{$image_path}/{$collection_year}/{$accnum}.rev.width350.jpg");
+                        $writer->endElement();
+                    $writer->endElement();
+                    //thumbnail
+                    $writer->startElement('mets:file');
+                        $writer->writeAttribute('USE', 'thumbnail');
+                        $writer->writeAttribute('MIMETYPE', 'image/jpeg');
+                        $writer->startElement('mets:FLocat');
+                            $writer->writeAttribute('LOCYPE', 'URL');
+                            $writer->writeAttribute('xlink:href', "https://numismatics.org/collectionimages/{$image_path}/{$collection_year}/{$accnum}.rev.width175.jpg");
+                        $writer->endElement();
+                    $writer->endElement();
+                $writer->endElement();
+            }
+            
+            //iterate through additional images
+            foreach ($images as $k=>$v){
+                $use = explode('.', $v)[3];
+                
+                if ($k != 'obv' && $k != 'rev'){
+                    $writer->startElement('mets:fileGrp');
+                        $writer->writeAttribute('USE', $use);
+                        //IIIF
+                        $writer->startElement('mets:file');
+                            $writer->writeAttribute('USE', 'iiif');
+                            $writer->startElement('mets:FLocat');
+                                $writer->writeAttribute('LOCYPE', 'URL');
+                                $writer->writeAttribute('xlink:href', "https://images.numismatics.org/collectionimages%2F{$image_path}%2F{$collection_year}%2F{$v}");
+                        $writer->endElement();
+                    $writer->endElement();
+                    
+                    $writer->endElement();
+                }
+            }
+            //end mets:fileSec and digRep
+            $writer->endElement();
+        $writer->endElement();
+        
+        //close file
+        $writer->endDocument();
+        $writer->flush();
+    
+        //merge the digRep XML document into the NUDS file
+        $nuds = new DOMDocument;
+        $nuds->load($fileName);
+        $digRep = new DOMDocument;
+        $digRep->load("/tmp/nuds/{$accnum}-images.xml");
+        $nuds->documentElement->appendChild($nuds->importNode($digRep->documentElement, true));
+        $nuds->save($fileName);
+        unlink("/tmp/nuds/{$accnum}-images.xml");
+        
+    }
+    
 }
 
 

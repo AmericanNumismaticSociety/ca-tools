@@ -12,6 +12,8 @@
  * 
  * Ensure that a ca_credentials.json includes an object with a 'username' and 'password' property. 
  * This file is not committed to Github.
+ * 
+ * This script requires the zip and ssh2 packages for PHP 8.x
  *****/
 
 define("INDEX_COUNT", 500);
@@ -128,6 +130,24 @@ function process_response ($response, $q){
     
     $json = json_decode($response);    
     
+    $zip = new ZipArchive;
+    if ($zip->open('/tmp/ca_upload.zip', ZipArchive::CREATE) === TRUE) {
+        if ($handle = opendir('/tmp/nuds'))
+        {
+            // Add all files inside the directory
+            while (false !== ($file = readdir($handle)))
+            {
+                if ($file != "." && $file != ".." && !is_dir('/tmp/nuds/' . $file))
+                {
+                    $zip->addFile('/tmp/nuds/' . $file);
+                }
+            }
+            closedir($handle);
+        }
+        
+        $zip->close();
+    }
+    
     
     if ($json->total > 0 ){
         echo "Processing {$json->total} edited item(s).\n";
@@ -158,6 +178,38 @@ function process_response ($response, $q){
         }
         
         //zip exported records
+        $zip = new ZipArchive;
+        if ($zip->open('/tmp/ca_upload.zip', ZipArchive::CREATE) === TRUE) {
+            if ($handle = opendir('/tmp/nuds'))
+            {
+                // Add all files inside the directory
+                while (false !== ($file = readdir($handle)))
+                {
+                    if ($file != "." && $file != ".." && !is_dir('/tmp/nuds/' . $file))
+                    {
+                        $zip->addFile('/tmp/nuds/' . $file);
+                    }
+                }
+                closedir($handle);
+            }
+            
+            $zip->close();
+        }
+        
+        //upload zip to numismatics.org
+        echo "Uploading zip.\n";
+        $connection = ssh2_connect('numismatics.org', 4858, array('hostkey' => 'ssh-rsa'));        
+        
+        if (ssh2_auth_pubkey_file($connection, 'egruber',
+            '~/.ssh/id_rsa.pub',
+            '~/.ssh/id_rsa', 'ewg4xuva@gmail.com')) {
+            echo "Public Key Authentication Successful\n";
+            ssh2_scp_send($connection, '/tmp/ca_upload.zip', '/tmp/ca_upload.zip', 0644);
+            
+            echo "Zip file uploaded to production server. Numishare publication workflow commencing.\n";
+        } else {
+            die('Public Key Authentication Failed');
+        }
         
     } else {
         "No updated records since yesterday";

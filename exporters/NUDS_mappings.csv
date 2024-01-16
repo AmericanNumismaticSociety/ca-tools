@@ -126,7 +126,7 @@
 "Mapping","reverse_symbol_type","reverse_symbol","@localType","reverse_symbol_type","{""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","reverse_symbol_position","reverse_symbol","@position","reverse_symbol_position","{""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","reverse_entity","reverse","persname","reverse_entity_name","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""context"":""ca_objects.reverse_entity"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","reverse_entity_uri","reverse_entity","@xlink:href","reverse_entity_name.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","reverse_entity_uri","reverse_entity","@xlink:href","reverse_entity_name.concept_uri","{""context"":""ca_objects.reverse_entity.reverse_entity_name"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","reverse_entity_role","reverse_entity","@xlink:role","reverse_entity_relationship","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Constant","reverse_entity_type","reverse_entity","@xlink:type","simple",
 "Mapping","reverse_die","reverse","die","ca_objects.reverse_die.reverse_die_value","{""convertCodesToIdno"":1,""omitIfEmpty"":""ca_objects.reverse_die.reverse_die_value""}"

@@ -47,6 +47,9 @@
 "Constant","subject_type","subject","@xlink:type","simple","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","category","subjectSet","subject","category","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
 "Constant","category_localType","category","@localType","category","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"#deprecated subject",,,,,
+"Mapping","subject_deprecated","subjectSet","subject","subject_deprecated_topic","{""repeat_element_for_multiple_values"":1,""original_values"":""\n"",""replacement_values"":""\n"", ""context"":""ca_objects.subject_deprecated""}"
+"Mapping","subject_deprecated_type","subject_deprecated","@localType","subject_deprecated_type","{""original_values"":""\n"",""replacement_values"":""\n""}"
 ,,,,,
 "#typeDesc",,,,,
 "Mapping","typeDesc","descMeta","typeDesc",,"{""original_values"":""\n"",""replacement_values"":""\n""}"
@@ -59,20 +62,21 @@
 "Mapping","toDate_issued","dateRange","toDate","ca_objects.issue_dates.to_date","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","toDate_issued_standardDate","toDate_issued","@standardDate","ca_objects.issue_dates.to_date","{""start_as_iso8601"":1,""timeOmit"":1,""original_values"":""^(\\-?\\d+)\\-.*"",""replacement_values"":""$1""}"
 "Mapping","dateOnObject","typeDesc","dateOnObject",,"{""omitIfEmpty"":""ca_objects.date_on_object.date_on_object_value"",""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","dateOnObject_calendar","dateOnObject","@calendar","ca_objects.date_on_object.era_field","{""omitIfEmpty"":""ca_objects.date_on_object.era_field"",""convertCodesToDisplayText"":1}"
 "Mapping","dateOnObject_date","dateOnObject","date","ca_objects.date_on_object.date_on_object_value","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","dateOnObject_date_standardDate","dateOnObject_date","@standardDate","ca_objects.date_on_object.date_on_object_standard","{""omitIfEmpty"":""ca_objects.date_on_object.date_on_object_standard"",""skipIfExpression"":""^ca_objects.date_on_object.date_on_object_standard =~ \/BCE\/"",""start_as_iso8601"":1,""timeOmit"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","dateOnObject_date_notBefore","dateOnObject_date","@notBefore","ca_objects.date_on_object.date_on_object_standard","{""omitIfEmpty"":""ca_objects.date_on_object.date_on_object_standard"",""skipIfExpression"":""^ca_objects.date_on_object.date_on_object_standard =~ \/^[BCE]\/"",""start_as_iso8601"":1,""timeOmit"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","dateOnObject_date_standardDate","dateOnObject_date","@standardDate","ca_objects.date_on_object.date_on_object_standard","{""omitIfEmpty"":""ca_objects.date_on_object.date_on_object_standard"",""skipIfExpression"":""^ca_objects.date_on_object.date_on_object_standard =~ \/BCE\/"",""timeOmit"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+"#Mapping","dateOnObject_date_notBefore","dateOnObject_date","@notBefore","ca_objects.date_on_object.date_on_object_standard","{""omitIfEmpty"":""ca_objects.date_on_object.date_on_object_standard"",""skipIfExpression"":""^ca_objects.date_on_object.date_on_object_standard =~ \/^[BCE]\/"",""timeOmit"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
 ,,,,,
 "Mapping","denomination","typeDesc","denomination","ca_objects.denomination","{""convertCodesToDisplayText"":1,""original_values"":""\n"",""replacement_values"":""\n"", ""context"":""ca_objects.denomination""}"
 "Mapping","denomination_href","denomination","@xlink:href","ca_objects.denomination.concept_uri","{""omitIfEmpty"":""ca_objects.denomination.concept_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Constant","denomination_type","denomination","@xlink:type","simple","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","manufacture","typeDesc","manufacture","ca_objects.manufacture","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""original_values"":""\n"",""replacement_values"":""\n"", ""context"":""ca_objects.manufacture""}"
-"Mapping","manufacture_href","manufacture","@xlink:href","ca_objects.manufacture.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","manufacture_href","manufacture","@xlink:href","ca_objects.manufacture.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.manufacture.concept_uri""}"
 "Constant","manufacture_type","manufacture","@xlink:type","simple","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","material","typeDesc","material","value","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""context"":""ca_objects.material"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","material_href","material","@xlink:href","value.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Constant","material_type","material","@xlink:type","simple","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","material_uncertain","material","@certainty","material_uncertain","{""skipIfExpression"": ""^material_uncertain=0"",""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","material_href","material","@xlink:href","value.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""value.concept_uri""}"
+"Constant","material_type","material","@xlink:type","simple","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""value.concept_uri""}"
+"Mapping","material_uncertain","material","@certainty","material_uncertain","{""skipIfExpression"": ""^material_uncertain = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","color","typeDesc","color","ca_objects.color","{""omitIfEmpty"":""ca_objects.color"",""repeat_element_for_multiple_values"": 1,""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","shape","typeDesc","shape","ca_objects.shape","{""convertCodesToDisplayText"":1,""omitIfEmpty"":""ca_objects.shape"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","symbol_deprecated","typeDesc","symbol","ca_objects.symbol_deprecated","{""omitIfEmpty"":""ca_objects.symbol_deprecated"",""original_values"":""\n"",""replacement_values"":""\n""}"
@@ -83,12 +87,12 @@
 "Mapping","persname_role","persname","@xlink:role","relationship_type_code","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","persname_href","persname","@xlink:href","concept_uri","{""omitIfEmpty"":""concept_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Constant","persname_type","persname","@xlink:type","simple","{""omitIfEmpty"":""concept_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","persname_uncertain","persname","@certainty","ca_objects_x_entities.attribute_uncertain","{""skipIfExpression"": ""^ca_objects_x_entities.attribute_uncertain=\""boolean_false\""""}"
+"Constant","persname_uncertain","persname","@certainty","http://nomisma.org/id/uncertain","{""skipIfExpression"": ""^ca_objects_x_entities.attribute_uncertain = \""boolean_false\""""}"
 "Mapping","corpname","authority","corpname","ca_entities.preferred_labels","{""context"":""ca_entities"",""restrictToTypes"":[""organization""],""omitIfEmpty"":""ca_entities.preferred_labels"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","corpname_role","corpname","@xlink:role","relationship_type_code","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","corpname_href","corpname","@xlink:href","concept_uri","{""omitIfEmpty"":""concept_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Constant","corpname_type","corpname","@xlink:type","simple","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","corpname_uncertain","corpname","@certainty","ca_objects_x_entities.attribute_uncertain","{""skipIfExpression"": ""^ca_objects_x_entities.attribute_uncertain=\""boolean_false\""""}"
+"Constant","corpname_type","corpname","@xlink:type","simple","{""omitIfEmpty"":""concept_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
+"Constant","corpname_uncertain","corpname","@certainty","http://nomisma.org/id/uncertain","{""skipIfExpression"": ""^ca_objects_x_entities.attribute_uncertain = \""boolean_false\""""}"
 ,,,,,
 "#geographic",,,,,
 "Mapping","geographic","typeDesc","geographic",,"{""original_values"":""\n"",""replacement_values"":""\n"",""omitIfNoChildren"":1}"
@@ -96,7 +100,7 @@
 "Mapping","relatedPlace_role","relatedPlace","@xlink:role","relationship_type_code","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","relatedPlace_href","relatedPlace","@xlink:href","concept_uri","{""omitIfEmpty"":""concept_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Constant","relatedPlace_type","relatedPlace","@xlink:type","simple","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","relatedPlace_uncertain","relatedPlace","@certainty","ca_objects_x_places.attribute_uncertain","{""skipIfExpression"": ""^ca_objects_x_places.attribute_uncertain=\""boolean_false\""""}"
+"Constant","relatedPlace_uncertain","relatedPlace","@certainty","http://nomisma.org/id/uncertain","{""skipIfExpression"": ""^ca_objects_x_places.attribute_uncertain = \""boolean_false\""""}"
 ,,,,,
 "#obverse",,,,,
 "Mapping","obverse","typeDesc","obverse",,"{""original_values"":""\n"",""replacement_values"":""\n"",""omitIfNoChildren"":1}"
@@ -106,10 +110,10 @@
 "Constant","lang_typeDescription_obv","typeDescription_obv","@lang","en","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","obverse_symbol","obverse","symbol","obverse_symbol_label","{""context"":""ca_objects.obverse_symbol"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","obverse_symbol_href","obverse_symbol","@xlink:href","obverse_symbol_uri","{""omitIfEmpty"":""obverse_symbol_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","obverse_symbol_type","obverse_symbol","@localType","obverse_symbol_type","{""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","obverse_symbol_position","obverse_symbol","@position","obverse_symbol_position","{""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","obverse_symbol_type","obverse_symbol","@localType","obverse_symbol_type","{""omitIfEmpty"":""obverse_symbol_type"",""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","obverse_symbol_position","obverse_symbol","@position","obverse_symbol_position","{""omitIfEmpty"":""obverse_symbol_position"",""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","obverse_entity","obverse","persname","obverse_entity_name","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""context"":""ca_objects.obverse_entity"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","obverse_entity_uri","obverse_entity","@xlink:href","obverse_entity_name.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","obverse_entity_uri","obverse_entity","@xlink:href","obverse_entity_name.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""concept_url""}"
 "Mapping","obverse_entity_role","obverse_entity","@xlink:role","obverse_entity_relationship","{""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
 "Constant","obverse_entity_type","obverse_entity","@xlink:type","simple",
 "Mapping","obverse_die","obverse","die","ca_objects.obverse_die.obverse_die_value","{""omitIfEmpty"":""ca_objects.obverse_die.obverse_die_value""}"
@@ -123,8 +127,8 @@
 "Constant","lang_typeDescription_rev","typeDescription_rev","@lang","en","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","reverse_symbol","reverse","symbol","reverse_symbol_label","{ ""context"":""ca_objects.reverse_symbol"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","reverse_symbol_href","reverse_symbol","@xlink:href","reverse_symbol_uri","{""omitIfEmpty"":""reverse_symbol_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","reverse_symbol_type","reverse_symbol","@localType","reverse_symbol_type","{""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","reverse_symbol_position","reverse_symbol","@position","reverse_symbol_position","{""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","reverse_symbol_type","reverse_symbol","@localType","reverse_symbol_type","{""omitIfEmpty"":""reverse_symbol_type"",""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","reverse_symbol_position","reverse_symbol","@position","reverse_symbol_position","{""omitIfEmpty"":""reverse_symbol_position"",""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","reverse_entity","reverse","persname","reverse_entity_name","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""context"":""ca_objects.reverse_entity"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","reverse_entity_uri","reverse_entity","@xlink:href","reverse_entity_name.concept_uri","{""context"":""ca_objects.reverse_entity.reverse_entity_name"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","reverse_entity_role","reverse_entity","@xlink:role","reverse_entity_relationship","{""original_values"":""\n"",""replacement_values"":""\n""}"
@@ -140,10 +144,10 @@
 "Mapping","underType","descMeta","underType",,"{""omitIfNoChildren"":1}"
 "Mapping","underType_description","underType","description","ca_objects.undertype_description","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.undertype_description""}"
 "Mapping","underType_manufacture","underType","manufacture","ca_objects.undertype_manufacture","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""original_values"":""\n"",""replacement_values"":""\n"", ""context"":""ca_objects.undertype_manufacture""}"
-"Mapping","underType_manufacture_href","underType_manufacture","@xlink:href","ca_objects.undertype_manufacture.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","underType_manufacture_href","underType_manufacture","@xlink:href","ca_objects.undertype_manufacture.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.undertype_manufacture.concept_uri""}"
 "Constant","underType_manufacture_type","underType_manufacture","@xlink:type","simple","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","underType_material","underType","material","ca_objects.undertype_material","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""context"":""ca_objects.undertype_material"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","underType_material_href","underType_material","@xlink:href","ca_objects.undertype_material.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","underType_material_href","underType_material","@xlink:href","ca_objects.undertype_material.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.undertype_material.concept_uri""}"
 "Constant","underType_material_type","underType_material","@xlink:type","simple","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","underType_obverse","underType","obverse",,"{""omitIfNoChildren"":1}"
 "Mapping","underType_obverse_type","underType_obverse","type",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.undertype_obverse.undertype_obverse_type""}"
@@ -151,7 +155,7 @@
 "Mapping","underType_obverse_legend","underType_obverse","legend","ca_objects.undertype_obverse.undertype_obverse_legend","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.undertype_obverse.undertype_obverse_legend""}"
 "Mapping","underType_geographic","underType","geographic",,"{""omitIfNoChildren"":1}"
 "Mapping","underType_geogname","underType_geographic","geogname","undertype_place_value","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""context"":""ca_objects.undertype_related_places"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","underType_geogname_href","underType_geogname","@xlink:href","undertype_place_value.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","underType_geogname_href","underType_geogname","@xlink:href","undertype_place_value.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""undertype_place_value.concept_uri""}"
 "Mapping","underType_geogname_role","underType_geogname","@xlink:role","undertype_place_relationship","{""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
 "Constant","underType_geogname_type","underType_geogname","@xlink:type","simple",
 ,,,,,
@@ -174,8 +178,8 @@
 "Constant","length3_units","length3","@units","mm","{""original_values"":""\n"",""replacement_values"":""\n""}"
 ,,,,,
 "#other descriptors",,,,,
-"Mapping","authenticity","physDesc","authenticity","authenticity_value","{""context"":""ca_objects.authenticity"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Constant","authenticity_certainty","authenticity","@certainty","http://nomisma.org/id/uncertain_value","{""skipIfExpression"":""^authenticity_uncertain = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","authenticity","physDesc","authenticity","authenticity_value","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""context"":""ca_objects.authenticity"",""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","authenticity_certainty","authenticity","@certainty","authenticity_uncertain","{""skipIfExpression"":""^authenticity_uncertain = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","original_intended_use","physDesc","originalIntendedUse","original_intended_use_value","{""context"":""ca_objects.original_intended_use"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Constant","original_intended_use_certainty","original_intended_use","@certainty","uncertain","{""skipIfExpression"":""^orig_use_uncertain = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","secondaryTreatment","physDesc","secondaryTreatment","post_manu_alt_value","{""context"":""ca_objects.post_manu_alt"",""original_values"":""\n"",""replacement_values"":""\n""}"
@@ -187,7 +191,8 @@
 "Mapping","serialNumber","physDesc","serialNumber","ca_objects.serial_number","{""omitIfEmpty"":""ca_objects.serial_number"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","series","physDesc","series","ca_objects.series","{""omitIfEmpty"":""ca_objects.series"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","signature","physDesc","signature","ca_objects.signature","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""original_values"":""\n"",""replacement_values"":""\n"", ""context"":""ca_objects.signature""}"
-"Mapping","signature_href","signature","@xlink:href","ca_objects.signature.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","signature_href","signature","@xlink:href","ca_objects.signature.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.signature.concept_uri""}"
+"Constant","signature_type","signature","@xlink:type","simple",
 "Mapping","watermark","physDesc","watermark","ca_objects.watermark","{""omitIfEmpty"":""ca_objects.watermark"",""original_values"":""\n"",""replacement_values"":""\n""}"
 ,,,,,
 "#findspotDesc",,,,,
@@ -195,9 +200,10 @@
 "Mapping","findspotDesc","descMeta","findspotDesc",,"{""omitIfNoChildren"":1}"
 "Mapping","findspot","findspotDesc","findspot",,"{""omitIfNoChildren"":1}"
 "Mapping","findspot_desc","findspot","description","ca_objects.findspot_deprecated","{""omitIfEmpty"":""ca_objects.findspot_deprecated"",""original_values"":""\n"",""replacement_values"":""\n""}"
+"Constant","findspot_lang","findspot_desc","@xml:lang","en",
 "Mapping","findspot_place","findspot","fallsWithin",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
 "Mapping","findspot_geogname","findspot_place","geogname","ca_objects.findspot","{""original_values"":""\n"",""replacement_values"":""\n"", ""context"":""ca_objects.findspot""}"
-"Mapping","findspot_geogname_uri","findspot_geogname","@xlink:href","ca_objects.findspot.concept_uri",
+"Mapping","findspot_geogname_uri","findspot_geogname","@xlink:href","ca_objects.findspot.concept_uri","{""omitIfEmpty"":""ca_objects.findspot.concept_uri""}"
 "Constant","findspot_geogname_role","findspot_geogname","@xlink:role","findspot",
 ,,,,,
 "#refDesc",,,,,
@@ -206,14 +212,14 @@
 "#Numishare Information Service",,,,,
 "Mapping","coinType","refDesc","reference","coin_type_href","{""repeat_element_for_multiple_values"":1,""context"":""ca_objects.coin_type_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","coinType_href","coinType","@xlink:href","coin_type_href.url","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","coinType_variant","coinType","@variant","variant","{""skipIfExpression"":""^ca_objects.coin_type_uri.variant = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","coinType_variant","coinType","@variant","variant","{""skipIfExpression"":""^variant = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","coinType_uncertain","coinType","@certainty","type_uncertain",
 "Constant","coinType_type","coinType","@xlink:type","simple",
 "Constant","coinType_arcrole","coinType","@xlink:arcrole","nmo:hasTypeSeriesItem",
 ,,,,,
 "#Undertype Numishare Information Service",,,,,
-"Mapping","underType_coinType","refDesc","reference","ca_objects.undertype_coin_type_uri","{""repeat_element_for_multiple_values"":1,""context"":""ca_objects.undertype_coin_type_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","underType_coinType_href","underType_coinType","@xlink:href","ca_objects.undertype_coin_type_uri.url","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","underType_coinType","refDesc","reference","undertype_coin_type_uri","{""repeat_element_for_multiple_values"":1,""context"":""ca_objects.undertype_coin_type_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","underType_coinType_href","underType_coinType","@xlink:href","undertype_coin_type_uri.url","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Constant","underType_reference_type","underType_coinType","@xlink:type","simple",
 "Constant","underType_reference_role","underType_coinType","@xlink:role","underType",
 "Constant","underType_reference_arcrole","underType_coinType","@xlink:arcrole","nmo:hasTypeSeriesItem",
@@ -221,9 +227,17 @@
 "#reference and comparanda",,,,,
 "Mapping","reference","refDesc","reference",,"{""repeat_element_for_multiple_values"":1,""context"":""ca_objects.type_reference"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","reference_type","reference","@localType","ref_type","{""returnIdno"":1}"
+"Mapping","reference_variant","reference","@variant","ref_variant","{""skipIfExpression"": ""^type_reference.ref_variant = \""false\""""}"
+"Mapping","reference_uncertain","reference","@certainty","ref_uncertain","{""skipIfExpression"": ""^type_reference.ref_uncertain = \""false\""""}"
 "Mapping","reference_work","reference","tei:title","ref_publication","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","reference_work_uri","reference_work","@key","ref_publication.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","reference_identifier","reference","tei:idno","ref_identifier","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","reference_work_uri","reference_work","@key","ref_publication.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ref_publication.concept_uri""}"
+"Mapping","reference_section","reference","tei:seg","ref_section","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ref_section""}"
+"Constant","reference_section_attr","reference_section","@type","section",
+"Mapping","reference_identifier","reference","tei:idno","ref_identifier","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ref_identifier""}"
+"Mapping","reference_page","reference","tei:seg","ref_page","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ref_page""}"
+"Constant","reference_page_attr","reference_page","@type","page",
+"Mapping","reference_plate","reference","tei:seg","ref_plate","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ref_plate""}"
+"Constant","reference_plate_attr","reference_plate","@type","plate",
 ,,,,,
 "#deprecated reference",,,,,
 "Mapping","reference_deprecated","refDesc","reference",,"{""repeat_element_for_multiple_values"":1,""context"":""ca_objects.reference"",""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.reference.work""}"
@@ -233,12 +247,13 @@
 "Mapping","refDep_uncertain","reference_deprecated","@certainty","reference_uncertain",
 "#deprecated citation",,,,,
 "Mapping","published_deprecated","refDesc","citation","published_work","{""repeat_element_for_multiple_values"":1,""context"":""ca_objects.published"",""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.published.published_work""}"
+,,,,,
 "#citation",,,,,
 "Mapping","citation","refDesc","citation",,"{""repeat_element_for_multiple_values"":1,""context"":""ca_objects.published_citation"",""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
 "Mapping","citation_title","citation","tei:title","citation_publication","{""convertCodesToDisplayText"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","citation_page","citation","tei:seg","citation_page","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","citation_page","citation","tei:seg","citation_page","{""original_values"":""\n"",""replacement_values"":""\n"",""omitIfEmpty"":""citation_page""}"
 "Constant","citation_page_attr","citation_page","@type","page",
-"Mapping","citation_plate","citation","tei:seg","citation_plate","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","citation_plate","citation","tei:seg","citation_plate","{""original_values"":""\n"",""replacement_values"":""\n"",""omitIfEmpty"":""citation_plate""}"
 "Constant","citation_plate_attr","citation_plate","@type","plate",
 ,,,,,
 "#adminDesc",,,,,
@@ -249,7 +264,7 @@
 "Constant","collection_href","collection","@xlink:href","http://nomisma.org/id/ans","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Constant","collection_type","collection","@xlink:type","simple","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","imageSponsor","adminDesc","acknowledgment","ca_objects.image_sponsor","{""repeat_element_for_multiple_values"":1,""context"":""ca_objects.image_sponsor"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","imageSponsor_uri","imageSponsor","@xlink:href","concept_uri",
+"Mapping","imageSponsor_uri","imageSponsor","@xlink:href","ca_objects.image_sponsor.concept_uri","{""omitIfEmpty"":""ca_objects.image_sponsor.concept_uri""}"
 "Constant","imageSponsor_type","imageSponsor","@localType","imageSponsor",
 "#provenance",,,,,
 "Mapping","provenance","adminDesc","provenance",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
@@ -261,6 +276,7 @@
 "Mapping","appraisal_date","appraisal","date","appraisal_date","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","appraisal_standardDate","appraisal_date","@standardDate","appraisal_date","{""start_as_iso8601"":1,""timeOmit"":1}"
 "Mapping","appraisal_agent","appraisal","appraiser","appraisal_agent","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","appraisal_agent_uri","appraisal_agent","@xlink:href","appraisal_agent.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","appraisal_agent_uri","appraisal_agent","@xlink:href","appraisal_agent.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""appraisal_agent.concept_uri""}"
+"Constant","appraisal_agent_type","appraisal_agent","@xlink:type","simple",
 "Mapping","appraisal_value","appraisal","value","appraisal_value","{""original_values"":""\n"",""replacement_values"":""\n"",""original_values"":""^\\$\\s+(.*)"",""replacement_values"":""$1""}"
 "Constant","appraisal_currency","appraisal_value","@currency","USD",

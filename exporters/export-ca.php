@@ -83,19 +83,8 @@ if (($ca_file = fopen("ca_credentials.json", "r")) !== FALSE && ($ssh_file = fop
         $response = curl_exec($ch);
         curl_close($ch);
         
-        //var_dump($response);
-        
         //begin parsing the JSON from CA
         process_response($response, $q, $ssh_credentials);
-        
-        //execute process for remaining accnums.
-        /*if (count($accnums) > 0){
-            $start = floor(count($accnums) / INDEX_COUNT) * INDEX_COUNT;
-            $toIndex = array_slice($accnums, $start);
-            
-            //POST TO SOLR
-            generate_solr_shell_script($toIndex);
-        }*/
     } else {
         echo "CA authToken error.\n";
     }
@@ -134,7 +123,8 @@ function process_response ($response, $q, $ssh_credentials){
     
     $json = json_decode($response);  
     
-    zip_and_upload($ssh_credentials);
+    //testing static files below
+    //zip_and_upload($ssh_credentials);
     
     if ($json->total > 0 ){
         echo "Processing {$json->total} edited item(s).\n";
@@ -165,6 +155,7 @@ function process_response ($response, $q, $ssh_credentials){
         }
         
         //zip exported record after each object has been exported to NUDS from CA
+        zip_and_upload($ssh_credentials);
         
     } else {
         "No updated records since yesterday";

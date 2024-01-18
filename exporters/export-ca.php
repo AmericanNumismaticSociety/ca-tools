@@ -14,11 +14,14 @@
  * This file is not committed to Github.
  * 
  * This script requires the zip and ssh2 packages for PHP 8.x
+ * 
+ * This script must be run as user database with the SSH keys configured to connect to database@numismatics.org
  *****/
 
 define("INDEX_COUNT", 500);
 define("CA_URL", "https://test.numismatics.org/collectiveaccess/");
 define("CA_UTILS", "/usr/local/projects/providence-2.0/support/bin/caUtils");
+define("TMP_NUDS", "/tmp/nuds");
 
 //read the image file list
 $image_files = array();
@@ -36,10 +39,11 @@ fclose($fp);
 $accnums = array();
 
 //ensure the ca_credentials.json exists
-if (($handle = fopen("ca_credentials.json", "r")) !== FALSE) {
+if (($ca_file = fopen("ca_credentials.json", "r")) !== FALSE && ($ssh_file = fopen("ssh_credentials.json", "r")) !== FALSE) {
     //load credentials
     $ca_credentials = json_decode(file_get_contents("ca_credentials.json"), true);
-        
+    $ssh_credentials = json_decode(file_get_contents("ssh_credentials.json"), true);
+    
     //formulate the query to send to CollectiveAccess
     //first argument must be collection
     //read the second argument for the Lucene query. Default to 'yesterday'
@@ -82,7 +86,7 @@ if (($handle = fopen("ca_credentials.json", "r")) !== FALSE) {
         //var_dump($response);
         
         //begin parsing the JSON from CA
-        process_response($response, $q);
+        process_response($response, $q, $ssh_credentials);
         
         //execute process for remaining accnums.
         /*if (count($accnums) > 0){
@@ -96,7 +100,7 @@ if (($handle = fopen("ca_credentials.json", "r")) !== FALSE) {
         echo "CA authToken error.\n";
     }
 } else {
-    echo "Credentials JSON file for CollectiveAccess API authorization does not exist.\n";
+    echo "Credentials JSON file for CollectiveAccess API authorization and/or SSH does not exist.\n";
 }
 
 /***** FUNCTIONS *****/
@@ -126,35 +130,18 @@ function login_to_ca($username, $password){
 /***** 
  * Process the JSON response from CollectiveAccess API
  *****/
-function process_response ($response, $q){
+function process_response ($response, $q, $ssh_credentials){
     
-    $json = json_decode($response);    
+    $json = json_decode($response);  
     
-    $zip = new ZipArchive;
-    if ($zip->open('/tmp/ca_upload.zip', ZipArchive::CREATE) === TRUE) {
-        if ($handle = opendir('/tmp/nuds'))
-        {
-            // Add all files inside the directory
-            while (false !== ($file = readdir($handle)))
-            {
-                if ($file != "." && $file != ".." && !is_dir('/tmp/nuds/' . $file))
-                {
-                    $zip->addFile('/tmp/nuds/' . $file);
-                }
-            }
-            closedir($handle);
-        }
-        
-        $zip->close();
-    }
-    
+    zip_and_upload($ssh_credentials);
     
     if ($json->total > 0 ){
         echo "Processing {$json->total} edited item(s).\n";
         
         //create /tmp/nuds if it doesn't exist
-        if (!file_exists('/tmp/nuds')) {
-            mkdir('/tmp/nuds', 0777, true);
+        if (!file_exists(TMP_NUDS)) {
+            mkdir(TMP_NUDS, 0777, true);
         }
         
         foreach ($json->results as $record){
@@ -177,39 +164,7 @@ function process_response ($response, $q){
             }
         }
         
-        //zip exported records
-        $zip = new ZipArchive;
-        if ($zip->open('/tmp/ca_upload.zip', ZipArchive::CREATE) === TRUE) {
-            if ($handle = opendir('/tmp/nuds'))
-            {
-                // Add all files inside the directory
-                while (false !== ($file = readdir($handle)))
-                {
-                    if ($file != "." && $file != ".." && !is_dir('/tmp/nuds/' . $file))
-                    {
-                        $zip->addFile('/tmp/nuds/' . $file);
-                    }
-                }
-                closedir($handle);
-            }
-            
-            $zip->close();
-        }
-        
-        //upload zip to numismatics.org
-        echo "Uploading zip.\n";
-        $connection = ssh2_connect('numismatics.org', 4858, array('hostkey' => 'ssh-rsa'));        
-        
-        if (ssh2_auth_pubkey_file($connection, 'egruber',
-            '~/.ssh/id_rsa.pub',
-            '~/.ssh/id_rsa', 'ewg4xuva@gmail.com')) {
-            echo "Public Key Authentication Successful\n";
-            ssh2_scp_send($connection, '/tmp/ca_upload.zip', '/tmp/ca_upload.zip', 0644);
-            
-            echo "Zip file uploaded to production server. Numishare publication workflow commencing.\n";
-        } else {
-            die('Public Key Authentication Failed');
-        }
+        //zip exported record after each object has been exported to NUDS from CA
         
     } else {
         "No updated records since yesterday";
@@ -220,6 +175,56 @@ function process_response ($response, $q){
 /*****
  * Execute caUtils to generate a NUDS XML record to post to eXist-db
  *****/
+//zip NUDS files and then SCP them to the production server
+function zip_and_upload($ssh_credentials){
+    $zip = new ZipArchive;
+    if ($zip->open('/tmp/ca_upload.zip', ZipArchive::CREATE) === TRUE) {
+        if ($handle = opendir(TMP_NUDS))
+        {
+            // Add all files inside the directory
+            while (false !== ($file = readdir($handle)))
+            {
+                if ($file != "." && $file != ".." && !is_dir('/tmp/nuds/' . $file))
+                {
+                    $zip->addFile('/tmp/nuds/' . $file, 'nuds/' . $file);
+                }
+            }
+            closedir($handle);
+        }
+        
+        $zip->close();
+    }
+    
+    //upload zip to numismatics.org
+    echo "Uploading zip.\n";
+    $connection = ssh2_connect($ssh_credentials['server'], $ssh_credentials['port'], array('hostkey' => 'ssh-rsa'));
+    
+    if (ssh2_auth_pubkey_file($connection, $ssh_credentials['username'],
+        '~/.ssh/id_rsa.pub',
+        '~/.ssh/id_rsa', $ssh_credentials['username'] . '@' . $ssh_credentials['server'])) {
+        echo "Public Key Authentication Successful\n";
+        ssh2_scp_send($connection, '/tmp/ca_upload.zip', '/tmp/ca_upload.zip', 0644);
+        
+        echo "Zip file uploaded to production server. Numishare publication workflow commencing.\n";
+        
+        //unlink('/tmp/ca_upload.zip');
+        rmdir_recursive(TMP_NUDS);
+    } else {
+        die('Public Key Authentication Failed');
+    }
+}
+
+function rmdir_recursive($dir) {    
+    if (is_dir($dir)) {
+        foreach(scandir($dir) as $file) {
+            if ('.' === $file || '..' === $file) continue;
+            if (is_dir("$dir/$file")) rmdir_recursive("$dir/$file");
+            else unlink("$dir/$file");
+        }
+        rmdir($dir);
+    }    
+}
+
 function export_record($record){
     GLOBAL $image_files;
     
@@ -238,7 +243,7 @@ function export_record($record){
     
     
     
-    $fileName = "/tmp/nuds/{$accnum}.xml";
+    $fileName = TMP_NUDS . "{$accnum}.xml";
     
     $cmd = CA_UTILS . " export-data -m nuds -i {$id} -f {$fileName}";
     
@@ -269,7 +274,7 @@ function export_record($record){
         }
         
         $writer = new XMLWriter();
-        $writer->openURI("/tmp/nuds/{$accnum}-images.xml");
+        $writer->openURI(TMP_NUDS . "/{$accnum}-images.xml");
         //$writer->openURI('php://output');
         $writer->startDocument('1.0','UTF-8');
         $writer->setIndent(true);
@@ -400,13 +405,12 @@ function export_record($record){
         $nuds = new DOMDocument;
         $nuds->load($fileName);
         $digRep = new DOMDocument;
-        $digRep->load("/tmp/nuds/{$accnum}-images.xml");
+        $digRep->load(TMP_NUDS . "/{$accnum}-images.xml");
         $nuds->documentElement->appendChild($nuds->importNode($digRep->documentElement, true));
         $nuds->save($fileName);
-        unlink("/tmp/nuds/{$accnum}-images.xml");
+        unlink(TMP_NUDS . "/{$accnum}-images.xml");
         
-    }
-    
+    }    
 }
 
 

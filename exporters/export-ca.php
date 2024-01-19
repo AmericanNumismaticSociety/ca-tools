@@ -16,6 +16,8 @@
  * This script requires the zip and ssh2 packages for PHP 8.x
  * 
  * This script must be run as user database with the SSH keys configured to connect to database@numismatics.org
+ * 
+ * mkdir /data/images/ and be sure to upload the image files.list nightly
  *****/
 
 define("INDEX_COUNT", 500);
@@ -234,7 +236,7 @@ function export_record($record){
     
     
     
-    $fileName = TMP_NUDS . "{$accnum}.xml";
+    $fileName = TMP_NUDS . "/{$accnum}.xml";
     
     $cmd = CA_UTILS . " export-data -m nuds -i {$id} -f {$fileName}";
     
@@ -242,7 +244,7 @@ function export_record($record){
     echo "Generating {$accnum} NUDS.\n";
     
     
-    //shell_exec($cmd);
+    shell_exec('nohup ' . $cmd . ' 2>&1 &');
     
     //generate images XML
     if (count($images) > 0){

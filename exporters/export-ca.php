@@ -200,7 +200,7 @@ function zip_and_upload($ssh_credentials){
         
         echo "Zip file uploaded to production server. Numishare publication workflow commencing.\n";
         
-        //unlink('/tmp/ca_upload.zip');
+        unlink('/tmp/ca_upload.zip');
         rmdir_recursive(TMP_NUDS);
     } else {
         die('Public Key Authentication Failed');

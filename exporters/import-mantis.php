@@ -103,7 +103,7 @@ function update_record_in_numishare ($accnum, $collection){
     }
     
     $fileName = TMP_NUDS . '/' . $accnum . '.xml';    
-    echo "{$fileName}\n";
+    //echo "{$fileName}\n";
     
     if (($readFile = fopen($fileName, 'r')) === FALSE){
         $error = $accnum . ' failed to open temporary file (accnum likely broken) at ' . date(DATE_W3C) . "\n";

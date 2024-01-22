@@ -68,6 +68,9 @@ if (isset($argv[1])){
                 generate_solr_shell_script($toIndex);
             }
             
+            //delete zip file
+            unlink('/tmp/ca_upload.zip');
+            
         } else {
             echo "Error reading zip file.\n";
         }

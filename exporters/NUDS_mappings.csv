@@ -35,10 +35,10 @@
 "#descMeta",,,,,
 "Mapping","descMeta","nuds","descMeta",,"{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","title","descMeta","title","ca_objects.preferred_labels","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Constant","lang_title","title","@lang","en","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","descriptionSet","descMeta","descriptionSet",,"{""omitIfEmpty"": ""ca_objects.description"",""original_values"":""\n"",""replacement_values"":""\n""}"
+"Constant","lang_title","title","@xml:lang","en","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","descriptionSet","descMeta","descriptionSet",,"{""omitIfEmpty"": ""ca_objects.description"",""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
 "Mapping","narrative_description","descriptionSet","description","ca_objects.description","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Constant","narrative_description_lang","narrative_description","@lang","en","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Constant","narrative_description_lang","narrative_description","@xml:lang","en","{""original_values"":""\n"",""replacement_values"":""\n""}"
 ,,,,,
 "Mapping","subjectSet","descMeta","subjectSet",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
 "Mapping","subject","subjectSet","subject","subject_topic","{""omitIfEmpty"":""ca_objects.subject"",""context"":""ca_objects.subject"",""original_values"":""(.*)\\s[\\[].*\n"",""replacement_values"":""$1\n""}"
@@ -48,7 +48,7 @@
 "Mapping","category","subjectSet","subject","category","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
 "Constant","category_localType","category","@localType","category","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "#deprecated subject",,,,,
-"Mapping","subject_deprecated","subjectSet","subject","subject_deprecated_topic","{""repeat_element_for_multiple_values"":1,""original_values"":""\n"",""replacement_values"":""\n"", ""context"":""ca_objects.subject_deprecated""}"
+"Mapping","subject_deprecated","subjectSet","subject","subject_deprecated_topic","{""repeat_element_for_multiple_values"":1,""original_values"":""\n"",""replacement_values"":""\n"", ""context"":""ca_objects.subject_deprecated"", ""omitIfEmpty"":""subject_deprecated_topic""}"
 "Mapping","subject_deprecated_type","subject_deprecated","@localType","subject_deprecated_type","{""original_values"":""\n"",""replacement_values"":""\n""}"
 ,,,,,
 "#typeDesc",,,,,
@@ -56,12 +56,14 @@
 "Mapping","objectType","typeDesc","objectType","ca_objects.object_type","{""convertCodesToDisplayText"":1,""original_values"":""\n"",""replacement_values"":""\n"", ""context"":""ca_objects.object_type""}"
 "Mapping","objectType_href","objectType","@xlink:href","ca_objects.object_type.concept_uri","{""omitIfEmpty"":""ca_objects.object_type.concept_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Constant","objectType_type","objectType","@xlink:type","simple","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","dateRange","typeDesc","dateRange",,"{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","fromDate_issued","dateRange","fromDate","ca_objects.issue_dates.from_date","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","dateRange_issued","typeDesc","dateRange",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""skipIfExpression"":""^ca_objects.issue_dates.from_date = ^ca_objects.issue_dates.to_date"", ""omitIfEmpty"":""ca_objects.issue_dates.from_date""}"
+"Mapping","fromDate_issued","dateRange_issued","fromDate","ca_objects.issue_dates.from_date","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","fromDate_issued_standardDate","fromDate_issued","@standardDate","ca_objects.issue_dates.from_date","{""start_as_iso8601"":1,""timeOmit"":1,""original_values"":""^(\\-?\\d+)\\-.*"",""replacement_values"":""$1""}"
-"Mapping","toDate_issued","dateRange","toDate","ca_objects.issue_dates.to_date","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","toDate_issued","dateRange_issued","toDate","ca_objects.issue_dates.to_date","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","toDate_issued_standardDate","toDate_issued","@standardDate","ca_objects.issue_dates.to_date","{""start_as_iso8601"":1,""timeOmit"":1,""original_values"":""^(\\-?\\d+)\\-.*"",""replacement_values"":""$1""}"
-"Mapping","dateOnObject","typeDesc","dateOnObject",,"{""omitIfEmpty"":""ca_objects.date_on_object.date_on_object_value"",""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","date_issued","typeDesc","date","ca_objects.issue_dates.from_date","{""original_values"":""\n"",""replacement_values"":""\n"",""skipIfExpression"":""^ca_objects.issue_dates.from_date != ^ca_objects.issue_dates.to_date"", ""omitIfEmpty"":""ca_objects.issue_dates.from_date""}"
+"Mapping","date_issued_standardDate","date_issued","@standardDate","ca_objects.issue_dates.from_date","{""start_as_iso8601"":1,""timeOmit"":1,""original_values"":""^(\\-?\\d+)\\-.*"",""replacement_values"":""$1""}"
+"Mapping","dateOnObject","typeDesc","dateOnObject",,"{""omitIfEmpty"":""ca_objects.date_on_object.date_on_object_value"",""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
 "Mapping","dateOnObject_calendar","dateOnObject","@calendar","ca_objects.date_on_object.era_field","{""omitIfEmpty"":""ca_objects.date_on_object.era_field"",""convertCodesToDisplayText"":1}"
 "Mapping","dateOnObject_date","dateOnObject","date","ca_objects.date_on_object.date_on_object_value","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","dateOnObject_date_standardDate","dateOnObject_date","@standardDate","ca_objects.date_on_object.date_on_object_standard","{""omitIfEmpty"":""ca_objects.date_on_object.date_on_object_standard"",""skipIfExpression"":""^ca_objects.date_on_object.date_on_object_standard =~ \/BCE\/"",""timeOmit"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
@@ -76,7 +78,7 @@
 "Mapping","material","typeDesc","material","value","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""context"":""ca_objects.material"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","material_href","material","@xlink:href","value.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""value.concept_uri""}"
 "Constant","material_type","material","@xlink:type","simple","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""value.concept_uri""}"
-"Mapping","material_uncertain","material","@certainty","material_uncertain","{""skipIfExpression"": ""^material_uncertain = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
+"#Mapping","material_uncertain","material","@certainty","material_uncertain","{""skipIfExpression"": ""^material_uncertain = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","color","typeDesc","color","ca_objects.color","{""omitIfEmpty"":""ca_objects.color"",""repeat_element_for_multiple_values"": 1,""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","shape","typeDesc","shape","ca_objects.shape","{""convertCodesToDisplayText"":1,""omitIfEmpty"":""ca_objects.shape"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","symbol_deprecated","typeDesc","symbol","ca_objects.symbol_deprecated","{""omitIfEmpty"":""ca_objects.symbol_deprecated"",""original_values"":""\n"",""replacement_values"":""\n""}"
@@ -87,12 +89,12 @@
 "Mapping","persname_role","persname","@xlink:role","relationship_type_code","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","persname_href","persname","@xlink:href","concept_uri","{""omitIfEmpty"":""concept_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Constant","persname_type","persname","@xlink:type","simple","{""omitIfEmpty"":""concept_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Constant","persname_uncertain","persname","@certainty","http://nomisma.org/id/uncertain","{""skipIfExpression"": ""^ca_objects_x_entities.attribute_uncertain = \""boolean_false\""""}"
+"#Constant","persname_uncertain","persname","@certainty","http://nomisma.org/id/uncertain","{""skipIfExpression"": ""^ca_objects_x_entities.attribute_uncertain = \""boolean_false\""""}"
 "Mapping","corpname","authority","corpname","ca_entities.preferred_labels","{""context"":""ca_entities"",""restrictToTypes"":[""organization""],""omitIfEmpty"":""ca_entities.preferred_labels"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","corpname_role","corpname","@xlink:role","relationship_type_code","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","corpname_href","corpname","@xlink:href","concept_uri","{""omitIfEmpty"":""concept_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Constant","corpname_type","corpname","@xlink:type","simple","{""omitIfEmpty"":""concept_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Constant","corpname_uncertain","corpname","@certainty","http://nomisma.org/id/uncertain","{""skipIfExpression"": ""^ca_objects_x_entities.attribute_uncertain = \""boolean_false\""""}"
+"#Constant","corpname_uncertain","corpname","@certainty","http://nomisma.org/id/uncertain","{""skipIfExpression"": ""^ca_objects_x_entities.attribute_uncertain = \""boolean_false\""""}"
 ,,,,,
 "#geographic",,,,,
 "Mapping","geographic","typeDesc","geographic",,"{""original_values"":""\n"",""replacement_values"":""\n"",""omitIfNoChildren"":1}"
@@ -100,14 +102,14 @@
 "Mapping","relatedPlace_role","relatedPlace","@xlink:role","relationship_type_code","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","relatedPlace_href","relatedPlace","@xlink:href","concept_uri","{""omitIfEmpty"":""concept_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Constant","relatedPlace_type","relatedPlace","@xlink:type","simple","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Constant","relatedPlace_uncertain","relatedPlace","@certainty","http://nomisma.org/id/uncertain","{""skipIfExpression"": ""^ca_objects_x_places.attribute_uncertain = \""boolean_false\""""}"
+"#Constant","relatedPlace_uncertain","relatedPlace","@certainty","http://nomisma.org/id/uncertain","{""skipIfExpression"": ""^ca_objects_x_places.attribute_uncertain = \""boolean_false\""""}"
 ,,,,,
 "#obverse",,,,,
 "Mapping","obverse","typeDesc","obverse",,"{""original_values"":""\n"",""replacement_values"":""\n"",""omitIfNoChildren"":1}"
 "Mapping","legend_obv","obverse","legend","ca_objects.obv_legend","{""omitIfEmpty"":""ca_objects.obv_legend"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","type_obv","obverse","type",,"{""omitIfEmpty"":""ca_objects.obv_type.obv_type_description"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","typeDescription_obv","type_obv","description","ca_objects.obv_type.obv_type_description","{""omitIfEmpty"":""ca_objects.obv_type.obv_type_description"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Constant","lang_typeDescription_obv","typeDescription_obv","@lang","en","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Constant","lang_typeDescription_obv","typeDescription_obv","@xml:lang","en","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","obverse_symbol","obverse","symbol","obverse_symbol_label","{""context"":""ca_objects.obverse_symbol"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","obverse_symbol_href","obverse_symbol","@xlink:href","obverse_symbol_uri","{""omitIfEmpty"":""obverse_symbol_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","obverse_symbol_type","obverse_symbol","@localType","obverse_symbol_type","{""omitIfEmpty"":""obverse_symbol_type"",""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
@@ -124,7 +126,7 @@
 "Mapping","legend_rev","reverse","legend","ca_objects.rev_legend","{""omitIfEmpty"":""ca_objects.rev_legend"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","type_rev","reverse","type",,"{""omitIfEmpty"":""ca_objects.rev_type.rev_type_description"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","typeDescription_rev","type_rev","description","ca_objects.rev_type.rev_type_description","{""omitIfEmpty"":""ca_objects.rev_type.rev_type_description"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Constant","lang_typeDescription_rev","typeDescription_rev","@lang","en","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Constant","lang_typeDescription_rev","typeDescription_rev","@xml:lang","en","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","reverse_symbol","reverse","symbol","reverse_symbol_label","{ ""context"":""ca_objects.reverse_symbol"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","reverse_symbol_href","reverse_symbol","@xlink:href","reverse_symbol_uri","{""omitIfEmpty"":""reverse_symbol_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","reverse_symbol_type","reverse_symbol","@localType","reverse_symbol_type","{""omitIfEmpty"":""reverse_symbol_type"",""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
@@ -150,9 +152,13 @@
 "Mapping","underType_material_href","underType_material","@xlink:href","ca_objects.undertype_material.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.undertype_material.concept_uri""}"
 "Constant","underType_material_type","underType_material","@xlink:type","simple","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","underType_obverse","underType","obverse",,"{""omitIfNoChildren"":1}"
-"Mapping","underType_obverse_type","underType_obverse","type",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.undertype_obverse.undertype_obverse_type""}"
+"Mapping","underType_obverse_type","underType_obverse","type",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.undertype_obverse.undertype_obverse_type"", ""omitIfNoChildren"":1}"
 "Mapping","underType_obverse_description","underType_obverse_type","description","ca_objects.undertype_obverse.undertype_obverse_type","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.undertype_obverse.undertype_obverse_type""}"
 "Mapping","underType_obverse_legend","underType_obverse","legend","ca_objects.undertype_obverse.undertype_obverse_legend","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.undertype_obverse.undertype_obverse_legend""}"
+"Mapping","underType_reverse","underType","reverse",,"{""omitIfNoChildren"":1}"
+"Mapping","underType_reverse_type","underType_reverse","type",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.undertype_reverse.undertype_reverse_type"", ""omitIfNoChildren"":1}"
+"Mapping","underType_reverse_description","underType_reverse_type","description","ca_objects.undertype_reverse.undertype_reverse_type","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.undertype_reverse.undertype_reverse_type""}"
+"Mapping","underType_reverse_legend","underType_reverse","legend","ca_objects.undertype_reverse.undertype_reverse_legend","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.undertype_reverse.undertype_reverse_legend""}"
 "Mapping","underType_geographic","underType","geographic",,"{""omitIfNoChildren"":1}"
 "Mapping","underType_geogname","underType_geographic","geogname","undertype_place_value","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""context"":""ca_objects.undertype_related_places"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","underType_geogname_href","underType_geogname","@xlink:href","undertype_place_value.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""undertype_place_value.concept_uri""}"
@@ -179,11 +185,11 @@
 ,,,,,
 "#other descriptors",,,,,
 "Mapping","authenticity","physDesc","authenticity","authenticity_value","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""context"":""ca_objects.authenticity"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","authenticity_certainty","authenticity","@certainty","authenticity_uncertain","{""skipIfExpression"":""^authenticity_uncertain = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
+"#Mapping","authenticity_certainty","authenticity","@certainty","authenticity_uncertain","{""skipIfExpression"":""^authenticity_uncertain = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","original_intended_use","physDesc","originalIntendedUse","original_intended_use_value","{""context"":""ca_objects.original_intended_use"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Constant","original_intended_use_certainty","original_intended_use","@certainty","uncertain","{""skipIfExpression"":""^orig_use_uncertain = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
+"#Constant","original_intended_use_certainty","original_intended_use","@certainty","uncertain","{""skipIfExpression"":""^orig_use_uncertain = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","secondaryTreatment","physDesc","secondaryTreatment","post_manu_alt_value","{""context"":""ca_objects.post_manu_alt"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Constant","secondaryTreatment_certainty","secondaryTreatment","@certainty","uncertain","{""skipIfExpression"":""^post_manu_alt_uncertain = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
+"#Constant","secondaryTreatment_certainty","secondaryTreatment","@certainty","uncertain","{""skipIfExpression"":""^post_manu_alt_uncertain = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","conservationState","physDesc","conservationState",,"{""original_values"":""\n"",""replacement_values"":""\n"",""omitIfNoChildren"":1}"
 "Mapping","conservation","conservationState","description","ca_objects.conservation","{""omitIfEmpty"":""ca_objects.conservation"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","countermark","physDesc","countermark","ca_objects.counterstamp.counterstamp_description","{""omitIfEmpty"":""ca_objects.counterstamp.counterstamp_description"",""original_values"":""\n"",""replacement_values"":""\n""}"
@@ -212,8 +218,8 @@
 "#Numishare Information Service",,,,,
 "Mapping","coinType","refDesc","reference","coin_type_href","{""repeat_element_for_multiple_values"":1,""context"":""ca_objects.coin_type_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","coinType_href","coinType","@xlink:href","coin_type_href.url","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","coinType_variant","coinType","@variant","variant","{""skipIfExpression"":""^variant = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","coinType_uncertain","coinType","@certainty","type_uncertain",
+"#Mapping","coinType_variant","coinType","@variant","variant","{""skipIfExpression"":""^variant = \""false\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
+"#Mapping","coinType_uncertain","coinType","@certainty","type_uncertain",
 "Constant","coinType_type","coinType","@xlink:type","simple",
 "Constant","coinType_arcrole","coinType","@xlink:arcrole","nmo:hasTypeSeriesItem",
 ,,,,,
@@ -227,8 +233,8 @@
 "#reference and comparanda",,,,,
 "Mapping","reference","refDesc","reference",,"{""repeat_element_for_multiple_values"":1,""context"":""ca_objects.type_reference"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","reference_type","reference","@localType","ref_type","{""returnIdno"":1}"
-"Mapping","reference_variant","reference","@variant","ref_variant","{""skipIfExpression"": ""^type_reference.ref_variant = \""false\""""}"
-"Mapping","reference_uncertain","reference","@certainty","ref_uncertain","{""skipIfExpression"": ""^type_reference.ref_uncertain = \""false\""""}"
+"#Mapping","reference_variant","reference","@variant","ref_variant","{""skipIfExpression"": ""^type_reference.ref_variant = \""false\""""}"
+"#Mapping","reference_uncertain","reference","@certainty","ref_uncertain","{""skipIfExpression"": ""^type_reference.ref_uncertain = \""false\""""}"
 "Mapping","reference_work","reference","tei:title","ref_publication","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","reference_work_uri","reference_work","@key","ref_publication.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ref_publication.concept_uri""}"
 "Mapping","reference_section","reference","tei:seg","ref_section","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ref_section""}"
@@ -243,8 +249,8 @@
 "Mapping","reference_deprecated","refDesc","reference",,"{""repeat_element_for_multiple_values"":1,""context"":""ca_objects.reference"",""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.reference.work""}"
 "Mapping","refDep_work","reference_deprecated","tei:title","work","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","refDep_identifier","reference_deprecated","tei:idno","identifier","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"": ""identifier""}"
-"Mapping","refDep_variant","reference_deprecated","@variant","reference_variant",
-"Mapping","refDep_uncertain","reference_deprecated","@certainty","reference_uncertain",
+"#Mapping","refDep_variant","reference_deprecated","@variant","reference_variant",
+"#Mapping","refDep_uncertain","reference_deprecated","@certainty","reference_uncertain",
 "#deprecated citation",,,,,
 "Mapping","published_deprecated","refDesc","citation","published_work","{""repeat_element_for_multiple_values"":1,""context"":""ca_objects.published"",""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.published.published_work""}"
 ,,,,,
@@ -271,12 +277,3 @@
 "Mapping","chronList","provenance","chronList",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
 "Mapping","chronItem","chronList","chronItem",,"{""repeat_element_for_multiple_values"":1,""original_values"":""\n"",""replacement_values"":""\n"", ""context"":""ca_objects.provenance""}"
 "Mapping","previousColl","chronItem","previousColl","ca_objects.provenance","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"#appraisal",,,,,
-"Mapping","appraisal","adminDesc","appraisal",,"{""repeat_element_for_multiple_values"":1,""original_values"":""\n"",""replacement_values"":""\n"", ""context"":""ca_objects.appraisal"", ""omitIfNoChildren"":1}"
-"Mapping","appraisal_date","appraisal","date","appraisal_date","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","appraisal_standardDate","appraisal_date","@standardDate","appraisal_date","{""start_as_iso8601"":1,""timeOmit"":1}"
-"Mapping","appraisal_agent","appraisal","appraiser","appraisal_agent","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","appraisal_agent_uri","appraisal_agent","@xlink:href","appraisal_agent.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""appraisal_agent.concept_uri""}"
-"Constant","appraisal_agent_type","appraisal_agent","@xlink:type","simple",
-"Mapping","appraisal_value","appraisal","value","appraisal_value","{""original_values"":""\n"",""replacement_values"":""\n"",""original_values"":""^\\$\\s+(.*)"",""replacement_values"":""$1""}"
-"Constant","appraisal_currency","appraisal_value","@currency","USD",

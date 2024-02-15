@@ -27,7 +27,9 @@ Mapping,21,ca_objects.denomination,denomination2,"{ ""skipGroupIfEmpty"" : 1}",l
 Mapping,22,ca_objects.denomination,denomination3,"{ ""skipGroupIfEmpty"" : 1}",listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""denominations_list"", ""matchOn"": ""labels"", ""dontCreate"": 1}",,,,
 Mapping,23,ca_objects.denomination,denomination4,"{ ""skipGroupIfEmpty"" : 1}",listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""denominations_list"", ""matchOn"": ""labels"", ""dontCreate"": 1}",,,,
 Mapping,24,ca_objects.denomination,denomination5,"{ ""skipGroupIfEmpty"" : 1}",listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""denominations_list"", ""matchOn"": ""labels"", ""dontCreate"": 1}",,,,
-#Mapping,25,uncertain denomination,,,,,,,,
+Mapping,25,ca_objects.denomination_uncertain,,"{""skipIfEmpty"": 1}",,,"true
+false","boolean_true
+boolean_false",,
 Mapping,26,ca_objects.date_on_object.era_field,dob1,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""era_list"", ""matchOn"": ""labels""}",,,,
 Mapping,28,ca_objects.date_on_object.date_on_object_value,dob1,"{ ""skipGroupIfEmpty"" : 1}",,,,,,
 Mapping,27,ca_objects.date_on_object.era_field,dob2,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""era_list"", ""matchOn"": ""labels""}",,,,
@@ -59,9 +61,10 @@ Mapping,58,ca_objects.description,,"{""skipIfEmpty"": 1}",,,,,,
 Mapping,59,ca_objects.provenance,prov1,"{""skipIfEmpty"": 1}",,,,,,
 Mapping,60,ca_objects.provenance,prov2,"{""skipIfEmpty"": 1}",,,,,,
 Mapping,61,ca_objects.provenance,prov3,"{""skipIfEmpty"": 1}",,,,,,
+Mapping,69,ca_objects.series,,"{ ""delimiter"": ""|"" }",,,,,,
 Mapping,74,ca_objects.reverse_symbol.reverse_symbol_label,revMintMark,"{ ""skipGroupIfEmpty"" : 1}",,,,,,
 Constant,mintMark,ca_objects.reverse_symbol.reverse_symbol_type,revMintMark,,,,,,,
-#Mapping,75,mintabbr,,,,,,,,
+Mapping,75,ca_objects.mintabbr,,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""mintabbr_list"", ""matchOn"": ""labels""}",,,,
 Mapping,76,ca_entities,,,entitySplitter,"{""delimiter"": ""|"", ""relationshipType"": ""dynasty"", ""matchOn"": ""labels"", ""dontCreate"": 1}",,,,
 Mapping,102,ca_objects.obverse_die.obverse_die_value,obvDie,"{ ""skipGroupIfEmpty"" : 1, ""applyRegularExpressions"": [{ ""match"": ""^(.*)\\|(.*)$"", ""replaceWith"": ""\\1"" }]}",,,,,,
 Mapping,102,ca_objects.reverse_die.reverse_die_value,revDie,"{ ""skipGroupIfEmpty"" : 1, ""applyRegularExpressions"": [{ ""match"": ""^(.*)\\|(.*)$"", ""replaceWith"": ""\\2"" }]}",,,,,,
@@ -101,6 +104,14 @@ Mapping,141,ca_objects.access,,,,,"true
 false","public_access
 restricted_public_access",,
 Mapping,167,ca_objects.category,,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""category"", ""matchOn"": ""idno"", ""dontCreate"": 1}",,,,
+Mapping,168,ca_objects.goods_and_services.commodity,commodity1,"{ ""skipGroupIfEmpty"" : 1}",listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""commodity_list"", ""matchOn"": ""labels""}",,,,
+Mapping,169,ca_objects.goods_and_services.commodity,commodity2,"{ ""skipGroupIfEmpty"" : 1}",listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""commodity_list"", ""matchOn"": ""labels""}",,,,
+Mapping,170,ca_objects.goods_and_services.commodity_uncertain,commodity1,"{""skipIfEmpty"": 1}",,,"true
+false","boolean_true
+boolean_false",,
+Mapping,170,ca_objects.goods_and_services.commodity_uncertain,commodity2,"{""skipIfEmpty"": 1}",,,"true
+false","boolean_true
+boolean_false",,
 ,,,,,,,,,,
 #subjects,,,,,,,,,,
 Mapping,104,ca_objects.subject_deprecated.subject_deprecated_topic,subjectEvent,"{ ""skipGroupIfEmpty"" : 1}",,,,,,

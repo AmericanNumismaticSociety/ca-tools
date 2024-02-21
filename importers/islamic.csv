@@ -113,6 +113,18 @@ Mapping,170,ca_objects.goods_and_services.commodity_uncertain,commodity2,"{""ski
 false","boolean_true
 boolean_false",,
 ,,,,,,,,,,
+#discovery/findspot,,,,,,,,,,
+Mapping,171,ca_objects.discovery.discovery_fallsWithin,discovery,"{""skipIfEmpty"": 1}",placeSplitter,"{""matchOn"": ""idno"", ""dontCreate"": 1}",,,,
+Mapping,172,ca_objects.discovery.discovery_type,discovery,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""discovery_type_list"", ""matchOn"": ""labels"", ""dontCreate"": 1}",,,,
+Mapping,173,ca_objects.discovery.discovery_uncertain,discovery,"{""skipIfEmpty"": 1}",,,"true
+false","boolean_true
+boolean_false",,
+Mapping,174,ca_objects.discovery.discovery_description,discovery,,,,,,,
+Mapping,175,ca_objects.discovery.excavation,discovery,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""excavation_list"", ""matchOn"": ""labels""}",,,,
+Mapping,176,ca_objects.discovery.discovery_identifier,discovery,"{""skipWhenEmpty"": [""^175""]}",,,,,,
+Mapping,177,ca_objects.discovery.discovery_date,discovery,"{""skipIfEmpty"": 1}",,,,,,
+Mapping,179,ca_objects.discovery.finder,discovery,"{""skipIfEmpty"": 1}",entitySplitter,"{""matchOn"": ""idno"", ""dontCreate"": 1}",,,,
+,,,,,,,,,,
 #subjects,,,,,,,,,,
 Mapping,104,ca_objects.subject_deprecated.subject_deprecated_topic,subjectEvent,"{ ""skipGroupIfEmpty"" : 1}",,,,,,
 Constant,subjectEvent,ca_objects.subject_deprecated.subject_deprecated_type,subjectEvent,,,,,,,

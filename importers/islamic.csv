@@ -9,10 +9,18 @@ Mapping,6,ca_objects.material.value,material1,"{""skipGroupIfEmpty"": 1}",listIt
 Mapping,7,ca_objects.material.value,material2,"{""skipGroupIfEmpty"": 1}",listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""material_list"", ""matchOn"": ""labels""}",,,,
 Mapping,8,ca_objects.material.value,material3,"{""skipGroupIfEmpty"": 1}",listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""material_list"", ""matchOn"": ""labels""}",,,,
 Mapping,9,ca_objects.material.value,material4,"{""skipGroupIfEmpty"": 1}",listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""material_list"", ""matchOn"": ""labels""}",,,,
-Mapping,10,ca_objects.material.material_uncertain,material1,,,,,,,
-Mapping,10,ca_objects.material.material_uncertain,material2,,,,,,,
-Mapping,10,ca_objects.material.material_uncertain,material3,,,,,,,
-Mapping,10,ca_objects.material.material_uncertain,material4,,,,,,,
+Mapping,10,ca_objects.material.material_uncertain,material1,,,,"true
+false","boolean_true
+boolean_false",,
+Mapping,10,ca_objects.material.material_uncertain,material2,,,,"true
+false","boolean_true
+boolean_false",,
+Mapping,10,ca_objects.material.material_uncertain,material3,,,,"true
+false","boolean_true
+boolean_false",,
+Mapping,10,ca_objects.material.material_uncertain,material4,,,,"true
+false","boolean_true
+boolean_false",,
 Mapping,11,ca_objects.manufacture,,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""manufacture_list"", ""matchOn"": ""labels""}",,,,
 Mapping,12,ca_objects.shape,,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""shape_list"", ""matchOn"": ""labels""}",,,,
 Mapping,13,ca_objects.measurements_numismatic.weight,measurements,,,,,,,
@@ -39,19 +47,29 @@ Mapping,31,ca_objects.issue_dates.to_date,issueDate,"{ ""skipGroupIfEmpty"" : 1}
 Mapping,32,ca_objects.negatives,,"{ ""delimiter"": ""|"" }",,,,,,
 Mapping,33,ca_objects.reference.work,ref1,"{ ""skipGroupIfEmpty"" : 1}",,,,,,
 Mapping,35,ca_objects.reference.reference_variant,ref1,"{""skipIfEmpty"": 1}",,,,,,
-Mapping,36,ca_objects.reference.reference_uncertain,ref1,"{""skipIfEmpty"": 1}",,,,,,
+Mapping,36,ca_objects.reference.reference_uncertain,ref1,"{""skipIfEmpty"": 1}",,,"true
+false","boolean_true
+boolean_false",,
 Mapping,37,ca_objects.reference.work,ref2,"{ ""skipGroupIfEmpty"" : 1}",,,,,,
 Mapping,39,ca_objects.reference.reference_variant,ref2,"{""skipIfEmpty"": 1}",,,,,,
-Mapping,40,ca_objects.reference.reference_uncertain,ref2,"{""skipIfEmpty"": 1}",,,,,,
+Mapping,40,ca_objects.reference.reference_uncertain,ref2,"{""skipIfEmpty"": 1}",,,"true
+false","boolean_true
+boolean_false",,
 Mapping,41,ca_objects.reference.work,ref3,"{ ""skipGroupIfEmpty"" : 1}",,,,,,
 Mapping,43,ca_objects.reference.reference_variant,ref3,"{""skipIfEmpty"": 1}",,,,,,
-Mapping,44,ca_objects.reference.reference_uncertain,ref3,"{""skipIfEmpty"": 1}",,,,,,
+Mapping,44,ca_objects.reference.reference_uncertain,ref3,"{""skipIfEmpty"": 1}",,,"true
+false","boolean_true
+boolean_false",,
 Mapping,45,ca_objects.reference.work,ref4,"{ ""skipGroupIfEmpty"" : 1}",,,,,,
 Mapping,47,ca_objects.reference.reference_variant,ref4,"{""skipIfEmpty"": 1}",,,,,,
-Mapping,48,ca_objects.reference.reference_uncertain,ref4,"{""skipIfEmpty"": 1}",,,,,,
+Mapping,48,ca_objects.reference.reference_uncertain,ref4,"{""skipIfEmpty"": 1}",,,"true
+false","boolean_true
+boolean_false",,
 Mapping,49,ca_objects.reference.work,ref5,"{ ""skipGroupIfEmpty"" : 1}",,,,,,
 Mapping,51,ca_objects.reference.reference_variant,ref5,"{""skipIfEmpty"": 1}",,,,,,
-Mapping,52,ca_objects.reference.reference_uncertain,ref5,"{""skipIfEmpty"": 1}",,,,,,
+Mapping,52,ca_objects.reference.reference_uncertain,ref5,"{""skipIfEmpty"": 1}",,,"true
+false","boolean_true
+boolean_false",,
 Mapping,53,ca_objects.published.published_work,cit1,,,,,,,
 Mapping,54,ca_objects.published.published_work,cit2,,,,,,,
 Mapping,55,ca_objects.published.published_work,cit3,,,,,,,
@@ -181,7 +199,7 @@ Setting,code,islamic,,,,,,,,
 Setting,inputFormats,CSVDelimited,,,,,,,,
 Setting,table,ca_objects,,,,,,,,
 Setting,type,nmo:NumismaticObject,,,,,,,,
-Setting,numInitialRowsToSkip,2,,,,,,,,
+Setting,numInitialRowsToSkip,1,,,,,,,,
 Setting,existingRecordPolicy,overwrite_on_idno,,,,,,,,
 Setting,errorPolicy,stop,,,,,,,,
 Setting,archiveMapping,no,,,,,,,,

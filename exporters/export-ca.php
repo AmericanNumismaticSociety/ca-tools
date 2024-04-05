@@ -392,12 +392,46 @@ function export_record($record){
         
         //close file
         $writer->endDocument();
-        $writer->flush();
-    
-        //merge the digRep XML document into the NUDS file
+        $writer->flush();    
+        
         $nuds = new DOMDocument;
-        $nuds->load($fileName);
-        $digRep = new DOMDocument;
+        $nuds->preserveWhiteSpace = false;
+        $nuds->formatOutput = true;
+        $nuds->load($fileName);        
+        
+        //remove empty xlink:href attributes and either remove or replace @certainty or @variant values.
+        $xpath = new DOMXPath($nuds);
+        $certainty_attributes = $xpath->evaluate("//*[@certainty]");
+        
+        foreach ($certainty_attributes as $node){
+            $certainty = $node->getAttribute('certainty');
+            
+            if ($certainty == 'true'){
+                $node->removeAttribute('certainty');
+                $node->setAttribute('certainty', 'http://nomisma.org/id/uncertain_value');
+            } else if ($certainty == 'false') {
+                $node->removeAttribute('certainty');
+            }
+        }
+        
+        $variants = $xpath->evaluate("//*[@variant]");
+        foreach ($variants as $node) {
+            $variant = $node->getAttribute('variant');
+            
+            if ($variant == 'false') {
+                $node->removeAttribute('variant');
+            }
+        }
+        
+        $links = $xpath->evaluate("//*[@xlink:href = '']");
+        
+        foreach ($links as $node) {
+            $node->removeAttribute('xlink:href');
+            $node->removeAttribute('xlink:type');
+        }
+        
+        //merge the digRep XML document into the NUDS file
+        $digRep = new DOMDocument;        
         $digRep->load(TMP_NUDS . "/{$accnum}-images.xml");
         $nuds->documentElement->appendChild($nuds->importNode($digRep->documentElement, true));
         $nuds->save($fileName);

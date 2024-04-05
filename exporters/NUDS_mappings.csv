@@ -135,10 +135,10 @@
 "Mapping","obverse_symbol_href","obverse_symbol","@xlink:href","obverse_symbol_uri","{""omitIfEmpty"":""obverse_symbol_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","obverse_symbol_type","obverse_symbol","@localType","obverse_symbol_type","{""omitIfEmpty"":""obverse_symbol_type"",""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","obverse_symbol_position","obverse_symbol","@position","obverse_symbol_position","{""omitIfEmpty"":""obverse_symbol_position"",""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","obverse_entity","obverse","persname","obverse_entity_name","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""context"":""ca_objects.obverse_entity"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","obverse_entity_uri","obverse_entity","@xlink:href","obverse_entity_name.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""concept_url""}"
+"Mapping","obverse_entity","obverse","persname","obverse_entity_name","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""context"":""ca_objects.obverse_entity"",""original_values"":""\n\n"",""replacement_values"":""\n\n""}"
 "Mapping","obverse_entity_role","obverse_entity","@xlink:role","obverse_entity_relationship","{""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
 "Constant","obverse_entity_type","obverse_entity","@xlink:type","simple",
+"#Mapping","obverse_entity_uri","obverse_entity","@xlink:href","obverse_entity_name.concept_uri",
 "Mapping","obverse_die","obverse","die","ca_objects.obverse_die.obverse_die_value","{""omitIfEmpty"":""ca_objects.obverse_die.obverse_die_value""}"
 ,,,,,
 ,,,,,
@@ -153,7 +153,7 @@
 "Mapping","reverse_symbol_type","reverse_symbol","@localType","reverse_symbol_type","{""omitIfEmpty"":""reverse_symbol_type"",""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","reverse_symbol_position","reverse_symbol","@position","reverse_symbol_position","{""omitIfEmpty"":""reverse_symbol_position"",""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","reverse_entity","reverse","persname","reverse_entity_name","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""context"":""ca_objects.reverse_entity"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","reverse_entity_uri","reverse_entity","@xlink:href","reverse_entity_name.concept_uri","{""context"":""ca_objects.reverse_entity.reverse_entity_name"",""original_values"":""\n"",""replacement_values"":""\n""}"
+"#Mapping","reverse_entity_uri","reverse_entity","@xlink:href","reverse_entity_name.concept_uri",
 "Mapping","reverse_entity_role","reverse_entity","@xlink:role","reverse_entity_relationship","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Constant","reverse_entity_type","reverse_entity","@xlink:type","simple",
 "Mapping","reverse_die","reverse","die","ca_objects.reverse_die.reverse_die_value","{""convertCodesToIdno"":1,""omitIfEmpty"":""ca_objects.reverse_die.reverse_die_value""}"
@@ -170,7 +170,7 @@
 "Mapping","underType_manufacture_href","underType_manufacture","@xlink:href","ca_objects.undertype_manufacture.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.undertype_manufacture.concept_uri""}"
 "Constant","underType_manufacture_type","underType_manufacture","@xlink:type","simple","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","underType_material","underType","material","ca_objects.undertype_material","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""context"":""ca_objects.undertype_material"",""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","underType_material_href","underType_material","@xlink:href","ca_objects.undertype_material.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.undertype_material.concept_uri""}"
+"Mapping","underType_material_href","underType_material","@xlink:href","ca_objects.undertype_material.concept_uri",
 "Constant","underType_material_type","underType_material","@xlink:type","simple","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","underType_obverse","underType","obverse",,"{""omitIfNoChildren"":1}"
 "Mapping","underType_obverse_type","underType_obverse","type",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.undertype_obverse.undertype_obverse_type"", ""omitIfNoChildren"":1}"

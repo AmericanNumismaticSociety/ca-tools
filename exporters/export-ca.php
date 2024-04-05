@@ -437,7 +437,45 @@ function export_record($record){
         $nuds->save($fileName);
         unlink(TMP_NUDS . "/{$accnum}-images.xml");
         
-    }    
+    } else {
+        //if there aren't images, remove empty xlink:href attributes and either remove or replace @certainty or @variant values.        
+        $nuds = new DOMDocument;
+        $nuds->preserveWhiteSpace = false;
+        $nuds->formatOutput = true;
+        $nuds->load($fileName);     
+        
+        $xpath = new DOMXPath($nuds);
+        $certainty_attributes = $xpath->evaluate("//*[@certainty]");
+        
+        foreach ($certainty_attributes as $node){
+            $certainty = $node->getAttribute('certainty');
+            
+            if ($certainty == 'true' || $certainty == 'boolean_true'){
+                $node->removeAttribute('certainty');
+                $node->setAttribute('certainty', 'http://nomisma.org/id/uncertain_value');
+            } else if ($certainty == 'false' || $certainty == 'boolean_false'  || strlen($certainty) == 0) {
+                $node->removeAttribute('certainty');
+            }
+        }
+        
+        $variants = $xpath->evaluate("//*[@variant]");
+        foreach ($variants as $node) {
+            $variant = $node->getAttribute('variant');
+            
+            if ($variant == 'false' || $variant == 'boolean_false' || strlen($variant) == 0) {
+                $node->removeAttribute('variant');
+            }
+        }
+        
+        $links = $xpath->evaluate("//*[@xlink:href = '']");
+        
+        foreach ($links as $node) {
+            $node->removeAttribute('xlink:href');
+            $node->removeAttribute('xlink:type');
+        }
+        
+        $nuds->save($fileName);
+    }
 }
 
 

@@ -409,7 +409,7 @@ function export_record($record){
             if ($certainty == 'true'){
                 $node->removeAttribute('certainty');
                 $node->setAttribute('certainty', 'http://nomisma.org/id/uncertain_value');
-            } else if ($certainty == 'false' || strlen($variant) == 0) {
+            } else if ($certainty == 'false' || strlen($certainty) == 0) {
                 $node->removeAttribute('certainty');
             }
         }

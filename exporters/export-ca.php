@@ -197,6 +197,7 @@ function zip_and_upload($ssh_credentials){
         '~/.ssh/id_rsa', $ssh_credentials['username'] . '@' . $ssh_credentials['server'])) {
         echo "Public Key Authentication Successful\n";
         ssh2_scp_send($connection, '/tmp/ca_upload.zip', '/tmp/ca_upload.zip', 0644);
+        ssh2_exec($connection, 'exit');
         
         echo "Zip file uploaded to production server. Numishare publication workflow commencing.\n";
         

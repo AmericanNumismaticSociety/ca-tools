@@ -406,10 +406,10 @@ function export_record($record){
         foreach ($certainty_attributes as $node){
             $certainty = $node->getAttribute('certainty');
             
-            if ($certainty == 'true'){
+            if ($certainty == 'true' || $certainty == 'boolean_true'){
                 $node->removeAttribute('certainty');
                 $node->setAttribute('certainty', 'http://nomisma.org/id/uncertain_value');
-            } else if ($certainty == 'false' || strlen($certainty) == 0) {
+            } else if ($certainty == 'false' || $certainty == 'boolean_false'  || strlen($certainty) == 0) {
                 $node->removeAttribute('certainty');
             }
         }
@@ -418,7 +418,7 @@ function export_record($record){
         foreach ($variants as $node) {
             $variant = $node->getAttribute('variant');
             
-            if ($variant == 'false' || strlen($variant) == 0) {
+            if ($variant == 'false' || $variant == 'boolean_false' || strlen($variant) == 0) {
                 $node->removeAttribute('variant');
             }
         }

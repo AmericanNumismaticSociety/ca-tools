@@ -475,6 +475,18 @@ function export_record($record){
             $node->removeAttribute('xlink:type');
         }
         
+        $calendars = $xpath->evaluate("//*[@calendar = '']");
+        
+        foreach ($calendars as $node) {
+            $node->removeAttribute('calendar');
+        }
+        
+        $dates = $xpath->evaluate("//*[@standardDate = '']");
+        
+        foreach ($dates as $node) {
+            $node->removeAttribute('standardDate');
+        }
+        
         $nuds->save($fileName);
     }
 }

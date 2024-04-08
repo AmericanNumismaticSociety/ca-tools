@@ -71,6 +71,8 @@ if (isset($argv[1])){
             //delete zip file
             unlink('/tmp/ca_upload.zip');
             
+            //remove nuds folder
+            rmdir_recursive(TMP_NUDS);
         } else {
             echo "Error reading zip file.\n";
         }

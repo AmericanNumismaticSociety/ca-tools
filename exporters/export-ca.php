@@ -21,6 +21,7 @@
  *****/
 
 define("INDEX_COUNT", 500);
+define("START", 0);
 define("CA_URL", "https://test.numismatics.org/collectiveaccess/");
 define("CA_UTILS", "/usr/local/projects/providence-2.0/support/bin/caUtils");
 define("TMP_NUDS", "/tmp/nuds");
@@ -136,24 +137,30 @@ function process_response ($response, $q, $ssh_credentials){
             mkdir(TMP_NUDS, 0777, true);
         }
         
+        $count = 0;
+        
         foreach ($json->results as $record){
             
             //var_dump($record);
             
-            //ignore Hoards as an object type
-            if ($record->type_id != 'nmo:Hoard'){
-                //evaluate accessibility of the record. If it is publicly accessible, then create an update. If it is not, execute a deletion from eXist-db and Solr.                
-                if ($record->access == 'public_access'){
-                    $accnum = $record->idno;                    
-                    
-                    export_record($record);
-                    //update_record_in_numishare($record, $collection);
-                    
-                    
-                } else {
-                    //delete_record_from_numishare($record, $collection);
+            //enable a manual start position from a mass publication if there is an error
+            if ($count >= START){
+                //ignore Hoards as an object type
+                if ($record->type_id != 'nmo:Hoard'){
+                    //evaluate accessibility of the record. If it is publicly accessible, then create an update. If it is not, execute a deletion from eXist-db and Solr.
+                    if ($record->access == 'public_access'){
+                        $accnum = $record->idno;
+                        
+                        export_record($record);
+                        //update_record_in_numishare($record, $collection);
+                        
+                        
+                    } else {
+                        //delete_record_from_numishare($record, $collection);
+                    }
                 }
             }
+            $count++;
         }
         
         //zip exported record after each object has been exported to NUDS from CA

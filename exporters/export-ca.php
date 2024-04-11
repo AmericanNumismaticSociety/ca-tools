@@ -88,6 +88,42 @@ if (($ca_file = fopen("ca_credentials.json", "r")) !== FALSE && ($ssh_file = fop
         
         //begin parsing the JSON from CA
         process_response($response, $q, $ssh_credentials);
+        
+        //initiate export of any new images uploaded in the image-processor workflow
+        if (file_exists('/data/images/newImages.txt')){
+            echo "Processing new image records.\n";
+            
+            $new_images = array();
+            $fp=fopen('/data/images/newImages.txt', 'r');
+            while (!feof($fp)){
+                $line=fgets($fp);
+                $new_images[] = trim($line);
+            }
+            fclose($fp);
+            
+            $new_images = array_filter($new_images);
+            
+            foreach ($new_images as $accnum) {
+                echo "Querying {$accnum}\n";
+                
+                $q = "idno:{$accnum}";
+                $apiURL = CA_URL . "service.php/json/find/ca_objects?q={$q}&pretty=1&authToken={$authToken}";
+                
+                $ch = curl_init( $apiURL );
+                curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode($bundle) );
+                curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+                curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+                $response = curl_exec($ch);
+                curl_close($ch);
+                
+                process_response($response, $q, $ssh_credentials);
+            }
+        } else {
+            echo "No recent image upload to process.\n";
+        }
+        
+        unlink('/data/images/newImages.txt');
+        
     } else {
         echo "CA authToken error.\n";
     }
@@ -150,13 +186,22 @@ function process_response ($response, $q, $ssh_credentials){
                     //evaluate accessibility of the record. If it is publicly accessible, then create an update. If it is not, execute a deletion from eXist-db and Solr.
                     if ($record->access == 'public_access'){
                         $accnum = $record->idno;
-                        
                         export_record($record);
                         //update_record_in_numishare($record, $collection);
                         
                         
                     } else {
-                        //delete_record_from_numishare($record, $collection);
+                        $accnum = $record->idno;
+                        
+                        //initiate a deletion from Numishare via curl
+                        $url = "http://numismatics.org/cgi-bin/deletefromnumishare.php?accnum={$accnum}";
+                        $deleteFromNumishare=curl_init();
+                        curl_setopt($deleteFromNumishare, CURLOPT_URL, $url);
+                        curl_setopt($deleteFromNumishare, CURLOPT_HEADER, 0);
+                        
+                        $deleteResponse = curl_exec($deleteFromNumishare);
+                        echo $deleteResponse;
+                        curl_close($deleteFromNumishare);
                     }
                 }
             }

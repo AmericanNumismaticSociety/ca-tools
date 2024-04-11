@@ -87,7 +87,7 @@ if (($ca_file = fopen("ca_credentials.json", "r")) !== FALSE && ($ssh_file = fop
         curl_close($ch);
         
         //begin parsing the JSON from CA
-        process_response($response, $q, $ssh_credentials);
+        process_response($response, $q);
         
         //initiate export of any new images uploaded in the image-processor workflow
         if (file_exists('/data/images/newImages.txt')){
@@ -116,11 +116,16 @@ if (($ca_file = fopen("ca_credentials.json", "r")) !== FALSE && ($ssh_file = fop
                 $response = curl_exec($ch);
                 curl_close($ch);
                 
-                process_response($response, $q, $ssh_credentials);
+                process_response($response, $q);
             }
         } else {
             echo "No recent image upload to process.\n";
         }
+        
+        //zip exported record after each object has been exported to NUDS from CA
+        if (is_dir(TMP_NUDS)) {
+            zip_and_upload($ssh_credentials);
+        }        
         
         unlink('/data/images/newImages.txt');
         
@@ -158,7 +163,7 @@ function login_to_ca($username, $password){
 /***** 
  * Process the JSON response from CollectiveAccess API
  *****/
-function process_response ($response, $q, $ssh_credentials){
+function process_response ($response, $q){
     
     $json = json_decode($response);  
     
@@ -207,10 +212,6 @@ function process_response ($response, $q, $ssh_credentials){
             }
             $count++;
         }
-        
-        //zip exported record after each object has been exported to NUDS from CA
-        zip_and_upload($ssh_credentials);
-        
     } else {
         "No updated records since yesterday";
         //error_log("No updated records for query {$q} at " . date(DATE_W3C) . "\n", 3, "/var/log/numishare/process.log");

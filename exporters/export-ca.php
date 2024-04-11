@@ -127,7 +127,8 @@ if (($ca_file = fopen("ca_credentials.json", "r")) !== FALSE && ($ssh_file = fop
             zip_and_upload($ssh_credentials);
         }        
         
-        unlink('/data/images/newImages.txt');
+        //blank new images since they cannot be deleted by user database
+        file_put_contents("/data/images/newImages.txt", "");
         
     } else {
         echo "CA authToken error.\n";
@@ -173,11 +174,6 @@ function process_response ($response, $q){
     if ($json->total > 0 ){
         echo "Processing {$json->total} edited item(s).\n";
         
-        //create /tmp/nuds if it doesn't exist
-        if (!file_exists(TMP_NUDS)) {
-            mkdir(TMP_NUDS, 0777, true);
-        }
-        
         $count = 0;
         
         foreach ($json->results as $record){
@@ -190,6 +186,12 @@ function process_response ($response, $q){
                 if ($record->type_id != 'nmo:Hoard'){
                     //evaluate accessibility of the record. If it is publicly accessible, then create an update. If it is not, execute a deletion from eXist-db and Solr.
                     if ($record->access == 'public_access'){
+                        
+                        //create /tmp/nuds if it doesn't exist
+                        if (!file_exists(TMP_NUDS)) {
+                            mkdir(TMP_NUDS, 0777, true);
+                        }
+                        
                         $accnum = $record->idno;
                         export_record($record);
                         //update_record_in_numishare($record, $collection);
@@ -197,6 +199,7 @@ function process_response ($response, $q){
                         
                     } else {
                         $accnum = $record->idno;
+                        echo "Deleting {$accnum}\n";
                         
                         //initiate a deletion from Numishare via curl
                         $url = "http://numismatics.org/cgi-bin/deletefromnumishare.php?accnum={$accnum}";

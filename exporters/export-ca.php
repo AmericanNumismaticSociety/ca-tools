@@ -118,9 +118,6 @@ if (($ca_file = fopen("ca_credentials.json", "r")) !== FALSE && ($ssh_file = fop
                 
                 process_response($response, $q);
             }
-            
-            //delete the newImages
-            unlink('/data/images/newImages.txt');
         } else {
             echo "No recent image upload to process.\n";
         }

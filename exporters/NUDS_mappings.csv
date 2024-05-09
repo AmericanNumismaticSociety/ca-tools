@@ -164,7 +164,7 @@
 "Mapping","edge_legend","edge","legend","ca_objects.edge.edge_legend","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.edge.edge_legend""}"
 ,,,,,
 "#underType",,,,,
-"Mapping","underType","descMeta","underType",,"{""omitIfNoChildren"":1}"
+"Mapping","underType","descMeta","undertypeDesc",,"{""omitIfNoChildren"":1}"
 "Mapping","underType_description","underType","description","ca_objects.undertype_description","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.undertype_description""}"
 "Mapping","underType_dateRange_issued","underType","dateRange",,"{""skipIfExpression"":""^ca_objects.undertype_issue_dates.undertype_from_date = ^ca_objects.undertype_issue_dates.undertype_to_date"", ""omitIfEmpty"":""ca_objects.undertype_issue_dates.undertype_from_date""}"
 "Mapping","underType_fromDate_issued","underType_dateRange_issued","fromDate","ca_objects.undertype_issue_dates.undertype_from_date","{""original_values"":""\n"",""replacement_values"":""\n""}"

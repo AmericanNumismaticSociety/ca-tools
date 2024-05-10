@@ -66,6 +66,7 @@
 "Mapping","subject_href","subject","@xlink:href","subject_topic.uri","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Constant","subject_type","subject","@xlink:type","simple",
 "Mapping","category","subjectSet","subject","ca_objects.category","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""original_values"":""\n"",""replacement_values"":""\n"",  ""template"": ""^ca_objects.category.ca_list_items.hierarchy.preferred_labels.name_plural%delimiter=--""}"
+"Mapping","category_id","category","@xml:id","ca_objects.category","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""original_values"":""\n"",""replacement_values"":""\n"",  ""template"": ""^ca_objects.category.ca_list_items.hierarchy.idno%delimiter=--""}"
 "Constant","category_localType","category","@localType","category",
 "#deprecated subject",,,,,
 "Mapping","subject_deprecated","subjectSet","subject","subject_deprecated_topic","{""repeat_element_for_multiple_values"":1,""original_values"":""\n"",""replacement_values"":""\n"", ""context"":""ca_objects.subject_deprecated"", ""omitIfEmpty"":""subject_deprecated_topic""}"
@@ -112,7 +113,7 @@
 "Constant","persname_type","persname","@xlink:type","simple","{""omitIfEmpty"":""ca_entities.concept_uri"",""original_values"":""\n\n"",""replacement_values"":""\n\n""}"
 "Constant","persname_uncertain","persname","@certainty","http://nomisma.org/id/uncertain_value","{""skipIfExpression"":""^ca_objects_x_entities.attribute_uncertain <> \""boolean_true\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","corpname","authority","corpname","ca_entities.preferred_labels","{""context"":""ca_objects_x_entities"",""restrictToTypes"":[""organization""],""omitIfEmpty"":""ca_entities.preferred_labels"",""original_values"":""\n\n"",""replacement_values"":""\n\n""}"
-"Mapping","corpname_role","corpname","@xlink:role","relationship_type_code","{""original_values"":""\n\n"",""replacement_values"":""\n\n""}"
+"Mapping","corpname_role","corpname","@xlink:role","relationship_type_code","{""original_values"":""authority\n"",""replacement_values"":""state\n""}"
 "Mapping","corpname_href","corpname","@xlink:href","ca_entities.concept_uri","{""omitIfEmpty"":""ca_entities.concept_uri"",""original_values"":""\n\n"",""replacement_values"":""\n\n""}"
 "Constant","corpname_type","corpname","@xlink:type","simple","{""omitIfEmpty"":""ca_entities.concept_uri"",""original_values"":""\n\n"",""replacement_values"":""\n\n""}"
 "Constant","corpname_uncertain","corpname","@certainty","http://nomisma.org/id/uncertain_value","{""skipIfExpression"":""^ca_objects_x_entities.attribute_uncertain <> \""boolean_true\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
@@ -200,7 +201,7 @@
 "#Constant","underType_persname_type","underType_persname","@xlink:type","simple",
 "Mapping","underType_corpname","underType_authority","corpname","undertype_entity_name","{""restrictToTypes"":[""organization""],""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""context"":""ca_objects.undertype_related_entity"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","underType_corpname_href","underType_corpname","@xlink:href","undertype_entity_name.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","underType_corpname_role","underType_corpname","@xlink:role","undertype_entity_relationship","{""convertCodesToIdno"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","underType_corpname_role","underType_corpname","@xlink:role","undertype_entity_relationship","{""original_values"":""authority\n"",""replacement_values"":""state\n""}"
 "Constant","underType_corpname_type","underType_corpname","@xlink:type","simple",
 ,,,,,
 "#physDesc",,,,,
@@ -248,7 +249,7 @@
 "Mapping","findspot","findspotDesc","findspot",,"{""omitIfNoChildren"":1}"
 "Mapping","findspot_place","findspot","fallsWithin",,"{""omitIfNoChildren"":1, ""context"": ""ca_objects.discovery""}"
 "Mapping","findspot_geogname","findspot_place","geogname","discovery_fallsWithin","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","findspot_geogname_uri","findspot_geogname","@xlink:href","concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""context"": ""ca_objects.discovery.discovery_fallsWithin""}"
+"Mapping","findspot_geogname_uri","findspot_geogname","@xlink:href","discovery_fallsWithin.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Constant","findspot_geogname_role","findspot_geogname","@xlink:role","findspot",
 "Mapping","discovery","findspotDesc","discovery",,"{""omitIfNoChildren"":1, ""context"": ""ca_objects.discovery""}"
 "Mapping","excavation","discovery","project",,"{""omitIfNoChildren"":1}"
@@ -268,7 +269,7 @@
 "Constant","coinType_arcrole","coinType","@xlink:arcrole","nmo:hasTypeSeriesItem",
 ,,,,,
 "#Non-Numishare Coin Type URI",,,,,
-"Mapping","coinType_manual","refDesc","reference","manual_coin_type_href","{""repeat_element_for_multiple_values"":1,""context"":""ca_objects.manual_coin_type_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","coinType_manual","refDesc","reference","manual_type_title","{""repeat_element_for_multiple_values"":1,""context"":""ca_objects.manual_coin_type_uri"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","coinType_manual_href","coinType_manual","@xlink:href","manual_coin_type_href","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","coinType_manual_variant","coinType_manual","@variant","manual_variant","{""skipIfExpression"":""^manual_variant !~ \/true\/"",""original_values"":""\n"",""replacement_values"":""\n"", ""convertCodesToDisplayText"":1}"
 "Constant","coinType_manual_uncertain","coinType_manual","@certainty","http://nomisma.org/id/uncertain_value","{""skipIfExpression"":""^manual_uncertain !~ \/true\/"",""original_values"":""\n"",""replacement_values"":""\n""}"

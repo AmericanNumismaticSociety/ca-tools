@@ -121,7 +121,7 @@ function process_response ($response, $q){
                             $start = count($accnums) - INDEX_COUNT;
                             $toIndex = array_slice($accnums, $start, INDEX_COUNT);
                             
-                            echo "Indexing batch starting from {$start}\n";
+                            echo "Generating batch query starting from {$start}\n";
                             
                             //POST TO SOLR
                             generate_solr_shell_script($toIndex);
@@ -182,8 +182,8 @@ function generate_solr_shell_script($array){
         fwrite($file, $sh);
         fclose($file);
         
-        //execute script
-        shell_exec('sh /tmp/' . $uniqid . '.sh > /dev/null 2>/dev/null &');
+        //execute script: disable this; these should be executed on command line
+        //shell_exec('sh /tmp/' . $uniqid . '.sh > /dev/null 2>/dev/null &');
         //commented out the line below because PHP seems to delete the file before it has had a chance to run in the shell
         //unlink('/tmp/' . $uniqid . '.sh');
     } else {

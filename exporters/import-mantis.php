@@ -65,7 +65,7 @@ if (isset($argv[1])){
                 $toIndex = array_slice($accnums, $start);
                 
                 //POST TO SOLR
-                generate_solr_shell_script($toIndex);
+                generate_solr_shell_script($toIndex, $collection);
             }
             
             //delete zip file
@@ -151,7 +151,7 @@ function update_record_in_numishare ($accnum, $collection){
                     $toIndex = array_slice($accnums, $start, INDEX_COUNT);
                     
                     //POST TO SOLR
-                    generate_solr_shell_script($toIndex);
+                    generate_solr_shell_script($toIndex, $collection);
                 }
             }            
         }
@@ -166,9 +166,9 @@ function update_record_in_numishare ($accnum, $collection){
 
 /***** PUBLICATION AND REPORTING FUNCTIONS *****/
 //generate a shell script to activate batch ingestion
-function generate_solr_shell_script($array){
+function generate_solr_shell_script($array, $collection){
     $uniqid = uniqid();
-    $solrDocUrl = NUMISHARE_URL . 'mantis/ingest?identifiers=' . implode('%7C', $array);
+    $solrDocUrl = NUMISHARE_URL . $collection . '/ingest?identifiers=' . implode('%7C', $array);
     
     //generate content of bash script
     $sh = "#!/bin/sh\n";

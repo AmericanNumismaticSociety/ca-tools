@@ -19,7 +19,7 @@ Mapping,176,ca_objects.denomination,denomination2,"{ ""skipGroupIfEmpty"" : 1}",
 Mapping,17,ca_objects.denomination_uncertain,,"{""skipIfEmpty"": 1}",,,"true
 false","boolean_true
 boolean_false",,
-Mapping,18,ca_objects.weight_standard,,,,"{""listItemType"": ""concept"", ""list"": ""weight_standard_list"", ""matchOn"": ""labels""}",,,,
+Mapping,18,ca_objects.weight_standard,,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""weight_standard_list"", ""matchOn"": ""labels""}",,,,
 Mapping,19,ca_objects.color_deprecated,,,,,,,,
 Mapping,20,ca_objects.shape,,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""shape_list"", ""matchOn"": ""labels""}",,,,
 Mapping,21,ca_objects.measurements_numismatic.axis,measurements,,,,,,,
@@ -121,8 +121,8 @@ Mapping,152,ca_objects.undertype_related_entity.undertype_entity_name,undertypeE
 Constant,authority,ca_objects.undertype_related_entity.undertype_entity_relationship,undertypeEntity,,,,,,,
 Mapping,153,ca_objects.undertype_issue_dates.undertype_from_date,undertype_date,"{ ""skipGroupIfEmpty"" : 1}",,,,,,
 Mapping,154,ca_objects.undertype_issue_dates.undertype_to_date,undertype_date,"{ ""skipGroupIfEmpty"" : 1}",,,,,,
-Mapping,155,ca_objects.authenticity.authenticity_value,authenticity1,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""authenticity_list"", ""matchOn"": ""labels""}",,,,
-Mapping,156,ca_objects.authenticity.authenticity_value,authenticity2,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""authenticity_list"", ""matchOn"": ""labels""}",,,,
+Mapping,155,ca_objects.authenticity.authenticity_value,authenticity1,"{ ""skipGroupIfEmpty"" : 1}",listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""authenticity_list"", ""matchOn"": ""labels""}",,,,
+Mapping,156,ca_objects.authenticity.authenticity_value,authenticity2,"{ ""skipGroupIfEmpty"" : 1}",listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""authenticity_list"", ""matchOn"": ""labels""}",,,,
 Mapping,157,ca_objects.authenticity.authenticity_uncertain,authenticity1,,,,"true
 false","boolean_true
 boolean_false",,
@@ -130,9 +130,9 @@ Mapping,157,ca_objects.authenticity.authenticity_uncertain,authenticity2,,,,"tru
 false","boolean_true
 boolean_false",,
 Mapping,158,ca_objects.original_intended_use.original_intended_use_value,original_intended_use,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""original_intended_use_list"", ""matchOn"": ""labels""}",,,,
-Mapping,159,ca_objects.post_manu_alt.post_manu_alt_value,post_manu_alt1,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""alterations_list"", ""matchOn"": ""labels""}",,,,
-Mapping,160,ca_objects.post_manu_alt.post_manu_alt_value,post_manu_alt2,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""alterations_list"", ""matchOn"": ""labels""}",,,,
-Mapping,161,ca_objects.post_manu_alt.post_manu_alt_value,post_manu_alt3,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""alterations_list"", ""matchOn"": ""labels""}",,,,
+Mapping,159,ca_objects.post_manu_alt.post_manu_alt_value,post_manu_alt1,"{ ""skipGroupIfEmpty"" : 1}",listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""alterations_list"", ""matchOn"": ""labels""}",,,,
+Mapping,160,ca_objects.post_manu_alt.post_manu_alt_value,post_manu_alt2,"{ ""skipGroupIfEmpty"" : 1}",listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""alterations_list"", ""matchOn"": ""labels""}",,,,
+Mapping,161,ca_objects.post_manu_alt.post_manu_alt_value,post_manu_alt3,"{ ""skipGroupIfEmpty"" : 1}",listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""alterations_list"", ""matchOn"": ""labels""}",,,,
 Mapping,162,ca_objects.post_manu_alt.post_manu_alt_uncertain,post_manu_alt1,,,,"true
 false","boolean_true
 boolean_false",,
@@ -207,7 +207,7 @@ Setting,inputFormats,CSVDelimited,,,,,,,,
 Setting,table,ca_objects,,,,,,,,
 Setting,type,nmo:NumismaticObject,,,,,,,,
 Setting,numInitialRowsToSkip,1,,,,,,,,
-Setting,existingRecordPolicy,overwrite_on_idno,,,,,,,,
+Setting,existingRecordPolicy,skip_on_idno,,,,,,,,
 Setting,errorPolicy,stop,,,,,,,,
 Setting,archiveMapping,no,,,,,,,,
 Setting,archiveDataSets,no,,,,,,,,

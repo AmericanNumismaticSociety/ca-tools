@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>ANS Object Resolver</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            form {
+                font-size: 24px
+            }</style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row text-center" style="padding-top:240px;">
+                <div class="col-md-12">
+                    <h1>ANS Object Resolver</h1>
+                    <form action="/cgi-bin/resolver.php">
+                        <label for="accnum">Accession number: </label>
+                        <input type="text" name="accnum" id="accnum" />
+                        <input type="submit" value="Submit" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

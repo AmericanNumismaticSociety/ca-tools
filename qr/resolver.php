@@ -28,38 +28,36 @@ if (($ca_file = fopen("/usr/local/projects/ca-tools/exporters/ca_credentials.jso
             $db = 'uro';
         } else {
             $db = 'collectiveaccess';   
-        }        
+        }
+        
+        //execute the login to get an authToken
+        $authToken = login_to_ca($db, $ca_credentials['username'], $ca_credentials['password']);
+        
+        if (isset($authToken)){
+            $apiURL = CA_URL . $db . "/service.php/json/find/ca_objects?q={$q}&pretty=1&authToken={$authToken}";
+            
+            $bundle = array("bundles"=>
+                array("access"=>
+                    array("convertCodesToIdno" => true),
+                    "type_id" =>
+                    array('convertCodesToIdno' => true)
+                )
+            );
+            
+            $ch = curl_init( $apiURL );
+            curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode($bundle) );
+            curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+            curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+            $response = curl_exec($ch);
+            curl_close($ch);
+            
+            process_response($db, $response);
+        }
     } else {
-        http_error('400', "No accession number specified.\n");
-    }
-    
-    //echo $db . "\n";
-    
-    //execute the login to get an authToken
-    $authToken = login_to_ca($db, $ca_credentials['username'], $ca_credentials['password']);
-    
-    if (isset($authToken)){
-        $apiURL = CA_URL . $db . "/service.php/json/find/ca_objects?q={$q}&pretty=1&authToken={$authToken}";
-        
-        $bundle = array("bundles"=>
-            array("access"=>
-                array("convertCodesToIdno" => true),
-                "type_id" =>
-                array('convertCodesToIdno' => true)
-            )
-        );
-        
-        $ch = curl_init( $apiURL );
-        curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode($bundle) );
-        curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-        $response = curl_exec($ch);
-        curl_close($ch);
-        
-        process_response($db, $response);
+        http_error('400', "No accession number specified.");
     }
 } else {
-    http_error('400', "Unable to load CA credentials.\n");
+    http_error('400', "Unable to load CA credentials.");
 }
 
 /***** FUNCTIONS *****/
@@ -81,14 +79,11 @@ function login_to_ca($db, $username, $password){
     } else {
         http_error('400', "Unable to reach CollectiveAccess API.\n");
         return null;
-    }
-    
+    }    
 }
 
 function process_response($db, $response) {
     $json = json_decode($response);
-    
-    
     
     if ($json->total == 1 ){
         foreach ($json->results as $record) {
@@ -99,14 +94,14 @@ function process_response($db, $response) {
             header("HTTP/1.1 302 Found");
             header("Location: {$redirect_url}");
             
-            $body = '<html><body><h1>302 Found</h1><p>This page should redirect to <a href="' . $redirect_url . '"</p></body></html>';
+            $body = '<html><head><title>ANS Object Resolver</title></head><body><h1>302 Found</h1><p>This page should redirect to <a href="' . $redirect_url . '">' . $redirect_url . '</a></p></body></html>';
             
             echo $body;
             
             //echo $redirect_url . "\n";
         }
     } else {
-        return http_error('404', '');
+        return http_error('404', "Accession number not found in {$db} database.");
     }
 }
 
@@ -114,19 +109,17 @@ function http_error($code, $message) {
     if ($code == '404') {
         header("HTTP/1.1 404 Not Found");
         
-        $body = "<html><body><h1>404 Not Found</h1><p>Accession number not found in database.</p></body></html>";
+        $body = "<html><head><title>ANS Object Resolver</title></head><body><h1>404 Not Found</h1><p>{$message}</p></body></html>";
         
         echo $body;
         
     } elseif ($code == '400') {
         header("HTTP/1.1 400 Bad Request");
         
-        $body = "<html><body><h1>400 Bad request</h1><p>{$message}</p></body></html>";
+        $body = "<html><head><title>ANS Object Resolver</title></head><body><h1>400 Bad request</h1><p>{$message}</p></body></html>";
         
         echo $body;
     }
-    
 }
-
 
 ?>

@@ -202,7 +202,7 @@ function process_response ($response, $q){
                         echo "Deleting {$accnum}\n";
                         
                         //initiate a deletion from Numishare via curl
-                        $url = "http://numismatics.org/cgi-bin/deletefromnumishare.php?accnum={$accnum}";
+                        $url = "https://numismatics.org/cgi-bin/deletefromnumishare.php?accnum={$accnum}";
                         $deleteFromNumishare=curl_init();
                         curl_setopt($deleteFromNumishare, CURLOPT_URL, $url);
                         curl_setopt($deleteFromNumishare, CURLOPT_HEADER, 0);

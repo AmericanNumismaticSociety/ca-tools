@@ -6,7 +6,7 @@
  * and initiate a reindex of the resulting IDs in mantis. This should be run on the production server.
  *****/
 
-define("INDEX_COUNT", 500);
+define("INDEX_COUNT", 250);
 define("START", 0);
 define("CA_URL", "https://test.numismatics.org/collectiveaccess/");
 define("SOLR_URL", "http://localhost:8983/solr/numishare/update/");

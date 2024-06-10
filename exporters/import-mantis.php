@@ -15,7 +15,7 @@
  * This file is not committed to Github.
  *****/
 
-define("INDEX_COUNT", 500);
+define("INDEX_COUNT", 250);
 define("SOLR_URL", "http://localhost:8983/solr/numishare/update/");
 define("NUMISHARE_URL", "http://localhost:8080/orbeon/numishare/");
 define("TMP_NUDS", "/tmp/nuds");

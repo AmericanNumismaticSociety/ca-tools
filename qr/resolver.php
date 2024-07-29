@@ -21,12 +21,18 @@ if (($ca_file = fopen("/usr/local/projects/ca-tools/exporters/ca_credentials.jso
         $accnum = $argv[1];
     }
     
-    if (isset($accnum)){
-        $q = 'idno:' . $accnum;
-        
-        if (preg_match("/^2222\.1\.\d+/", $accnum)){
+    if (isset($accnum)){        
+        if (preg_match("/^URO\.\d+/", $accnum)){
+            
+            //trim padded 0 from the URO code string
+            $accnum = "2222.1." . ltrim(str_replace("URO.", "", $accnum), '0');
+            $q = 'idno:' . $accnum;
+            $db = 'uro';
+        } elseif (preg_match("/^2222\.1\.\d+/", $accnum)){
+            $q = 'idno:' . $accnum;
             $db = 'uro';
         } else {
+            $q = 'idno:' . $accnum;
             $db = 'collectiveaccess';   
         }
         

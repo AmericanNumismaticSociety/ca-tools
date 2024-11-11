@@ -5,7 +5,7 @@ Mapping,3,ca_objects.preferred_labels,,,,,,,,
 Mapping,4,ca_objects.item_status_id,,,,,,,,
 Mapping,5,ca_objects.department,,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""department_list"", ""matchOn"": ""labels"", ""dontCreate"": 1}",,,,
 Mapping,6,ca_objects.object_type,,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""numismatic_object_types"", ""matchOn"": ""labels""}",,,,
-Mapping,7,ca_objects.material.value,material1,,listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""material_list"", ""matchOn"": ""labels""}",,,,
+Mapping,7,ca_objects.material.value,material1,"{ ""skipGroupIfEmpty"" : 1}",listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""material_list"", ""matchOn"": ""labels""}",,,,
 Mapping,8,ca_objects.material.material_uncertain,material1,,,,"true
 false","boolean_true
 boolean_false",,
@@ -71,8 +71,8 @@ Mapping,142,ca_objects.obverse_symbol.obverse_symbol_label,obv_symbol1,"{ ""skip
 Mapping,143,ca_objects.reverse_symbol.reverse_symbol_label,rev_symbol1,"{ ""skipGroupIfEmpty"" : 1}",,,,,,
 Mapping,145,ca_objects.signature,,"{""skipIfEmpty"": 1}",entitySplitter,"{""matchOn"": ""idno"", ""dontCreate"": 1}",,,,
 Mapping,146,ca_objects.watermark,,,,,,,,
-Mapping,148,ca_objects.image_sponsor,,,entitySplitter,"{""delimiter"": ""|"", ""matchOn"": ""idno"", ""dontCreate"": 1}",,,,
-Mapping,149,ca_objects.image_sponsor,,,entitySplitter,"{""delimiter"": ""|"", ""matchOn"": ""idno"", ""dontCreate"": 1}",,,,
+Mapping,148,ca_objects.image_sponsor,,,entitySplitter,"{""delimiter"": ""|"", ""matchOn"": ""labels"", ""dontCreate"": 1}",,,,
+Mapping,149,ca_objects.image_sponsor,,,entitySplitter,"{""delimiter"": ""|"", ""matchOn"": ""labels"", ""dontCreate"": 1}",,,,
 Mapping,150,ca_objects.original_intended_use.original_intended_use_value,orig1,"{ ""skipGroupIfEmpty"" : 1}",listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""original_intended_use_list"", ""matchOn"": ""labels""}",,,,
 Mapping,151,ca_objects.authenticity.authenticity_value,authenticity1,"{ ""skipGroupIfEmpty"" : 1}",listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""authenticity_list"", ""matchOn"": ""labels""}",,,,
 Mapping,152,ca_objects.authenticity.authenticity_uncertain,authenticity1,,,,"true

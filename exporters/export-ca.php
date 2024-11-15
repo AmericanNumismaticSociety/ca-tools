@@ -192,14 +192,14 @@ function process_response ($response, $q){
                             mkdir(TMP_NUDS, 0777, true);
                         }
                         
-                        $accnum = $record->idno;
-                        export_record($record);
+                        $accnum = $record->idno;                       
+                        export_record($record, $count);
                         //update_record_in_numishare($record, $collection);
                         
                         
                     } else {
                         $accnum = $record->idno;
-                        echo "Deleting {$accnum}\n";
+                        echo "{$count}: Deleting {$accnum}\n";
                         
                         //initiate a deletion from Numishare via curl
                         $url = "https://numismatics.org/cgi-bin/deletefromnumishare.php?accnum={$accnum}";
@@ -275,7 +275,7 @@ function rmdir_recursive($dir) {
     }    
 }
 
-function export_record($record){
+function export_record($record, $count){
     GLOBAL $image_files;
     
     $images = array();
@@ -298,7 +298,7 @@ function export_record($record){
     $cmd = CA_UTILS . " export-data -m nuds -i {$id} -f {$fileName}";
     
     //execute the command to generate NUDS from the CA database using caUtils
-    echo "Generating {$accnum} NUDS.\n";
+    echo "{$count}: Generating {$accnum} NUDS.\n";
     
     
     shell_exec('nohup ' . $cmd . ' 2>&1 &');

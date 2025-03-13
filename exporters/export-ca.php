@@ -246,11 +246,9 @@ function zip_and_upload($ssh_credentials){
     
     //upload zip to numismatics.org
     echo "Uploading zip.\n";
-    $connection = ssh2_connect($ssh_credentials['server'], $ssh_credentials['port'], array('hostkey' => 'ssh-rsa'));
+    $connection = ssh2_connect($ssh_credentials['server'], $ssh_credentials['port']);
     
-    if (ssh2_auth_pubkey_file($connection, $ssh_credentials['username'],
-        '~/.ssh/id_rsa.pub',
-        '~/.ssh/id_rsa', $ssh_credentials['username'] . '@' . $ssh_credentials['server'])) {
+    if (ssh2_auth_password($connection, $ssh_credentials['username'], $ssh_credentials['password'])) {
         echo "Public Key Authentication Successful\n";
         ssh2_scp_send($connection, '/tmp/ca_upload.zip', '/tmp/ca_upload.zip', 0644);
         ssh2_exec($connection, 'exit');

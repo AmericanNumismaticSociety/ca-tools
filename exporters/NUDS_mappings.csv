@@ -101,7 +101,7 @@
 "Mapping","material_href","material","@xlink:href","value.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""value.concept_uri""}"
 "Constant","material_type","material","@xlink:type","simple","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""value.concept_uri""}"
 "Constant","material_uncertain","material","@certainty","http://nomisma.org/id/uncertain_value","{""skipIfExpression"": ""^material_uncertain <> \""boolean_true\"""",""original_values"":""\n"",""replacement_values"":""\n"", ""convertCodesToIdno"": true}"
-"Mapping","color","typeDesc","color","ca_objects.color","{""omitIfEmpty"":""ca_objects.color"",""repeat_element_for_multiple_values"": 1,""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","color","typeDesc","color","ca_objects.color","{""convertCodesToDisplayText"":1,""omitIfEmpty"":""ca_objects.color"",""repeat_element_for_multiple_values"": 1,""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","shape","typeDesc","shape","ca_objects.shape","{""convertCodesToDisplayText"":1,""omitIfEmpty"":""ca_objects.shape"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","symbol_deprecated","typeDesc","symbol","ca_objects.symbol_deprecated","{""omitIfEmpty"":""ca_objects.symbol_deprecated"",""original_values"":""\n"",""replacement_values"":""\n""}"
 ,,,,,

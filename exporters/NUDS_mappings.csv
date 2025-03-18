@@ -181,6 +181,9 @@
 "Mapping","underType_material","underType","material","ca_objects.undertype_material","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""context"":""ca_objects.undertype_material"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","underType_material_href","underType_material","@xlink:href","ca_objects.undertype_material.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.undertype_material.concept_uri""}"
 "Constant","underType_material_type","underType_material","@xlink:type","simple",
+"Mapping","underType_denomination","underType","denomination","ca_objects.undertype_denomination","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""context"":""ca_objects.undertype_denomination"",""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","underType_denomination_href","underType_denomination","@xlink:href","ca_objects.undertype_denomination.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.undertype_denomination.concept_uri""}"
+"Constant","underType_denomination_type","underType_denomination","@xlink:type","simple",
 "Mapping","underType_obverse","underType","obverse",,"{""omitIfNoChildren"":1}"
 "Mapping","underType_obverse_type","underType_obverse","type",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.undertype_obverse.undertype_obverse_type"", ""omitIfNoChildren"":1}"
 "Mapping","underType_obverse_description","underType_obverse_type","description","ca_objects.undertype_obverse.undertype_obverse_type","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ca_objects.undertype_obverse.undertype_obverse_type""}"
@@ -203,6 +206,8 @@
 "Mapping","underType_corpname_href","underType_corpname","@xlink:href","undertype_entity_name.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","underType_corpname_role","underType_corpname","@xlink:role","undertype_entity_relationship","{""original_values"":""authority\n"",""replacement_values"":""state\n""}"
 "Constant","underType_corpname_type","underType_corpname","@xlink:type","simple",
+"Mapping","underType_reference","underType","reference","ca_objects.undertype_reference","{""repeat_element_for_multiple_values"":1, ""original_values"":""\n"",""replacement_values"":""\n""}"
+,,,,,
 ,,,,,
 "#physDesc",,,,,
 "Mapping","physDesc","descMeta","physDesc",,"{""original_values"":""\n"",""replacement_values"":""\n"",""omitIfNoChildren"":1}"

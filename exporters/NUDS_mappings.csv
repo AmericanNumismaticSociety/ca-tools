@@ -317,7 +317,7 @@
 "Mapping","reference_variant","reference","@variant","ref_variant","{""skipIfExpression"":""^ref_variant !~ \/true\/"",""original_values"":""\n"",""replacement_values"":""\n"", ""convertCodesToDisplayText"":1}"
 "Constant","reference_uncertain","reference","@certainty","http://nomisma.org/id/uncertain_value","{""skipIfExpression"":""^ref_uncertain !~ \/true\/"",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","reference_work","reference","tei:title","ref_publication","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","reference_work_uri","reference_work","@key","ref_publication.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ref_publication.concept_uri""}"
+"Mapping","reference_work_uri","reference_work","@key","ref_publication.uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ref_publication.uri""}"
 "Mapping","reference_section","reference","tei:seg","ref_section","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ref_section""}"
 "Constant","reference_section_attr","reference_section","@type","section",
 "Mapping","reference_identifier","reference","tei:idno","ref_identifier","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""ref_identifier""}"
@@ -338,6 +338,7 @@
 "#citation",,,,,
 "Mapping","citation","refDesc","citation",,"{""repeat_element_for_multiple_values"":1,""context"":""ca_objects.published_citation"",""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
 "Mapping","citation_title","citation","tei:title","citation_publication","{""convertCodesToDisplayText"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","citation_uri","citation_title","@key","citation_publication.uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"":""citation_publication.uri""}"
 "Mapping","citation_page","citation","tei:seg","citation_page","{""original_values"":""\n"",""replacement_values"":""\n"",""omitIfEmpty"":""citation_page""}"
 "Constant","citation_page_attr","citation_page","@type","page",
 "Mapping","citation_plate","citation","tei:seg","citation_plate","{""original_values"":""\n"",""replacement_values"":""\n"",""omitIfEmpty"":""citation_plate""}"

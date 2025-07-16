@@ -102,7 +102,7 @@ class WLPlugInformationServiceKoha extends BaseInformationServicePlugin Implemen
 							$va_attr = $o_links[0]->attributes();
 							$label = trim(str_replace(' / ', ' ' , (string)$o_entry->{'title'}));
 							$idno = explode('=', (string)$o_entry->{'link'})[1];
-							$vs_url = "https://numismatics.org/library/" . $idno;
+							$vs_url = "http://numismatics.org/library/" . $idno;
 							$items[$label] = array('label' => $label, 'idno' => $idno, 'url' => $vs_url);
 							$count++;
 						}

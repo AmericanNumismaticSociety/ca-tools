@@ -106,8 +106,8 @@ if (($ca_file = fopen("ca_credentials.json", "r")) !== FALSE && ($ssh_file = fop
             foreach ($new_images as $accnum) {
                 echo "Querying {$accnum}\n";
                 
-                $q = "idno:{$accnum}";
-                $apiURL = CA_URL . "service.php/json/find/ca_objects?q={$q}&pretty=1&authToken={$authToken}";
+                //$q = "idno:{$accnum}";
+                $apiURL = CA_URL . "service.php/json/find/ca_objects?q=%22{$accnum}%22&pretty=1&authToken={$authToken}";
                 
                 $ch = curl_init( $apiURL );
                 curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode($bundle) );

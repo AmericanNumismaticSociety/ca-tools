@@ -102,6 +102,7 @@ if (($ca_file = fopen("ca_credentials.json", "r")) !== FALSE && ($ssh_file = fop
             fclose($fp);
             
             $new_images = array_filter($new_images);
+            $new_images = array_unique($new_images);
             
             foreach ($new_images as $accnum) {
                 echo "Querying {$accnum}\n";

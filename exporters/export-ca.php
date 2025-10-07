@@ -22,125 +22,148 @@
 
 define("INDEX_COUNT", 500);
 define("START", 0);
-define("CA_URL", "https://test.numismatics.org/collectiveaccess/");
-define("CA_UTILS", "/usr/local/projects/providence-2.0/support/bin/caUtils");
+define("CA_URL", array("mantis"=>"https://test.numismatics.org/collectiveaccess/", "sitnam"=>"https://test.numismatics.org/sitnam/"));
+define("CA_UTILS", array("mantis"=>"/usr/local/projects/providence-2.0/support/bin/caUtils", "sitnam"=>"/usr/local/projects/sitnam-providence-2.0/support/bin/caUtils"));
 define("TMP_NUDS", "/tmp/nuds");
 
-//read the image file list
 $image_files = array();
-$fp=fopen('/data/images/files.list', 'r');
-while (!feof($fp)){
-    $line=fgets($fp);
-    
-    if (preg_match('/^\d{4}\.\d+\.\d+\..*\.noscale\.jpg$/', $line)){
-        $image_files[] = trim($line);
-    }
-}
-fclose($fp);
 
-//array of created or updated accession numbers
-$accnums = array();
-
-//ensure the ca_credentials.json exists
-if (($ca_file = fopen("ca_credentials.json", "r")) !== FALSE && ($ssh_file = fopen("ssh_credentials.json", "r")) !== FALSE) {
-    //load credentials
-    $ca_credentials = json_decode(file_get_contents("ca_credentials.json"), true);
-    $ssh_credentials = json_decode(file_get_contents("ssh_credentials.json"), true);
+if (isset($argv[1])){
+    $database = $argv[1];
     
-    //formulate the query to send to CollectiveAccess
-    //first argument must be collection
-    //read the second argument for the Lucene query. Default to 'yesterday'
-    if (isset($argv[1])){
-        if ($argv[1] == 'yesterday'){
-            $q = "modified:" . date("Y-m-d", strtotime("yesterday"));
-        } elseif ($argv[1] == 'today') {
-            $q = "modified:" . date("Y-m-d", strtotime("today"));
-        } else {
-            $q = $argv[1];
-        }
-    } else {
-        $q = "modified:" . date("Y-m-d", strtotime("yesterday"));
-    }
-    
-    //execute the login to get an authToken
-    $authToken = login_to_ca($ca_credentials['username'], $ca_credentials['password']);
-    
-    if (isset($authToken)){
-        $apiURL = CA_URL . "service.php/json/find/ca_objects?q={$q}&pretty=1&authToken={$authToken}";
+    if ($database == 'mantis' || $database == 'sitnam') {
         
-        $bundle = array("bundles"=>
-            array("access"=>
-                array("convertCodesToIdno" => true),
-                "type_id" =>
-                array('convertCodesToIdno' => true)
-            )
-        );
-        
-        //execute curl to get a list of items edited yesterday (or other Lucene query)
-        //error_log("{$collection} indexing process begun at " . date(DATE_W3C) . ".\n", 3, "/var/log/numishare/process.log");
-        
-        $ch = curl_init( $apiURL );
-        curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode($bundle) );
-        curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-        $response = curl_exec($ch);
-        curl_close($ch);
-        
-        //begin parsing the JSON from CA
-        process_response($response, $q);
-        
-        //initiate export of any new images uploaded in the image-processor workflow
-        if (file_exists('/data/images/newImages.txt')){
-            echo "Processing new image records.\n";
-            
-            $new_images = array();
-            $fp=fopen('/data/images/newImages.txt', 'r');
+        if ($database == 'mantis') {
+            //read the image file list
+            $fp=fopen('/data/images/files.list', 'r');
             while (!feof($fp)){
                 $line=fgets($fp);
-                $new_images[] = trim($line);
+                
+                if (preg_match('/^\d{4}\.\d+\.\d+\..*\.noscale\.jpg$/', $line)){
+                    $image_files[] = trim($line);
+                }
             }
-            fclose($fp);
-            
-            $new_images = array_filter($new_images);
-            $new_images = array_unique($new_images);
-            
-            foreach ($new_images as $accnum) {
-                echo "Querying {$accnum}\n";
-                
-                //$q = "idno:{$accnum}";
-                $apiURL = CA_URL . "service.php/json/find/ca_objects?q=%22{$accnum}%22&pretty=1&authToken={$authToken}";
-                
-                $ch = curl_init( $apiURL );
-                curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode($bundle) );
-                curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-                curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-                $response = curl_exec($ch);
-                curl_close($ch);
-                
-                process_response($response, $q);
+            fclose($fp);            
+        }
+
+        //array of created or updated accession numbers
+        $accnums = array();
+        
+        //formulate the query to send to CollectiveAccess
+        //first argument must be collection
+        //read the second argument for the Lucene query. Default to 'yesterday'
+        if (isset($argv[2])){
+            if ($argv[2] == 'yesterday'){
+                $q = "modified:" . date("Y-m-d", strtotime("yesterday"));
+            } elseif ($argv[2] == 'today') {
+                $q = "modified:" . date("Y-m-d", strtotime("today"));
+            } else {
+                $q = $argv[2];
             }
         } else {
-            echo "No recent image upload to process.\n";
+            $q = "modified:" . date("Y-m-d", strtotime("yesterday"));
         }
         
-        //zip exported record after each object has been exported to NUDS from CA
-        if (is_dir(TMP_NUDS)) {
-            zip_and_upload($ssh_credentials);
-        }        
-        
-        //blank new images since they cannot be deleted by user database
-        file_put_contents("/data/images/newImages.txt", "");
+        query_ca($database, $q);
         
     } else {
-        echo "CA authToken error.\n";
+        echo "Invalid argument.\n";
     }
 } else {
-    echo "Credentials JSON file for CollectiveAccess API authorization and/or SSH does not exist.\n";
+    echo "CollectiveAccess database not set.\n";
 }
 
+
 /***** FUNCTIONS *****/
-function login_to_ca($username, $password){
-    $login = str_replace('https://', 'https://' . $username . ':' . $password . '@', CA_URL) . 'service.php/json/auth/login';
+function query_ca($database, $q) {
+    //ensure the ca_credentials.json exists
+    if (($ca_file = fopen("ca_credentials.json", "r")) !== FALSE && ($ssh_file = fopen("ssh_credentials.json", "r")) !== FALSE) {
+        //load credentials
+        $ca_credentials = json_decode(file_get_contents("ca_credentials.json"), true);
+        $ssh_credentials = json_decode(file_get_contents("ssh_credentials.json"), true);        
+        
+        //execute the login to get an authToken
+        $authToken = login_to_ca($database, $ca_credentials['username'], $ca_credentials['password']);
+        
+        if (isset($authToken)){
+            $apiURL = CA_URL[$database] . "service.php/json/find/ca_objects?q={$q}&pretty=1&authToken={$authToken}";
+            
+            $bundle = array("bundles"=>
+                array("access"=>
+                    array("convertCodesToIdno" => true),
+                    "type_id" =>
+                    array('convertCodesToIdno' => true)
+                )
+            );
+            
+            //execute curl to get a list of items edited yesterday (or other Lucene query)
+            //error_log("{$collection} indexing process begun at " . date(DATE_W3C) . ".\n", 3, "/var/log/numishare/process.log");
+            
+            $ch = curl_init( $apiURL );
+            curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode($bundle) );
+            curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+            curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+            $response = curl_exec($ch);
+            curl_close($ch);
+            
+            //begin parsing the JSON from CA
+            process_response($response, $q);
+            
+            //initiate export of any new images uploaded in the image-processor workflow, applies to Mantis only
+            if ($database == 'mantis') {
+                if (file_exists('/data/images/newImages.txt')){
+                    echo "Processing new image records.\n";
+                    
+                    $new_images = array();
+                    $fp=fopen('/data/images/newImages.txt', 'r');
+                    while (!feof($fp)){
+                        $line=fgets($fp);
+                        $new_images[] = trim($line);
+                    }
+                    fclose($fp);
+                    
+                    $new_images = array_filter($new_images);
+                    $new_images = array_unique($new_images);
+                    
+                    foreach ($new_images as $accnum) {
+                        echo "Querying {$accnum}\n";
+                        
+                        //$q = "idno:{$accnum}";
+                        $apiURL = CA_URL[$database] . "service.php/json/find/ca_objects?q=%22{$accnum}%22&pretty=1&authToken={$authToken}";
+                        
+                        $ch = curl_init( $apiURL );
+                        curl_setopt( $ch, CURLOPT_POSTFIELDS, json_encode($bundle) );
+                        curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+                        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+                        $response = curl_exec($ch);
+                        curl_close($ch);
+                        
+                        process_response($response, $q);
+                    }
+                } else {
+                    echo "No recent image upload to process.\n";
+                }
+            }
+            
+            //zip exported record after each object has been exported to NUDS from CA
+            if (is_dir(TMP_NUDS)) {
+                zip_and_upload($ssh_credentials);
+            }
+            
+            //blank new images since they cannot be deleted by user database
+            file_put_contents("/data/images/newImages.txt", "");
+            
+        } else {
+            echo "CA authToken error.\n";
+        }
+    } else {
+        echo "Credentials JSON file for CollectiveAccess API authorization and/or SSH does not exist.\n";
+    }
+}
+
+//login to CollectiveAccess API to get an API key
+function login_to_ca($database, $username, $password){
+    $login = str_replace('https://', 'https://' . $username . ':' . $password . '@', CA_URL[$database]) . 'service.php/json/auth/login';
     
     $ch = curl_init($login);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -165,7 +188,7 @@ function login_to_ca($username, $password){
 /***** 
  * Process the JSON response from CollectiveAccess API
  *****/
-function process_response ($response, $q){
+function process_response ($database, $response, $q){
     
     $json = json_decode($response);  
     
@@ -194,7 +217,7 @@ function process_response ($response, $q){
                         }
                         
                         $accnum = $record->idno;                       
-                        export_record($record, $count);
+                        export_record($database, $record, $count);
                         //update_record_in_numishare($record, $collection);
                         
                         
@@ -274,7 +297,7 @@ function rmdir_recursive($dir) {
     }    
 }
 
-function export_record($record, $count){
+function export_record($database, $record, $count){
     GLOBAL $image_files;
     
     $images = array();
@@ -290,11 +313,9 @@ function export_record($record, $count){
         }
     }
     
-    
-    
     $fileName = TMP_NUDS . "/{$accnum}.xml";
     
-    $cmd = CA_UTILS . " export-data -m nuds -i {$id} -f {$fileName}";
+    $cmd = CA_UTILS[$database] . " export-data -m nuds -i {$id} -f {$fileName}";
     
     //execute the command to generate NUDS from the CA database using caUtils
     echo "{$count}: Generating {$accnum} NUDS.\n";

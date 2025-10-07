@@ -147,7 +147,7 @@ function query_ca($database, $q) {
             
             //zip exported record after each object has been exported to NUDS from CA
             if (is_dir(TMP_NUDS)) {
-                zip_and_upload($ssh_credentials);
+                zip_and_upload($database, $ssh_credentials);
             }
             
             //blank new images since they cannot be deleted by user database
@@ -249,9 +249,9 @@ function process_response ($database, $response, $q){
  * Execute caUtils to generate a NUDS XML record to post to eXist-db
  *****/
 //zip NUDS files and then SCP them to the production server
-function zip_and_upload($ssh_credentials){
+function zip_and_upload($database, $ssh_credentials){
     $zip = new ZipArchive;
-    if ($zip->open('/tmp/ca_upload.zip', ZipArchive::CREATE) === TRUE) {
+    if ($zip->open("/tmp/ca_{$database}.zip", ZipArchive::CREATE) === TRUE) {
         if ($handle = opendir(TMP_NUDS))
         {
             // Add all files inside the directory
@@ -274,12 +274,12 @@ function zip_and_upload($ssh_credentials){
     
     if (ssh2_auth_password($connection, $ssh_credentials['username'], $ssh_credentials['password'])) {
         echo "Public Key Authentication Successful\n";
-        ssh2_scp_send($connection, '/tmp/ca_upload.zip', '/tmp/ca_upload.zip', 0644);
+        ssh2_scp_send($connection, "/tmp/ca_{$database}.zip", "/tmp/ca_{$database}.zip", 0644);
         ssh2_exec($connection, 'exit');
         
         echo "Zip file uploaded to production server. Numishare publication workflow commencing.\n";
         
-        unlink('/tmp/ca_upload.zip');
+        unlink("/tmp/ca_{$database}.zip");
         rmdir_recursive(TMP_NUDS);
     } else {
         die('Public Key Authentication Failed');

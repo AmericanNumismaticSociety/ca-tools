@@ -44,7 +44,7 @@ if (isset($argv[1])){
         
         //unzip file
         $zip = new ZipArchive();
-        $result = $zip->open('/tmp/ca_upload.zip');
+        $result = $zip->open("/tmp/ca_{$collection}.zip");
         if ($result === TRUE) {
             echo "Unzipping file.\n";
             $zip->extractTo("/tmp");
@@ -69,7 +69,7 @@ if (isset($argv[1])){
             }
             
             //delete zip file
-            unlink('/tmp/ca_upload.zip');
+            unlink("/tmp/ca_{$collection}.zip");
             
             //remove nuds folder
             rmdir_recursive(TMP_NUDS);

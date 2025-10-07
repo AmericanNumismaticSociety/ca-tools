@@ -107,7 +107,7 @@ function query_ca($database, $q) {
             curl_close($ch);
             
             //begin parsing the JSON from CA
-            process_response($response, $q);
+            process_response($database, $response, $q);
             
             //initiate export of any new images uploaded in the image-processor workflow, applies to Mantis only
             if ($database == 'mantis') {
@@ -138,7 +138,7 @@ function query_ca($database, $q) {
                         $response = curl_exec($ch);
                         curl_close($ch);
                         
-                        process_response($response, $q);
+                        process_response($database, $response, $q);
                     }
                 } else {
                     echo "No recent image upload to process.\n";

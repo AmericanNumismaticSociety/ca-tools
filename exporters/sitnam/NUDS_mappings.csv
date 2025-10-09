@@ -329,4 +329,112 @@
 "Mapping","provenance","adminDesc","provenance",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
 "Mapping","chronList","provenance","chronList",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
 "Mapping","chronItem","chronList","chronItem",,"{""repeat_element_for_multiple_values"":1, ""context"":""ca_objects_x_occurrences"",""restrictToTypes"":[""sale_auction""],""omitIfEmpty"":""ca_occurrences.preferred_labels"",""original_values"":""\n\n"",""replacement_values"":""\n\n""}"
-"Mapping","previousColl","chronItem","previousColl","ca_occurrences.preferred_labels","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","previousColl","chronItem","previousColl",,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","saleCatalog","previousColl","saleCatalog","ca_occurrences.preferred_labels",
+"Constant","saleCatalog_type","saleCatalog","@xlink:type","simple",
+"Mapping","saleCatalog_href","saleCatalog","@xlink:href","ca_occurrences.donum_id","{""original_values"":""^(\\d+)"",""replacement_values"":""http://numismatics.org/library/$1"", ""omitIfEmpty"":""ca_occurrences.donum_id""}"
+"Mapping","sale_date","previousColl","date","ca_occurrences.date.dates_value","{""original_values"":""\n"",""replacement_values"":""\n"",""omitIfEmpty"":""ca_occurrences.date.dates_value""}"
+"Mapping","sate_date_notBefore","sale_date","@notBefore","ca_occurrences.date.dates_value","{""start_as_iso8601"":1,""timeOmit"":1}"
+"Mapping","sate_date_notAfter","sale_date","@notAfter","ca_occurrences.date.dates_value","{""end_as_iso8601"":1,""timeOmit"":1}"
+"Mapping","sale_method","previousColl","method","ca_occurrences.sale_type","{""convertCodesToDisplayText"":1, ""original_values"":""\n"",""replacement_values"":""\n"",""omitIfEmpty"":""ca_occurrences.sale_type""}"
+"Mapping","sale_identifier","previousColl","identifier","ca_objects_x_occurrences.collection_idno","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"": ""ca_objects_x_occurrences.collection_idno""}"
+,,,,,
+"#digRep",,,,,
+"Mapping","digRep","nuds","digRep",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Mapping","fileSec","digRep","mets:fileSec",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+,,,,,
+"#obverse",,,,,
+"Mapping","fileGrp_obv","fileSec","mets:fileGrp",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","fileGrp_obv_use","fileGrp_obv","@USE","obverse",
+"Mapping","file_obv_thumb","fileGrp_obv","mets:file",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","file_obv_thumb_use","file_obv_thumb","@USE","thumbnail",
+"Constant","file_obv_thumb_mimetype","file_obv_thumb","@MIMETYPE","image/jpeg",
+"Mapping","flocat_obv_thumb","file_obv_thumb","mets:FLocat",,"{""omitIfEmpty"":""ca_objects.obv_images.obv_images_thumbnail""}"
+"Mapping","flocat_obv_thumb_href","flocat_obv_thumb","@xlink:href","ca_objects.obv_images.obv_images_thumbnail","{""original_values"":""archivesimages/archive/"", ""replacement_values"":""archivesimages%2Farchive%2F""}"
+"Constant","flocat_obv_thumb_loctype","flocat_obv_thumb","@LOCTYPE","URL",
+"Mapping","file_obv_reference","fileGrp_obv","mets:file",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","file_obv_reference_use","file_obv_reference","@USE","reference",
+"Constant","file_obv_reference_mimetype","file_obv_reference","@MIMETYPE","image/jpeg",
+"Mapping","flocat_obv_reference","file_obv_reference","mets:FLocat",,"{""omitIfEmpty"":""ca_objects.obv_images.obv_images_reference""}"
+"Mapping","flocat_obv_reference_href","flocat_obv_reference","@xlink:href","ca_objects.obv_images.obv_images_reference","{""original_values"":""archivesimages/archive/"", ""replacement_values"":""archivesimages%2Farchive%2F""}"
+"Constant","flocat_obv_reference_loctype","flocat_obv_reference","@LOCTYPE","URL",
+"Mapping","file_obv_archive","fileGrp_obv","mets:file",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","file_obv_archive_use","file_obv_archive","@USE","archive",
+"Constant","file_obv_archive_mimetype","file_obv_archive","@MIMETYPE","image/jpeg",
+"Mapping","flocat_obv_archive","file_obv_archive","mets:FLocat",,"{""omitIfEmpty"":""ca_objects.obv_images.obv_images_archive""}"
+"Mapping","flocat_obv_archive_href","flocat_obv_archive","@xlink:href","ca_objects.obv_images.obv_images_archive","{""original_values"":""archivesimages/archive/"", ""replacement_values"":""archivesimages%2Farchive%2F""}"
+"Constant","flocat_obv_archive_loctype","flocat_obv_archive","@LOCTYPE","URL",
+"Mapping","file_obv_iiif","fileGrp_obv","mets:file",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","file_obv_iiif_use","file_obv_iiif","@USE","iiif",
+"Mapping","flocat_obv_iiif","file_obv_iiif","mets:FLocat",,"{""omitIfEmpty"":""ca_objects.obv_images.obv_images_iiif""}"
+"Mapping","flocat_obv_iiif_href","flocat_obv_iiif","@xlink:href","ca_objects.obv_images.obv_images_iiif","{""original_values"":""archivesimages/archive/"", ""replacement_values"":""archivesimages%2Farchive%2F""}"
+"Constant","flocat_obv_iiif_loctype","flocat_obv_iiif","@LOCTYPE","URL",
+"Mapping","file_obv_context","fileGrp_obv","mets:file",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","file_obv_context_use","file_obv_context","@USE","context",
+"Mapping","flocat_obv_context","file_obv_context","mets:FLocat",,"{""omitIfEmpty"":""ca_objects.obv_images.obv_images_context""}"
+"Mapping","flocat_obv_context_href","flocat_obv_context","@xlink:href","ca_objects.obv_images.obv_images_context",
+"Constant","flocat_obv_context_loctype","flocat_obv_context","@LOCTYPE","URL",
+,,,,,
+"#reverse",,,,,
+"Mapping","fileGrp_rev","fileSec","mets:fileGrp",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","fileGrp_rev_use","fileGrp_rev","@USE","reverse",
+"Mapping","file_rev_thumb","fileGrp_rev","mets:file",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","file_rev_thumb_use","file_rev_thumb","@USE","thumbnail",
+"Constant","file_rev_thumb_mimetype","file_rev_thumb","@MIMETYPE","image/jpeg",
+"Mapping","flocat_rev_thumb","file_rev_thumb","mets:FLocat",,"{""omitIfEmpty"":""ca_objects.rev_images.rev_images_thumbnail""}"
+"Mapping","flocat_rev_thumb_href","flocat_rev_thumb","@xlink:href","ca_objects.rev_images.rev_images_thumbnail","{""original_values"":""archivesimages/archive/"", ""replacement_values"":""archivesimages%2Farchive%2F""}"
+"Constant","flocat_rev_thumb_loctype","flocat_rev_thumb","@LOCTYPE","URL",
+"Mapping","file_rev_reference","fileGrp_rev","mets:file",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","file_rev_reference_use","file_rev_reference","@USE","reference",
+"Constant","file_rev_reference_mimetype","file_rev_reference","@MIMETYPE","image/jpeg",
+"Mapping","flocat_rev_reference","file_rev_reference","mets:FLocat",,"{""omitIfEmpty"":""ca_objects.rev_images.rev_images_reference2""}"
+"Mapping","flocat_rev_reference_href","flocat_rev_reference","@xlink:href","ca_objects.rev_images.rev_images_reference2","{""original_values"":""archivesimages/archive/"", ""replacement_values"":""archivesimages%2Farchive%2F""}"
+"Constant","flocat_rev_reference_loctype","flocat_rev_reference","@LOCTYPE","URL",
+"Mapping","file_rev_archive","fileGrp_rev","mets:file",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","file_rev_archive_use","file_rev_archive","@USE","archive",
+"Constant","file_rev_archive_mimetype","file_rev_archive","@MIMETYPE","image/jpeg",
+"Mapping","flocat_rev_archive","file_rev_archive","mets:FLocat",,"{""omitIfEmpty"":""ca_objects.rev_images.rev_images_archive""}"
+"Mapping","flocat_rev_archive_href","flocat_rev_archive","@xlink:href","ca_objects.rev_images.rev_images_archive","{""original_values"":""archivesimages/archive/"", ""replacement_values"":""archivesimages%2Farchive%2F""}"
+"Constant","flocat_rev_archive_loctype","flocat_rev_archive","@LOCTYPE","URL",
+"Mapping","file_rev_iiif","fileGrp_rev","mets:file",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","file_rev_iiif_use","file_rev_iiif","@USE","iiif",
+"Mapping","flocat_rev_iiif","file_rev_iiif","mets:FLocat",,"{""omitIfEmpty"":""ca_objects.rev_images.rev_images_iiif""}"
+"Mapping","flocat_rev_iiif_href","flocat_rev_iiif","@xlink:href","ca_objects.rev_images.rev_images_iiif","{""original_values"":""archivesimages/archive/"", ""replacement_values"":""archivesimages%2Farchive%2F""}"
+"Constant","flocat_rev_iiif_loctype","flocat_rev_iiif","@LOCTYPE","URL",
+"Mapping","file_rev_context","fileGrp_rev","mets:file",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","file_rev_context_use","file_rev_context","@USE","context",
+"Mapping","flocat_rev_context","file_rev_context","mets:FLocat",,"{""omitIfEmpty"":""ca_objects.rev_images.rev_images_context""}"
+"Mapping","flocat_rev_context_href","flocat_rev_context","@xlink:href","ca_objects.rev_images.rev_images_context",
+"Constant","flocat_rev_context_loctype","flocat_rev_context","@LOCTYPE","URL",
+,,,,,
+"#combined",,,,,
+"Mapping","fileGrp_com","fileSec","mets:fileGrp",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","fileGrp_com_use","fileGrp_com","@USE","comerse",
+"Mapping","file_com_thumb","fileGrp_com","mets:file",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","file_com_thumb_use","file_com_thumb","@USE","thumbnail",
+"Constant","file_com_thumb_mimetype","file_com_thumb","@MIMETYPE","image/jpeg",
+"Mapping","flocat_com_thumb","file_com_thumb","mets:FLocat",,"{""omitIfEmpty"":""ca_objects.com_images.com_images_thumbnail""}"
+"Mapping","flocat_com_thumb_href","flocat_com_thumb","@xlink:href","ca_objects.com_images.com_images_thumbnail","{""original_values"":""archivesimages/archive/"", ""replacement_values"":""archivesimages%2Farchive%2F""}"
+"Constant","flocat_com_thumb_loctype","flocat_com_thumb","@LOCTYPE","URL",
+"Mapping","file_com_reference","fileGrp_com","mets:file",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","file_com_reference_use","file_com_reference","@USE","reference",
+"Constant","file_com_reference_mimetype","file_com_reference","@MIMETYPE","image/jpeg",
+"Mapping","flocat_com_reference","file_com_reference","mets:FLocat",,"{""omitIfEmpty"":""ca_objects.com_images.com_images_reference""}"
+"Mapping","flocat_com_reference_href","flocat_com_reference","@xlink:href","ca_objects.com_images.com_images_reference","{""original_values"":""archivesimages/archive/"", ""replacement_values"":""archivesimages%2Farchive%2F""}"
+"Constant","flocat_com_reference_loctype","flocat_com_reference","@LOCTYPE","URL",
+"Mapping","file_com_archive","fileGrp_com","mets:file",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","file_com_archive_use","file_com_archive","@USE","archive",
+"Constant","file_com_archive_mimetype","file_com_archive","@MIMETYPE","image/jpeg",
+"Mapping","flocat_com_archive","file_com_archive","mets:FLocat",,"{""omitIfEmpty"":""ca_objects.com_images.com_images_archive""}"
+"Mapping","flocat_com_archive_href","flocat_com_archive","@xlink:href","ca_objects.com_images.com_images_archive","{""original_values"":""archivesimages/archive/"", ""replacement_values"":""archivesimages%2Farchive%2F""}"
+"Constant","flocat_com_archive_loctype","flocat_com_archive","@LOCTYPE","URL",
+"Mapping","file_com_iiif","fileGrp_com","mets:file",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","file_com_iiif_use","file_com_iiif","@USE","iiif",
+"Mapping","flocat_com_iiif","file_com_iiif","mets:FLocat",,"{""omitIfEmpty"":""ca_objects.com_images.com_images_iiif""}"
+"Mapping","flocat_com_iiif_href","flocat_com_iiif","@xlink:href","ca_objects.com_images.com_images_iiif","{""original_values"":""archivesimages/archive/"", ""replacement_values"":""archivesimages%2Farchive%2F""}"
+"Constant","flocat_com_iiif_loctype","flocat_com_iiif","@LOCTYPE","URL",
+"Mapping","file_com_context","fileGrp_com","mets:file",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","file_com_context_use","file_com_context","@USE","context",
+"Mapping","flocat_com_context","file_com_context","mets:FLocat",,"{""omitIfEmpty"":""ca_objects.com_images.com_images_context""}"
+"Mapping","flocat_com_context_href","flocat_com_context","@xlink:href","ca_objects.com_images.com_images_context",
+"Constant","flocat_com_context_loctype","flocat_com_context","@LOCTYPE","URL",

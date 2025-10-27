@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <profile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="profile.xsd" useForConfiguration="1" base="base" infoUrl="">
   <profileName>SITNAM</profileName>
-  <profileDescription>Profile created on October 6 2025 at 14:49:51 by Ethan Gruber</profileDescription>
+  <profileDescription>Profile created on October 27 2025 at 14:20:25 by Ethan Gruber</profileDescription>
   <locales>
     <locale lang="en" country="US">English</locale>
     <locale lang="en" country="CA" dontUseForCataloguing="1">English (Canadian)</locale>
@@ -485,6 +485,11 @@
               <description>Any object that is traditionally described in numismatic terminologies, from coins to tokens to medals.</description>
             </label>
           </labels>
+          <settings>
+            <setting name="show_source_for_preferred_labels">0</setting>
+            <setting name="show_source_for_nonpreferred_labels">0</setting>
+            <setting name="render_in_new_menu">1</setting>
+          </settings>
         </item>
       </items>
     </list>
@@ -13289,15 +13294,6 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
             </label>
           </labels>
         </item>
-        <item idno="RO" enabled="1" default="0" value="RO" rank="19993" type="concept">
-          <labels>
-            <label locale="en_US" preferred="1">
-              <name_singular>RO</name_singular>
-              <name_plural>RO</name_plural>
-              <description/>
-            </label>
-          </labels>
-        </item>
         <item idno="Pressed" enabled="1" default="0" value="Pressed" rank="20000" type="concept">
           <labels>
             <label locale="en_US" preferred="1">
@@ -14469,6 +14465,123 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
             <label locale="en_US" preferred="1">
               <name_singular>Default</name_singular>
               <name_plural>Default</name_plural>
+              <description/>
+            </label>
+          </labels>
+        </item>
+      </items>
+    </list>
+    <list code="sale_type_list" hierarchical="1" system="1" vocabulary="1">
+      <labels>
+        <label locale="en_US">
+          <name>Sale types</name>
+        </label>
+      </labels>
+      <items>
+        <item idno="05da44f0_31c0_4c5b_bae4_4a1d338aa8fa" enabled="1" default="1" rank="2639" type="concept">
+          <labels>
+            <label locale="en_US" preferred="1">
+              <name_singular>auction</name_singular>
+              <name_plural>auction</name_plural>
+              <description/>
+            </label>
+          </labels>
+        </item>
+        <item idno="2c014b5e_a77f_4a74_a421_050851627ff6" enabled="1" default="0" rank="2640" type="concept">
+          <labels>
+            <label locale="en_US" preferred="1">
+              <name_singular>fixed price list</name_singular>
+              <name_plural>fixed price list</name_plural>
+              <description/>
+            </label>
+          </labels>
+        </item>
+        <item idno="2e40f16b_d8fb_47f5_b965_0d660fb332c4" enabled="1" default="0" rank="2641" type="concept">
+          <labels>
+            <label locale="en_US" preferred="1">
+              <name_singular>uncertain</name_singular>
+              <name_plural>uncertain</name_plural>
+              <description/>
+            </label>
+          </labels>
+        </item>
+        <item idno="e35e44b1_c7f1_4543_9246_bc691a6133b4" enabled="1" default="0" rank="2642" type="concept">
+          <labels>
+            <label locale="en_US" preferred="1">
+              <name_singular>web shop</name_singular>
+              <name_plural>web shop</name_plural>
+              <description/>
+            </label>
+          </labels>
+        </item>
+      </items>
+    </list>
+    <list code="editor_list" hierarchical="0" system="1" vocabulary="1">
+      <labels>
+        <label locale="en_US">
+          <name>Editorial Attributions</name>
+        </label>
+      </labels>
+      <items>
+        <item idno="f1715dc4_b850_4c16_b312_ba8dd08f56c5" enabled="1" default="0" rank="2645" type="concept">
+          <labels>
+            <label locale="en_US" preferred="1">
+              <name_singular>Richard Schaefer</name_singular>
+              <name_plural>Richard Schaefer</name_plural>
+              <description/>
+            </label>
+          </labels>
+        </item>
+        <item idno="44a4bcfa_2ce3_4448_a8a5_be6ff53f1ea2" enabled="1" default="0" rank="2646" type="concept">
+          <labels>
+            <label locale="en_US" preferred="1">
+              <name_singular>Alice Sharpless</name_singular>
+              <name_plural>Alice Sharpless</name_plural>
+              <description/>
+            </label>
+          </labels>
+        </item>
+        <item idno="eaa58257_af7e_4789_92e5_03365d5a891c" enabled="1" default="0" rank="2647" type="concept">
+          <labels>
+            <label locale="en_US" preferred="1">
+              <name_singular>Francesco Paratico</name_singular>
+              <name_plural>Francesco Paratico</name_plural>
+              <description/>
+            </label>
+          </labels>
+        </item>
+        <item idno="6b13adaa_a0d6_4843_8468_90e5e4fcbc85" enabled="1" default="0" rank="2649" type="concept">
+          <labels>
+            <label locale="en_US" preferred="1">
+              <name_singular>Jeremy Haag</name_singular>
+              <name_plural>Jeremy Haag</name_plural>
+              <description/>
+            </label>
+          </labels>
+        </item>
+        <item idno="bff83f43_35e6_43b0_872e_4cbb34e2efe6" enabled="1" default="0" rank="2650" type="concept">
+          <labels>
+            <label locale="en_US" preferred="1">
+              <name_singular>Kely Christmas</name_singular>
+              <name_plural>Kely Christmas</name_plural>
+              <description/>
+            </label>
+          </labels>
+        </item>
+        <item idno="11e4dc50_2b6e_4267_a888_e08fc28fa91a" enabled="1" default="0" rank="2651" type="concept">
+          <labels>
+            <label locale="en_US" preferred="1">
+              <name_singular>Liv M. Yarrow</name_singular>
+              <name_plural>Liv M. Yarrow</name_plural>
+              <description/>
+            </label>
+          </labels>
+        </item>
+        <item idno="263301c1_225b_4adc_b35a_7a9241b36284" enabled="1" default="0" rank="2652" type="concept">
+          <labels>
+            <label locale="en_US" preferred="1">
+              <name_singular>Sarah E. Cox</name_singular>
+              <name_plural>Sarah E. Cox</name_plural>
               <description/>
             </label>
           </labels>
@@ -20209,6 +20322,41 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
             <setting name="displayTemplate"/>
           </settings>
         </metadataElement>
+        <metadataElement code="citation_identifier" datatype="Text">
+          <labels>
+            <label locale="en_US">
+              <name>Identifier</name>
+            </label>
+          </labels>
+          <settings>
+            <setting name="minChars">0</setting>
+            <setting name="maxChars">65535</setting>
+            <setting name="regex"/>
+            <setting name="fieldWidth">8</setting>
+            <setting name="fieldHeight">1</setting>
+            <setting name="usewysiwygeditor">0</setting>
+            <setting name="doesNotTakeLocale">0</setting>
+            <setting name="singleValuePerLocale">0</setting>
+            <setting name="allowDuplicateValues">0</setting>
+            <setting name="raiseErrorOnDuplicateValue">0</setting>
+            <setting name="canBeUsedInSort">1</setting>
+            <setting name="suggestExistingValues">0</setting>
+            <setting name="suggestExistingValueSort">value</setting>
+            <setting name="default_text"/>
+            <setting name="canBeUsedInSearchForm">1</setting>
+            <setting name="canBeUsedInDisplay">1</setting>
+            <setting name="canMakePDF">0</setting>
+            <setting name="canMakePDFForValue">0</setting>
+            <setting name="displayTemplate"/>
+            <setting name="displayDelimiter">; </setting>
+            <setting name="isDependentValue">0</setting>
+            <setting name="dependentValueTemplate"/>
+            <setting name="mustBeUnique">0</setting>
+            <setting name="referenceMediaIn"/>
+            <setting name="moveArticles">1</setting>
+            <setting name="includeSourceData">0</setting>
+          </settings>
+        </metadataElement>
         <metadataElement code="citation_page" datatype="Text">
           <labels>
             <label locale="en_US">
@@ -21443,6 +21591,9 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
           <name>Die</name>
         </label>
       </labels>
+      <settings>
+        <setting name="lineBreakAfterNumberOfElements">1</setting>
+      </settings>
       <elements>
         <metadataElement code="obverse_die_value" datatype="Text">
           <labels>
@@ -21509,6 +21660,44 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
             <setting name="displayTemplate"/>
           </settings>
         </metadataElement>
+        <metadataElement code="obverse_die_attribution" datatype="List" list="editor_list">
+          <labels>
+            <label locale="en_US">
+              <name>Attribution</name>
+            </label>
+          </labels>
+          <settings>
+            <setting name="listWidth">40</setting>
+            <setting name="listHeight">200px</setting>
+            <setting name="doesNotTakeLocale">1</setting>
+            <setting name="singleValuePerLocale">0</setting>
+            <setting name="requireValue">0</setting>
+            <setting name="allowDuplicateValues">0</setting>
+            <setting name="raiseErrorOnDuplicateValue">0</setting>
+            <setting name="implicitNullOption">0</setting>
+            <setting name="nullOptionText">Not set</setting>
+            <setting name="useDefaultWhenNull">0</setting>
+            <setting name="canBeUsedInSort">0</setting>
+            <setting name="render">select</setting>
+            <setting name="renderInSearchBuilder">select</setting>
+            <setting name="useTextEntryInSearchBuilderWhenListLongerThan">500</setting>
+            <setting name="auto_shrink">0</setting>
+            <setting name="maxColumns">3</setting>
+            <setting name="canBeUsedInSearchForm">1</setting>
+            <setting name="canBeUsedInDisplay">1</setting>
+            <setting name="canMakePDF">0</setting>
+            <setting name="canMakePDFForValue">0</setting>
+            <setting name="displayTemplate"/>
+            <setting name="displayDelimiter">; </setting>
+            <setting name="restrictToTypes">concept</setting>
+            <setting name="currentSelectionDisplayFormat"/>
+            <setting name="minimizeExistingValues">0</setting>
+            <setting name="deferHierarchyLoad">0</setting>
+            <setting name="separateDisabledValues">0</setting>
+            <setting name="hideDisabledValues">0</setting>
+            <setting name="includeSourceData">0</setting>
+          </settings>
+        </metadataElement>
       </elements>
       <typeRestrictions>
         <restriction>
@@ -21530,6 +21719,7 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
       <settings>
         <setting name="canBeUsedInSearchForm">0</setting>
         <setting name="canBeUsedInDisplay">0</setting>
+        <setting name="lineBreakAfterNumberOfElements">1</setting>
       </settings>
       <elements>
         <metadataElement code="reverse_die_value" datatype="Text">
@@ -21595,6 +21785,44 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
             <setting name="regex"/>
             <setting name="default_text"/>
             <setting name="displayTemplate"/>
+          </settings>
+        </metadataElement>
+        <metadataElement code="reverse_die_attribution" datatype="List" list="editor_list">
+          <labels>
+            <label locale="en_US">
+              <name>Attribution</name>
+            </label>
+          </labels>
+          <settings>
+            <setting name="listWidth">40</setting>
+            <setting name="listHeight">200px</setting>
+            <setting name="doesNotTakeLocale">1</setting>
+            <setting name="singleValuePerLocale">0</setting>
+            <setting name="requireValue">0</setting>
+            <setting name="allowDuplicateValues">0</setting>
+            <setting name="raiseErrorOnDuplicateValue">0</setting>
+            <setting name="implicitNullOption">0</setting>
+            <setting name="nullOptionText">Not set</setting>
+            <setting name="useDefaultWhenNull">0</setting>
+            <setting name="canBeUsedInSort">0</setting>
+            <setting name="render">select</setting>
+            <setting name="renderInSearchBuilder">select</setting>
+            <setting name="useTextEntryInSearchBuilderWhenListLongerThan">500</setting>
+            <setting name="auto_shrink">0</setting>
+            <setting name="maxColumns">3</setting>
+            <setting name="canBeUsedInSearchForm">1</setting>
+            <setting name="canBeUsedInDisplay">1</setting>
+            <setting name="canMakePDF">0</setting>
+            <setting name="canMakePDFForValue">0</setting>
+            <setting name="displayTemplate"/>
+            <setting name="displayDelimiter">; </setting>
+            <setting name="restrictToTypes">concept</setting>
+            <setting name="currentSelectionDisplayFormat"/>
+            <setting name="minimizeExistingValues">0</setting>
+            <setting name="deferHierarchyLoad">0</setting>
+            <setting name="separateDisabledValues">0</setting>
+            <setting name="hideDisabledValues">0</setting>
+            <setting name="includeSourceData">0</setting>
           </settings>
         </metadataElement>
       </elements>
@@ -22601,7 +22829,7 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
       <typeRestrictions>
         <restriction>
           <table>ca_objects</table>
-          <type>nmo_NumismaticObject</type>
+          <type>nmo:NumismaticObject</type>
           <settings>
             <setting name="minAttributesPerRow">0</setting>
             <setting name="maxAttributesPerRow">0</setting>
@@ -22652,6 +22880,12 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
             <setting name="displayTemplate"/>
             <setting name="displayDelimiter">; </setting>
             <setting name="includeSourceData">0</setting>
+            <setting name="usewysiwygeditor">0</setting>
+            <setting name="isDependentValue">0</setting>
+            <setting name="dependentValueTemplate"/>
+            <setting name="mustBeUnique">0</setting>
+            <setting name="referenceMediaIn"/>
+            <setting name="moveArticles">1</setting>
           </settings>
         </metadataElement>
         <metadataElement code="obv_images_reference" datatype="Url">
@@ -22745,11 +22979,42 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
             <setting name="includeSourceData">0</setting>
           </settings>
         </metadataElement>
+        <metadataElement code="obv_images_context" datatype="Url">
+          <labels>
+            <label locale="en_US">
+              <name>Context</name>
+              <description>A pointer to an archival resource showing the annotated image within the full page context.</description>
+            </label>
+          </labels>
+          <settings>
+            <setting name="minChars">0</setting>
+            <setting name="maxChars">65535</setting>
+            <setting name="regex"/>
+            <setting name="fieldWidth">80</setting>
+            <setting name="fieldHeight">1</setting>
+            <setting name="doesNotTakeLocale">1</setting>
+            <setting name="singleValuePerLocale">0</setting>
+            <setting name="requireValue">0</setting>
+            <setting name="allowDuplicateValues">0</setting>
+            <setting name="raiseErrorOnDuplicateValue">0</setting>
+            <setting name="canBeUsedInSort">0</setting>
+            <setting name="suggestExistingValues">0</setting>
+            <setting name="suggestExistingValueSort">value</setting>
+            <setting name="default_text"/>
+            <setting name="canBeUsedInSearchForm">0</setting>
+            <setting name="canBeUsedInDisplay">1</setting>
+            <setting name="canMakePDF">0</setting>
+            <setting name="canMakePDFForValue">0</setting>
+            <setting name="displayTemplate"/>
+            <setting name="displayDelimiter">; </setting>
+            <setting name="includeSourceData">0</setting>
+          </settings>
+        </metadataElement>
       </elements>
       <typeRestrictions>
         <restriction>
           <table>ca_objects</table>
-          <type>nmo_NumismaticObject</type>
+          <type>nmo:NumismaticObject</type>
           <settings>
             <setting name="minAttributesPerRow">1</setting>
             <setting name="maxAttributesPerRow">1</setting>
@@ -22891,11 +23156,42 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
             <setting name="includeSourceData">0</setting>
           </settings>
         </metadataElement>
+        <metadataElement code="rev_images_context" datatype="Url">
+          <labels>
+            <label locale="en_US">
+              <name>Context</name>
+              <description>A pointer to an archival resource showing the annotated image within the full page context.</description>
+            </label>
+          </labels>
+          <settings>
+            <setting name="minChars">0</setting>
+            <setting name="maxChars">65535</setting>
+            <setting name="regex"/>
+            <setting name="fieldWidth">80</setting>
+            <setting name="fieldHeight">1</setting>
+            <setting name="doesNotTakeLocale">1</setting>
+            <setting name="singleValuePerLocale">0</setting>
+            <setting name="requireValue">0</setting>
+            <setting name="allowDuplicateValues">0</setting>
+            <setting name="raiseErrorOnDuplicateValue">0</setting>
+            <setting name="canBeUsedInSort">0</setting>
+            <setting name="suggestExistingValues">0</setting>
+            <setting name="suggestExistingValueSort">value</setting>
+            <setting name="default_text"/>
+            <setting name="canBeUsedInSearchForm">0</setting>
+            <setting name="canBeUsedInDisplay">1</setting>
+            <setting name="canMakePDF">0</setting>
+            <setting name="canMakePDFForValue">0</setting>
+            <setting name="displayTemplate"/>
+            <setting name="displayDelimiter">; </setting>
+            <setting name="includeSourceData">0</setting>
+          </settings>
+        </metadataElement>
       </elements>
       <typeRestrictions>
         <restriction>
           <table>ca_objects</table>
-          <type>nmo_NumismaticObject</type>
+          <type>nmo:NumismaticObject</type>
           <settings>
             <setting name="minAttributesPerRow">1</setting>
             <setting name="maxAttributesPerRow">1</setting>
@@ -23006,7 +23302,7 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
             <setting name="includeSourceData">0</setting>
           </settings>
         </metadataElement>
-        <metadataElement code="comb_images_iiif" datatype="Url">
+        <metadataElement code="com_images_iiif" datatype="Url">
           <labels>
             <label locale="en_US">
               <name>IIIF</name>
@@ -23037,11 +23333,42 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
             <setting name="includeSourceData">0</setting>
           </settings>
         </metadataElement>
+        <metadataElement code="com_images_context" datatype="Url">
+          <labels>
+            <label locale="en_US">
+              <name>Context</name>
+              <description>A pointer to an archival resource showing the annotated image within the full page context.</description>
+            </label>
+          </labels>
+          <settings>
+            <setting name="minChars">0</setting>
+            <setting name="maxChars">65535</setting>
+            <setting name="regex"/>
+            <setting name="fieldWidth">80</setting>
+            <setting name="fieldHeight">1</setting>
+            <setting name="doesNotTakeLocale">1</setting>
+            <setting name="singleValuePerLocale">0</setting>
+            <setting name="requireValue">0</setting>
+            <setting name="allowDuplicateValues">0</setting>
+            <setting name="raiseErrorOnDuplicateValue">0</setting>
+            <setting name="canBeUsedInSort">0</setting>
+            <setting name="suggestExistingValues">0</setting>
+            <setting name="suggestExistingValueSort">value</setting>
+            <setting name="default_text"/>
+            <setting name="canBeUsedInSearchForm">0</setting>
+            <setting name="canBeUsedInDisplay">1</setting>
+            <setting name="canMakePDF">0</setting>
+            <setting name="canMakePDFForValue">0</setting>
+            <setting name="displayTemplate"/>
+            <setting name="displayDelimiter">; </setting>
+            <setting name="includeSourceData">0</setting>
+          </settings>
+        </metadataElement>
       </elements>
       <typeRestrictions>
         <restriction>
           <table>ca_objects</table>
-          <type>nmo_NumismaticObject</type>
+          <type>nmo:NumismaticObject</type>
           <settings>
             <setting name="minAttributesPerRow">1</setting>
             <setting name="maxAttributesPerRow">1</setting>
@@ -23060,7 +23387,16 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
       <typeRestrictions>
         <restriction>
           <table>ca_objects</table>
-          <type>nmo_NumismaticObject</type>
+          <type>nmo:NumismaticObject</type>
+          <settings>
+            <setting name="minAttributesPerRow">1</setting>
+            <setting name="maxAttributesPerRow">1</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
+          </settings>
+        </restriction>
+        <restriction>
+          <table>ca_objects_x_occurrences</table>
+          <includeSubtypes>1</includeSubtypes>
           <settings>
             <setting name="minAttributesPerRow">1</setting>
             <setting name="maxAttributesPerRow">1</setting>
@@ -23081,11 +23417,35 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
       <typeRestrictions>
         <restriction>
           <table>ca_objects</table>
-          <type>nmo_NumismaticObject</type>
+          <type>nmo:NumismaticObject</type>
           <settings>
             <setting name="minAttributesPerRow">0</setting>
             <setting name="maxAttributesPerRow">1</setting>
             <setting name="minimumAttributeBundlesToDisplay">0</setting>
+          </settings>
+        </restriction>
+      </typeRestrictions>
+    </metadataElement>
+    <metadataElement code="sale_type" datatype="List" list="sale_type_list">
+      <labels>
+        <label locale="en_US">
+          <name>Sale Type</name>
+        </label>
+      </labels>
+      <settings>
+        <setting name="requireValue">1</setting>
+        <setting name="render">select</setting>
+        <setting name="renderInSearchBuilder">select</setting>
+        <setting name="restrictToTypes">concept</setting>
+      </settings>
+      <typeRestrictions>
+        <restriction>
+          <table>ca_occurrences</table>
+          <type>sale_auction</type>
+          <settings>
+            <setting name="minAttributesPerRow">1</setting>
+            <setting name="maxAttributesPerRow">1</setting>
+            <setting name="minimumAttributeBundlesToDisplay">1</setting>
           </settings>
         </restriction>
       </typeRestrictions>
@@ -25771,6 +26131,9 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
                 <setting name="expand_collapse_no_value">bubbles</setting>
               </settings>
             </placement>
+            <placement code="ca_attribute_biography5">
+              <bundle>ca_entities.biography</bundle>
+            </placement>
             <placement code="nonpreferred_labels">
               <bundle>nonpreferred_labels</bundle>
               <settings>
@@ -26044,22 +26407,8 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
                 <setting name="expand_collapse_no_value">dont_force</setting>
               </settings>
             </placement>
-            <placement code="ca_attribute_description">
-              <bundle>ca_occurrences.description</bundle>
-              <settings>
-                <setting name="readonly">0</setting>
-                <setting name="expand_collapse_value">bubbles</setting>
-                <setting name="expand_collapse_no_value">bubbles</setting>
-              </settings>
-            </placement>
-            <placement code="ca_attribute_address7">
-              <bundle>ca_occurrences.address</bundle>
-              <settings>
-                <setting name="readonly">0</setting>
-                <setting name="expand_collapse_value">dont_force</setting>
-                <setting name="expand_collapse_no_value">dont_force</setting>
-                <setting name="label" locale="en_US">Collection address</setting>
-              </settings>
+            <placement code="ca_attribute_external_link7">
+              <bundle>ca_occurrences.external_link</bundle>
             </placement>
             <placement code="ca_attribute_publication_info">
               <bundle>ca_occurrences.publication_info</bundle>
@@ -26117,12 +26466,29 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
                 <setting name="label" locale="en_US">Related publications</setting>
               </settings>
             </placement>
+            <placement code="ca_attribute_description">
+              <bundle>ca_occurrences.description</bundle>
+              <settings>
+                <setting name="readonly">0</setting>
+                <setting name="expand_collapse_value">bubbles</setting>
+                <setting name="expand_collapse_no_value">bubbles</setting>
+              </settings>
+            </placement>
             <placement code="ca_attribute_rights">
               <bundle>ca_occurrences.rights</bundle>
               <settings>
                 <setting name="readonly">0</setting>
                 <setting name="expand_collapse_value">bubbles</setting>
                 <setting name="expand_collapse_no_value">bubbles</setting>
+              </settings>
+            </placement>
+            <placement code="ca_attribute_address7">
+              <bundle>ca_occurrences.address</bundle>
+              <settings>
+                <setting name="readonly">0</setting>
+                <setting name="expand_collapse_value">dont_force</setting>
+                <setting name="expand_collapse_no_value">dont_force</setting>
+                <setting name="label" locale="en_US">Collection address</setting>
               </settings>
             </placement>
             <placement code="ca_attribute_internal_notes">
@@ -27639,7 +28005,7 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
         </screen>
       </screens>
     </userInterface>
-    <userInterface code="coin_ui" type="ca_objects" typeRestrictions="nmo_NumismaticObject" includeSubtypes="0">
+    <userInterface code="coin_ui" type="ca_objects" typeRestrictions="nmo:NumismaticObject" includeSubtypes="0">
       <labels>
         <label locale="en_US">
           <name>Numismatic Object Interface</name>
@@ -27671,6 +28037,29 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
                 <setting name="expand_collapse_value">dont_force</setting>
                 <setting name="expand_collapse_no_value">dont_force</setting>
                 <setting name="usewysiwygeditor">1</setting>
+              </settings>
+            </placement>
+            <placement code="ca_attribute_concept_uri3">
+              <bundle>ca_objects.concept_uri</bundle>
+              <settings>
+                <setting name="label" locale="en_US">Canonical URI</setting>
+                <setting name="description" locale="en_US">Permanent URI for the object in the holding institution's collection database. If the collection is a Nomisma.org contributor, the access status of the record should be set to 'restricted' to prevent duplication of the object in Nomisma.</setting>
+                <setting name="readonly">0</setting>
+                <setting name="expand_collapse_value">dont_force</setting>
+                <setting name="expand_collapse_no_value">dont_force</setting>
+                <setting name="sortDirection">ASC</setting>
+                <setting name="dontShowDeleteButton">0</setting>
+              </settings>
+            </placement>
+            <placement code="ca_attribute_external_link4">
+              <bundle>ca_objects.external_link</bundle>
+              <settings>
+                <setting name="description" locale="en_US">Link(s) to collection or auction records corresponding to the object which are not canonical URIs integrated into Nomisma.org</setting>
+                <setting name="readonly">0</setting>
+                <setting name="expand_collapse_value">dont_force</setting>
+                <setting name="expand_collapse_no_value">dont_force</setting>
+                <setting name="sortDirection">ASC</setting>
+                <setting name="dontShowDeleteButton">0</setting>
               </settings>
             </placement>
             <placement code="ca_attribute_object_type3">
@@ -28374,8 +28763,8 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
             <placement code="ca_occurrences4">
               <bundle>ca_occurrences</bundle>
               <settings>
-                <setting name="label" locale="en_US">Collection</setting>
-                <setting name="description" locale="en_US">Current collection, whether held by an institution or individual.</setting>
+                <setting name="label" locale="en_US">Provenance (Collection)</setting>
+                <setting name="description" locale="en_US">Provenance record, often the current collection, whether held by an institution or individual. It may also be a bibliographic reference for a hoard or excavation.</setting>
                 <setting name="readonly">0</setting>
                 <setting name="expand_collapse_value">dont_force</setting>
                 <setting name="expand_collapse_no_value">dont_force</setting>
@@ -28396,9 +28785,6 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
                 <setting name="showBatchEditorButton">0</setting>
                 <setting name="showSetRepresentationButton">0</setting>
               </settings>
-            </placement>
-            <placement code="ca_attribute_collection_idno5">
-              <bundle>ca_objects.collection_idno</bundle>
             </placement>
             <placement code="ca_occurrences8">
               <bundle>ca_occurrences</bundle>
@@ -28447,6 +28833,32 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
                 <setting name="readonly">0</setting>
                 <setting name="expand_collapse_value">bubbles</setting>
                 <setting name="expand_collapse_no_value">bubbles</setting>
+              </settings>
+            </placement>
+            <placement code="ca_occurrences3">
+              <bundle>ca_occurrences</bundle>
+              <settings>
+                <setting name="label" locale="en_US">Other publication</setting>
+                <setting name="description" locale="en_US">A related publication, often a citation, which links to an internal 'publication' in CollectiveAccess rather than Donum.</setting>
+                <setting name="readonly">0</setting>
+                <setting name="expand_collapse_value">dont_force</setting>
+                <setting name="expand_collapse_no_value">dont_force</setting>
+                <setting name="restrict_to_relationship_types">citation</setting>
+                <setting name="dontShowRelationshipTypes">0</setting>
+                <setting name="restrict_to_types">publication</setting>
+                <setting name="dont_include_subtypes_in_type_restriction">0</setting>
+                <setting name="list_format">bubbles</setting>
+                <setting name="dontShowAddButton">0</setting>
+                <setting name="dontShowDeleteButton">0</setting>
+                <setting name="minRelationshipsPerRow">0</setting>
+                <setting name="maxRelationshipsPerRow">0</setting>
+                <setting name="disableQuickadd">0</setting>
+                <setting name="sortDirection">ASC</setting>
+                <setting name="disableSorts">1</setting>
+                <setting name="showCount">0</setting>
+                <setting name="numPerPage">100</setting>
+                <setting name="showBatchEditorButton">0</setting>
+                <setting name="showSetRepresentationButton">0</setting>
               </settings>
             </placement>
           </bundlePlacements>
@@ -28537,8 +28949,8 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
                 <setting name="usewysiwygeditor">0</setting>
               </settings>
             </placement>
-            <placement code="ca_attribute_concept_uri3">
-              <bundle>ca_occurrences.concept_uri</bundle>
+            <placement code="ca_attribute_donum_id3">
+              <bundle>ca_occurrences.donum_id</bundle>
             </placement>
             <placement code="ca_attribute_date3">
               <bundle>ca_occurrences.date</bundle>
@@ -28696,6 +29108,9 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
                 <setting name="usewysiwygeditor">0</setting>
               </settings>
             </placement>
+            <placement code="ca_attribute_sale_type3">
+              <bundle>ca_occurrences.sale_type</bundle>
+            </placement>
             <placement code="ca_attribute_date3">
               <bundle>ca_occurrences.date</bundle>
               <settings>
@@ -28768,6 +29183,9 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
                 <setting name="expand_collapse_no_value">dont_force</setting>
                 <setting name="label" locale="en_US">Sale Location</setting>
               </settings>
+            </placement>
+            <placement code="ca_attribute_external_link11">
+              <bundle>ca_occurrences.external_link</bundle>
             </placement>
             <placement code="ca_objects8">
               <bundle>ca_objects</bundle>
@@ -28915,6 +29333,9 @@ For kings from Shapur II no such definition seems currently to exist: Sylloge Nu
                 <setting name="sortDirection">ASC</setting>
                 <setting name="dontShowDeleteButton">0</setting>
               </settings>
+            </placement>
+            <placement code="ca_attribute_collection_idno2">
+              <bundle>ca_objects_x_occurrences.collection_idno</bundle>
             </placement>
           </bundlePlacements>
         </screen>

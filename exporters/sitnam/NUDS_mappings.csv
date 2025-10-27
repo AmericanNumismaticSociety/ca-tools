@@ -15,7 +15,7 @@
 "#control",,,,,
 "Mapping","control","nuds","control",,"{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","recordId","control","recordId","ca_objects.idno","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","otherRecordId_canonical","control","otherRecordId","ca_objects.concept_uri",
+"Mapping","otherRecordId_canonical","control","otherRecordId","ca_objects.concept_uri","{""omitIfEmpty"": ""ca_objects.canonical_uri""}"
 "Constant","otherRecordId_canonical_semantic","otherRecordId_canonical","@semantic","owl:sameAs",
 "Mapping","otherRecordId","control","otherRecordId","url_entry","{""repeat_element_for_multiple_values"":1,""context"":""ca_objects.external_link""}"
 "Constant","otherRecordId_semantic","otherRecordId","@semantic","foaf:homepage",
@@ -57,9 +57,6 @@
 "Mapping","semanticDeclaration_2","control","semanticDeclaration",,
 "Constant","prefix_2","semanticDeclaration_2","prefix","foaf",
 "Constant","namespace_2","semanticDeclaration_2","namespace","http://xmlns.com/foaf/0.1/",
-"Mapping","semanticDeclaration_3","control","semanticDeclaration",,
-"Constant","prefix_3","semanticDeclaration_3","prefix","owl",
-"Constant","namespace_3","semanticDeclaration_3","namespace","http://www.w3.org/2002/07/owl# ",
 ,,,,,
 "#descMeta",,,,,
 "Mapping","descMeta","nuds","descMeta",,"{""original_values"":""\n"",""replacement_values"":""\n""}"
@@ -353,16 +350,21 @@
 "#provenance",,,,,
 "Mapping","provenance","adminDesc","provenance",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
 "Mapping","chronList","provenance","chronList",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
-"Mapping","chronItem","chronList","chronItem",,"{""repeat_element_for_multiple_values"":1, ""context"":""ca_objects_x_occurrences"",""restrictToTypes"":[""sale_auction""],""omitIfEmpty"":""ca_occurrences.preferred_labels"",""original_values"":""\n\n"",""replacement_values"":""\n\n""}"
-"Mapping","previousColl","chronItem","previousColl",,"{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","saleCatalog","previousColl","saleCatalog","ca_occurrences.preferred_labels",
-"Constant","saleCatalog_type","saleCatalog","@xlink:type","simple",
-"Mapping","saleCatalog_href","saleCatalog","@xlink:href","ca_occurrences.donum_id","{""original_values"":""^(\\d+)"",""replacement_values"":""http://numismatics.org/library/$1"", ""omitIfEmpty"":""ca_occurrences.donum_id""}"
-"Mapping","sale_date","previousColl","date","ca_occurrences.date.dates_value","{""original_values"":""\n"",""replacement_values"":""\n"",""omitIfEmpty"":""ca_occurrences.date.dates_value""}"
+"Mapping","chronItem","chronList","chronItem",,"{""repeat_element_for_multiple_values"":1, ""context"":""ca_occurrences"",""restrictToTypes"":[""sale_auction""],""original_values"":""\n\n"",""replacement_values"":""\n\n""}"
+"Mapping","sale_date","chronItem","date","ca_occurrences.date.dates_value","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","sate_date_notBefore","sale_date","@notBefore","ca_occurrences.date.dates_value","{""start_as_iso8601"":1,""timeOmit"":1}"
 "Mapping","sate_date_notAfter","sale_date","@notAfter","ca_occurrences.date.dates_value","{""end_as_iso8601"":1,""timeOmit"":1}"
+"Mapping","previousColl","chronItem","previousColl",,"{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","saleCatalog","previousColl","saleCatalog","preferred_labels",
+"Constant","saleCatalog_type","saleCatalog","@xlink:type","simple",
+"Mapping","saleCatalog_href","saleCatalog","@xlink:href","donum_id","{""original_values"":""^(\\d+)"",""replacement_values"":""http://numismatics.org/library/$1"", ""omitIfEmpty"":""donum_id""}"
+"Mapping","sale_seller","previousColl","corpname","ca_entities.preferred_labels","{""omitIfEmpty"":""ca_entities.preferred_labels"",""original_values"":""\n\n"",""replacement_values"":""\n\n""}"
+"Mapping","sale_seller_href","sale_seller","@xlink:href","ca_entities.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"": ""ca_entities.concept_uri""}"
+"Constant","sale_seller_type","sale_seller","@xlink:type","simple","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Constant","sale_seller_role","sale_seller","@xlink:role","seller","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","sale_method","previousColl","method","ca_occurrences.sale_type","{""convertCodesToDisplayText"":1, ""original_values"":""\n"",""replacement_values"":""\n"",""omitIfEmpty"":""ca_occurrences.sale_type""}"
 "Mapping","sale_identifier","previousColl","identifier","ca_objects_x_occurrences.collection_idno","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"": ""ca_objects_x_occurrences.collection_idno""}"
+"Mapping",,,,,
 ,,,,,
 "#digRep",,,,,
 "Mapping","digRep","nuds","digRep",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"

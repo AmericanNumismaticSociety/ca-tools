@@ -330,9 +330,9 @@
 "Mapping","citation_plate","citation","tei:seg","citation_plate","{""original_values"":""\n"",""replacement_values"":""\n"",""omitIfEmpty"":""citation_plate""}"
 "Constant","citation_plate_attr","citation_plate","@type","plate",
 "#generate citation from provenance bib",,,,,
-"Mapping","citation_prov","refDesc","citation",,"{""context"":""ca_occurrences"",""restrictToTypes"":[""provenance""],""omitIfEmpty"":""ca_occurrences.preferred_labels"",""original_values"":""\n\n"",""replacement_values"":""\n\n""}"
-"Mapping","citation_prov_title","citation_prov","tei:title","preferred_labels",
-"Mapping","citation_prov_uri","citation_prov_title","@key","donum_id","{""original_values"":""(\\d+)"",""replacement_values"":""http://numismatics.org/library/$1"", ""omitIfEmpty"": ""donum_id""}"
+"Mapping","citation_prov","refDesc","citation",,"{""context"":""ca_objects_x_occurrences"",""restrictToTypes"":[""provenance""],""omitIfEmpty"": ""ca_occurrences.preferred_labels"",""original_values"":""\n\n"",""replacement_values"":""\n\n""}"
+"Mapping","citation_prov_title","citation_prov","tei:title","ca_occurrences.preferred_labels",
+"Mapping","citation_prov_uri","citation_prov_title","@key","ca_occurrences.donum_id","{""original_values"":""(\\d+)"",""replacement_values"":""http://numismatics.org/library/$1"", ""omitIfEmpty"": ""ca_occurrences.donum_id""}"
 "Mapping","citation_prov_idno","citation_prov","tei:idno","ca_objects_x_occurrences.collection_idno","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"": ""ca_objects_x_occurrences.collection_idno""}"
 "#generate citation from other publication",,,,,
 "Mapping","citation_other","refDesc","citation",,"{""context"":""ca_occurrences"",""restrictToTypes"":[""publication""],""original_values"":""\n\n"",""replacement_values"":""\n\n""}"
@@ -350,14 +350,14 @@
 "#provenance",,,,,
 "Mapping","provenance","adminDesc","provenance",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
 "Mapping","chronList","provenance","chronList",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
-"Mapping","chronItem","chronList","chronItem",,"{""repeat_element_for_multiple_values"":1, ""context"":""ca_occurrences"",""restrictToTypes"":[""sale_auction""],""original_values"":""\n\n"",""replacement_values"":""\n\n""}"
+"Mapping","chronItem","chronList","chronItem",,"{""context"":""ca_objects_x_occurrences"",""restrictToTypes"":[""sale_auction""], ""omitIfEmpty"": ""ca_occurrences.preferred_labels"", ""original_values"":""\n\n"",""replacement_values"":""\n\n""}"
 "Mapping","sale_date","chronItem","date","ca_occurrences.date.dates_value","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","sate_date_notBefore","sale_date","@notBefore","ca_occurrences.date.dates_value","{""start_as_iso8601"":1,""timeOmit"":1}"
 "Mapping","sate_date_notAfter","sale_date","@notAfter","ca_occurrences.date.dates_value","{""end_as_iso8601"":1,""timeOmit"":1}"
 "Mapping","previousColl","chronItem","previousColl",,"{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","saleCatalog","previousColl","saleCatalog","preferred_labels",
+"Mapping","saleCatalog","previousColl","saleCatalog","ca_occurrences.preferred_labels",
 "Constant","saleCatalog_type","saleCatalog","@xlink:type","simple",
-"Mapping","saleCatalog_href","saleCatalog","@xlink:href","donum_id","{""original_values"":""^(\\d+)"",""replacement_values"":""http://numismatics.org/library/$1"", ""omitIfEmpty"":""donum_id""}"
+"Mapping","saleCatalog_href","saleCatalog","@xlink:href","ca_occurrences.donum_id","{""original_values"":""^(\\d+)"",""replacement_values"":""http://numismatics.org/library/$1"", ""omitIfEmpty"":""ca_occurrences.donum_id""}"
 "Mapping","sale_seller","previousColl","corpname","ca_entities.preferred_labels","{""omitIfEmpty"":""ca_entities.preferred_labels"",""original_values"":""\n\n"",""replacement_values"":""\n\n""}"
 "Mapping","sale_seller_href","sale_seller","@xlink:href","ca_entities.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"": ""ca_entities.concept_uri""}"
 "Constant","sale_seller_type","sale_seller","@xlink:type","simple","{""original_values"":""\n"",""replacement_values"":""\n""}"

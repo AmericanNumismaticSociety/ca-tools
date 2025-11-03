@@ -29,6 +29,7 @@ Mapping,28,ca_objects.rev_images.rev_images_reference2,rev_image,"{ ""skipGroupI
 Mapping,29,ca_objects.rev_images.rev_images_thumbnail,rev_image,,,,,,,
 Mapping,30,ca_objects.rev_images.rev_images_context,rev_image,,,,,,,
 Mapping,31,ca_objects.internal_notes,,"{ ""skipIfEmpty"" : 1}",,,,,,
+Mapping,32,ca_objects.portal,,"{ ""skipIfEmpty"" : 1}",listItemSplitter,"{""listItemType"": ""concept"", ""list"": ""portal_list"", ""matchOn"": ""labels"", ""dontCreate"": 1}",,,,
 ,,,,,,,,,,
 ,Rule triggers,Rule actions,Description,Notes,,,,,,
 ,,,,,,,,,,

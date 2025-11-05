@@ -269,15 +269,15 @@
 "Mapping","hoard_href","hoard","@xlink:href","ca_objects.hoard.url","{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Constant","hoard_type","hoard","@xlink:type","simple",
 "Mapping","findspot","findspotDesc","findspot",,"{""omitIfNoChildren"":1}"
-"Mapping","findspot_place","findspot","fallsWithin",,"{""omitIfNoChildren"":1, ""context"": ""ca_objects.discovery"", ""omitIfEmpty"": ""ca_objects.discovery.fallsWithin""}"
-"Mapping","findspot_geogname","findspot_place","geogname","discovery_fallsWithin","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","findspot_geogname_uri","findspot_geogname","@xlink:href","discovery_fallsWithin.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","findspot_place","findspot","fallsWithin",,"{""omitIfNoChildren"":1, ""context"": ""ca_objects.discovery""}"
+"Mapping","findspot_geogname","findspot_place","geogname","discovery_fallsWithin","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"": ""discovery_fallsWithin""}"
+"Mapping","findspot_geogname_uri","findspot_geogname","@xlink:href","discovery_fallsWithin.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"": ""discovery_fallsWithin.concept_uri""}"
 "Constant","findspot_geogname_role","findspot_geogname","@xlink:role","findspot",
 "Mapping","discovery","findspotDesc","discovery",,"{""omitIfNoChildren"":1, ""context"": ""ca_objects.discovery""}"
 "Mapping","excavation","discovery","project",,"{""omitIfNoChildren"":1}"
-"Mapping","excavation_name","excavation","title","excavation","{""omitIfEmpty"": ""ca_objects.discovery.excavation""}"
-"Mapping","discovery_date","discovery","date","discovery_date","{""omitIfEmpty"": ""ca_objects.discovery.discovery_date""}"
-"Mapping","discovery_method","discovery","method","discovery_type","{""omitIfEmpty"": ""ca_objects.discovery.discovery_type""}"
+"Mapping","excavation_name","excavation","title","excavation","{""omitIfEmpty"": ""excavation""}"
+"Mapping","discovery_date","discovery","date","discovery_date","{""omitIfEmpty"": ""discovery_date""}"
+"Mapping","discovery_method","discovery","method","discovery_type","{""omitIfEmpty"": ""discovery_type""}"
 ,,,,,
 "#refDesc",,,,,
 "Mapping","refDesc","descMeta","refDesc",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
@@ -433,3 +433,35 @@
 "Mapping","flocat_rev_context","file_rev_context","mets:FLocat",,"{""omitIfEmpty"":""ca_objects.rev_images.rev_images_context""}"
 "Mapping","flocat_rev_context_href","flocat_rev_context","@xlink:href","ca_objects.rev_images.rev_images_context",
 "Constant","flocat_rev_context_loctype","flocat_rev_context","@LOCTYPE","URL",
+,,,,,
+"#combined",,,,,
+"Mapping","fileGrp_com","fileSec","mets:fileGrp",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","fileGrp_com_use","fileGrp_com","@USE","combined",
+"Mapping","file_com_thumb","fileGrp_com","mets:file",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","file_com_thumb_use","file_com_thumb","@USE","thumbnail",
+"Constant","file_com_thumb_mimetype","file_com_thumb","@MIMETYPE","image/jpeg",
+"Mapping","flocat_com_thumb","file_com_thumb","mets:FLocat",,"{""omitIfEmpty"":""ca_objects.com_images.com_images_thumbnail""}"
+"Mapping","flocat_com_thumb_href","flocat_com_thumb","@xlink:href","ca_objects.com_images.com_images_thumbnail","{""original_values"":""archivesimages/archive/"", ""replacement_values"":""archivesimages%2Farchive%2F""}"
+"Constant","flocat_com_thumb_loctype","flocat_com_thumb","@LOCTYPE","URL",
+"Mapping","file_com_reference","fileGrp_com","mets:file",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","file_com_reference_use","file_com_reference","@USE","reference",
+"Constant","file_com_reference_mimetype","file_com_reference","@MIMETYPE","image/jpeg",
+"Mapping","flocat_com_reference","file_com_reference","mets:FLocat",,"{""omitIfEmpty"":""ca_objects.com_images.com_images_reference""}"
+"Mapping","flocat_com_reference_href","flocat_com_reference","@xlink:href","ca_objects.com_images.com_images_reference","{""original_values"":""archivesimages/archive/"", ""replacement_values"":""archivesimages%2Farchive%2F""}"
+"Constant","flocat_com_reference_loctype","flocat_com_reference","@LOCTYPE","URL",
+"Mapping","file_com_archive","fileGrp_com","mets:file",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","file_com_archive_use","file_com_archive","@USE","archive",
+"Constant","file_com_archive_mimetype","file_com_archive","@MIMETYPE","image/jpeg",
+"Mapping","flocat_com_archive","file_com_archive","mets:FLocat",,"{""omitIfEmpty"":""ca_objects.com_images.com_images_archive""}"
+"Mapping","flocat_com_archive_href","flocat_com_archive","@xlink:href","ca_objects.com_images.com_images_archive","{""original_values"":""archivesimages/archive/"", ""replacement_values"":""archivesimages%2Farchive%2F""}"
+"Constant","flocat_com_archive_loctype","flocat_com_archive","@LOCTYPE","URL",
+"Mapping","file_com_iiif","fileGrp_com","mets:file",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","file_com_iiif_use","file_com_iiif","@USE","iiif",
+"Mapping","flocat_com_iiif","file_com_iiif","mets:FLocat",,"{""omitIfEmpty"":""ca_objects.com_images.com_images_iiif""}"
+"Mapping","flocat_com_iiif_href","flocat_com_iiif","@xlink:href","ca_objects.com_images.com_images_iiif","{""original_values"":""archivesimages/archive/"", ""replacement_values"":""archivesimages%2Farchive%2F""}"
+"Constant","flocat_com_iiif_loctype","flocat_com_iiif","@LOCTYPE","URL",
+"Mapping","file_com_context","fileGrp_com","mets:file",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Constant","file_com_context_use","file_com_context","@USE","context",
+"Mapping","flocat_com_context","file_com_context","mets:FLocat",,"{""omitIfEmpty"":""ca_objects.com_images.com_images_context""}"
+"Mapping","flocat_com_context_href","flocat_com_context","@xlink:href","ca_objects.com_images.com_images_context",
+"Constant","flocat_com_context_loctype","flocat_com_context","@LOCTYPE","URL",

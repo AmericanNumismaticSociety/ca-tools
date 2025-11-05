@@ -3,6 +3,8 @@
 "Setting","code","nuds",,,
 "Setting","name","NUDS/XML",,,
 "Setting","table","ca_objects",,,
+"Setting","wrap_before","<nudsGroup>",,,
+"Setting","wrap_after","</nudsGroup>",,,
 ,,,,,
 "Mapping","nuds",,"nuds",,"{""original_values"":""\n"",""replacement_values"":""\n""}"
 "Constant","recordType","nuds","@recordType","physical","{""original_values"":""\n"",""replacement_values"":""\n""}"
@@ -276,14 +278,14 @@
 "Constant","hoard_uncertain","hoard","@certainty","http://nomisma.org/id/uncertain_value","{""skipIfExpression"":""^ca_objects_x_occurrences.attribute_uncertain <> \""boolean_true\"""",""original_values"":""\n"",""replacement_values"":""\n""}"
 "Mapping","findspot","findspotDesc","findspot",,"{""omitIfNoChildren"":1}"
 "Mapping","findspot_place","findspot","fallsWithin",,"{""omitIfNoChildren"":1, ""context"": ""ca_objects.discovery""}"
-"Mapping","findspot_geogname","findspot_place","geogname","discovery_fallsWithin","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","findspot_geogname_uri","findspot_geogname","@xlink:href","discovery_fallsWithin.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","findspot_geogname","findspot_place","geogname","discovery_fallsWithin","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"": ""discovery_fallsWithin""}"
+"Mapping","findspot_geogname_uri","findspot_geogname","@xlink:href","discovery_fallsWithin.concept_uri","{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"": ""discovery_fallsWithin.concept_uri""}"
 "Constant","findspot_geogname_role","findspot_geogname","@xlink:role","findspot",
 "Mapping","discovery","findspotDesc","discovery",,"{""omitIfNoChildren"":1, ""context"": ""ca_objects.discovery""}"
 "Mapping","excavation","discovery","project",,"{""omitIfNoChildren"":1}"
-"Mapping","excavation_name","excavation","title","excavation","{""omitIfEmpty"": ""ca_objects.discovery.excavation""}"
-"Mapping","discovery_date","discovery","date","discovery_date","{""omitIfEmpty"": ""ca_objects.discovery.discovery_date""}"
-"Mapping","discovery_method","discovery","method","discovery_type","{""omitIfEmpty"": ""ca_objects.discovery.discovery_type""}"
+"Mapping","excavation_name","excavation","title","excavation","{""omitIfEmpty"": ""excavation""}"
+"Mapping","discovery_date","discovery","date","discovery_date","{""omitIfEmpty"": ""discovery_date""}"
+"Mapping","discovery_method","discovery","method","discovery_type","{""omitIfEmpty"": ""discovery_type""}"
 ,,,,,
 "#refDesc",,,,,
 "Mapping","refDesc","descMeta","refDesc",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"

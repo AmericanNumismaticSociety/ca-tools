@@ -357,6 +357,9 @@
 "Mapping","imageSponsor","adminDesc","acknowledgment","ca_objects.image_sponsor","{""repeat_element_for_multiple_values"":1,""context"":""ca_objects.image_sponsor"",""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"": ""image_sponsor""}"
 "Mapping","imageSponsor_uri","imageSponsor","@xlink:href","image_sponsor.concept_uri","{""omitIfEmpty"":""image_sponsor.concept_uri""}"
 "Constant","imageSponsor_type","imageSponsor","@localType","imageSponsor",
+"Mapping","imageSponsor_ronus","adminDesc","acknowledgment","internal_keyword","{""convertCodesToDisplayText"":1, ""context"": ""ca_objects.internal_keyword"", ""skipIfExpression"": ""^internal_keyword !~ \/ronus\/"", ""original_values"":""ronus"", ""replacement_values"": ""McCormack, John""}"
+"Constant","imageSponsor_ronus_type","imageSponsor_ronus",,"imageSponsor",
+,,,,,
 "#provenance",,,,,
 "Mapping","provenance","adminDesc","provenance",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
 "Mapping","chronList","provenance","chronList",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"

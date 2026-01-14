@@ -116,9 +116,9 @@ class WLPlugInformationServiceKoha extends BaseInformationServicePlugin Implemen
 		            $author = explode(':', $s)[0];
 		            $title = explode(':', $s)[1];
 		            
-		            $json_query = '{"-and": [{"title": {"-like": "' . $title . '%"}},{"author": {"-like": "' . $author . '%"}}]}';
+		            $json_query = '{"-and": [{"title": {"-like": "%' . $title . '%"}},{"author": {"-like": "%' . $author . '%"}}]}';
 		        } else {
-		            $json_query = '{"title": {"-like": "' . $s . '%"}}';
+		            $json_query = '{"title": {"-like": "%' . $s . '%"}}';
 		        }
 		    }
 		    

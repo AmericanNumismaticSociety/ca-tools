@@ -52,7 +52,8 @@ class WLPlugInformationServiceNumishare extends BaseInformationServicePlugin Imp
 		'IRIS' => 'https://greekcoinage.org/iris/',
 		'Iron Age Coins in Britain' => 'https://iacb.arch.ox.ac.uk/',
 		'Online Coins of Ostrogothic Italy' => 'https://numismatics.org/coi/',
-		'OSCAR' => 'https://oscar.nationalmuseum.ch/'
+		'OSCAR' => 'https://oscar.nationalmuseum.ch/',
+	    'Condottieri Medals' => 'https://numismatics.org/cm/'
 	];
 	# ------------------------------------------------
 	/**

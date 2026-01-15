@@ -42,18 +42,18 @@ class WLPlugInformationServiceNumishare extends BaseInformationServicePlugin Imp
 	static $services = [
 		'Online Coins of the Roman Empire' => 'http://numismatics.org/ocre/',
 		'Coinage of the Roman Republic Online' => 'http://numismatics.org/crro/',
+	    'Antigonid Coins Online' => 'http://numismatics.org/agco/',
 		'Art of Devastation' => 'http://numismatics.org/aod/',
+	    'Bactrian and Indo-Greek Rulers' => 'https://numismatics.org/bigr/',
+	    'Condottieri Medals' => 'https://numismatics.org/cm/',
+	    'IRIS' => 'https://greekcoinage.org/iris/',
+	    'Iron Age Coins in Britain' => 'https://iacb.arch.ox.ac.uk/',
+	    'Levantine Coins Online' => 'https://numismatics.org/lco/',
+	    'Online Coins of Ostrogothic Italy' => 'https://numismatics.org/coi/',
+	    'OSCAR' => 'https://oscar.nationalmuseum.ch/',
 		'PELLA' => 'http://numismatics.org/pella/',
-		'Seleucid Coins Online' => 'http://numismatics.org/sco/',
-		'Ptolemaic Coins Online' => 'http://numismatics.org/pco/',
-		'Antigonid Coins Online' => 'http://numismatics.org/agco/',
-		'Bactrian and Indo-Greek Rulers' => 'https://numismatics.org/bigr/',
-		'Levantine Coins Online' => 'https://numismatics.org/lco/',
-		'IRIS' => 'https://greekcoinage.org/iris/',
-		'Iron Age Coins in Britain' => 'https://iacb.arch.ox.ac.uk/',
-		'Online Coins of Ostrogothic Italy' => 'https://numismatics.org/coi/',
-		'OSCAR' => 'https://oscar.nationalmuseum.ch/',
-	    'Condottieri Medals' => 'https://numismatics.org/cm/'
+	    'Ptolemaic Coins Online' => 'http://numismatics.org/pco/',
+		'Seleucid Coins Online' => 'http://numismatics.org/sco/'
 	];
 	# ------------------------------------------------
 	/**

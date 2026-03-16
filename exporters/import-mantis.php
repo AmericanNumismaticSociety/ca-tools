@@ -19,6 +19,7 @@ define("INDEX_COUNT", 250);
 define("SOLR_URL", "http://localhost:8983/solr/numishare/update/");
 define("NUMISHARE_URL", "http://localhost:8080/orbeon/numishare/");
 define("TMP_NUDS", "/tmp/nuds");
+define("TMP_LOT", "/tmp/lots");
 
 //errors
 $errors = array();
@@ -46,7 +47,7 @@ if (isset($argv[1])){
         $zip = new ZipArchive();
         $result = $zip->open("/tmp/ca_{$collection}.zip");
         if ($result === TRUE) {
-            echo "Unzipping file.\n";
+            echo "Unzipping objects zip file.\n";
             $zip->extractTo("/tmp");
             $zip->close();
             
@@ -74,7 +75,38 @@ if (isset($argv[1])){
             //remove nuds folder
             rmdir_recursive(TMP_NUDS);
         } else {
-            echo "Error reading zip file.\n";
+            echo "Error reading object zip file.\n";
+        }
+        
+        //if the collection is Mantis, then also read the object lot zip file
+        if ($collection == 'mantis') {
+            //purge /tmp/lots before beginning new process
+            rmdir_recursive(TMP_LOT);
+            
+            //unzip file
+            $zip = new ZipArchive();
+            $result = $zip->open("/tmp/ca_{$collection}_lots.zip");
+            if ($result === TRUE) {
+                echo "Unzipping lots zip file.\n";
+                $zip->extractTo("/tmp");
+                $zip->close();
+                
+                //read /tmp/nuds and iterate through every XML file
+                foreach(scandir(TMP_LOT) as $file) {
+                    if ($file != '.' && $file != '..') {
+                        $lotnum = str_replace('.rdf', '', $file);
+                        
+                        upload_lot_to_exist($lotnum, $collection);
+                    }
+                }
+                
+                //delete zip file
+                unlink("/tmp/ca_{$collection}_lots.zip");
+                
+                //remove nuds folder
+                rmdir_recursive(TMP_LOT);
+                
+            }
         }
         
     } else {
@@ -161,6 +193,54 @@ function update_record_in_numishare ($accnum, $collection){
         
         //close files
         fclose($readFile);
+    }
+}
+
+/***** UPLOAD LOT RDF/XML to EXIST-DB *****/
+function upload_lot_to_exist($lotnum, $collection) {
+    GLOBAL $errors;
+    GLOBAL $eXist_config;
+    
+    //eXist-db credentials
+    $eXist_url = $eXist_config->url;
+    $eXist_credentials = $eXist_config->username . ':' . $eXist_config->password;
+    
+    $fileURL = $eXist_url . $collection . '/lots/' . $lotnum . '.rdf';
+    
+    $fileName = TMP_LOT . '/' . $lotnum . '.rdf';    
+    
+    if (($readFile = fopen($fileName, 'r')) === FALSE){
+        $error = $lotnum . ' failed to open temporary file (lotnum likely broken) at ' . date(DATE_W3C) . "\n";
+        error_log($error, 3, "/var/log/numishare/error.log");
+        $errors[] = $error;
+    } else {
+        //PUT xml to eXist
+        $putToExist=curl_init();
+        
+        //set curl opts
+        curl_setopt($putToExist,CURLOPT_URL, $fileURL);
+        curl_setopt($putToExist,CURLOPT_HTTPHEADER, array("Content-Type: text/xml; charset=utf-8"));
+        curl_setopt($putToExist,CURLOPT_CONNECTTIMEOUT,2);
+        curl_setopt($putToExist,CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($putToExist,CURLOPT_PUT,1);
+        curl_setopt($putToExist,CURLOPT_INFILESIZE,filesize($fileName));
+        curl_setopt($putToExist,CURLOPT_INFILE,$readFile);
+        curl_setopt($putToExist,CURLOPT_USERPWD,$eXist_credentials);
+        $response = curl_exec($putToExist);
+        
+        $http_code = curl_getinfo($putToExist,CURLINFO_HTTP_CODE);
+        
+        //error and success logging
+        if (curl_error($putToExist) === FALSE){
+            $error = "{$lotnum}  failed to upload to eXist at " . date(DATE_W3C) . "\n";
+            error_log($error, 3, "/var/log/numishare/error.log");
+            $errors[] = $error;
+        } else {
+            if ($http_code == '201'){
+                $datetime = date(DATE_W3C);
+                echo "Writing {$lotnum}.\n";
+            }
+        }
     }
 }
 

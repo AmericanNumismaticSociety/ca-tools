@@ -188,7 +188,7 @@ function process_response ($database, $response, $q){
 //zip RDF files and then SCP them to the production server
 function zip_and_upload($database, $ssh_credentials){
     $zip = new ZipArchive;
-    if ($zip->open("/tmp/ca_{$database}.zip", ZipArchive::CREATE) === TRUE) {
+    if ($zip->open("/tmp/ca_{$database}_lots.zip", ZipArchive::CREATE) === TRUE) {
         if ($handle = opendir(TMP_LOT))
         {
             // Add all files inside the directory
@@ -211,12 +211,12 @@ function zip_and_upload($database, $ssh_credentials){
     
     if (ssh2_auth_password($connection, $ssh_credentials['username'], $ssh_credentials['password'])) {
         echo "Public Key Authentication Successful\n";
-        ssh2_scp_send($connection, "/tmp/ca_{$database}.zip", "/tmp/ca_{$database}.zip", 0644);
+        ssh2_scp_send($connection, "/tmp/ca_{$database}_lots.zip", "/tmp/ca_{$database}_lots.zip", 0644);
         ssh2_exec($connection, 'exit');
         
         echo "Zip file uploaded to production server. Numishare publication workflow commencing.\n";
         
-        unlink("/tmp/ca_{$database}.zip");
+        unlink("/tmp/ca_{$database}_lots.zip");
         rmdir_recursive(TMP_LOT);
     } else {
         die('Public Key Authentication Failed');

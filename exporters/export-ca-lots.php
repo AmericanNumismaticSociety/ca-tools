@@ -136,6 +136,8 @@ function process_response ($database, $response, $q){
     //testing static files below
     //zip_and_upload($ssh_credentials);
     
+    
+    
     if ($json->total > 0 ){
         echo "Processing {$json->total} edited item(s).\n";
         
@@ -155,13 +157,13 @@ function process_response ($database, $response, $q){
                         mkdir(TMP_LOT, 0777, true);
                     }
                     
-                    $lotnum = $record->idno;                       
-                    export_record($database, $record, $count);
+                    $lotnum = $record->idno_stub;                       
+                    export_lot_record($database, $record, $count);
                     //update_record_in_numishare($record, $collection);
                     
                     
                 } else {
-                    $lotnum = $record->idno;
+                    $lotnum = $record->idno_stub;
                     echo "{$count}: Deleting {$lotnum}\n";
                     
                     //initiate a deletion from Numishare via curl
@@ -235,18 +237,10 @@ function rmdir_recursive($dir) {
     }    
 }
 
-function export_record($database, $record, $count){
+function export_lot_record($database, $record, $count){
     $id = $record->id;
-    $lotnum = $record->idno;
-    
-    //images are now read from files.list generated from image files on disk rather than from FileMaker
-    foreach ($image_files as $image){
-        $pattern = '/^' . str_replace('.', '\.', $lotnum) . '\.(.*)\.noscale\.jpg$/';
-        if (preg_match($pattern, $image, $matches)){
-            echo "Found image {$image}: {$matches[1]}\n";
-            $images[$matches[1]] = $image;
-        }
-    }
+    $lotnum = $record->idno_stub;   
+
     
     $fileName = TMP_LOT . "/{$lotnum}.rdf";
     

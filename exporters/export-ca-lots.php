@@ -157,13 +157,13 @@ function process_response ($database, $response, $q){
                         mkdir(TMP_LOT, 0777, true);
                     }
                     
-                    $lotnum = $record->idno_stub;                       
+                    $lotnum = $record->display_label;                       
                     export_lot_record($database, $record, $count);
                     //update_record_in_numishare($record, $collection);
                     
                     
                 } else {
-                    $lotnum = $record->idno_stub;
+                    $lotnum = $record->display_label;
                     echo "{$count}: Deleting {$lotnum}\n";
                     
                     //initiate a deletion from Numishare via curl
@@ -239,7 +239,7 @@ function rmdir_recursive($dir) {
 
 function export_lot_record($database, $record, $count){
     $id = $record->id;
-    $lotnum = $record->idno_stub;   
+    $lotnum = $record->display_label;   
 
     
     $fileName = TMP_LOT . "/{$lotnum}.rdf";

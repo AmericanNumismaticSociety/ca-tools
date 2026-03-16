@@ -32,7 +32,7 @@
 "Mapping","hmo_changed_ownership","hmo","crm:P24i_changed_ownership_through",,
 "Mapping","acquisition","hmo_changed_ownership","crm:E8_Acquisition",,
 "Mapping","acquisition_type","acquisition","crm:P2_has_type","ca_object_lots.type_id","{""convertCodesToDisplayText"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","acquisition_type_href","acquisition_type","@rdf:resource","ca_object_lots.type_id.concept_uri",
+"#Mapping","acquisition_type_href","acquisition_type","@rdf:resource","ca_object_lots.type_id.concept_uri",
 "Mapping","acquisition_has_time-span","acquisition","crm:P4_has_time-span",,"{""omitIfEmpty"":""ca_object_lots.accession_date""}"
 "Mapping","acquisition_time-span","acquisition_has_time-span","crm:E52_Time-Span",,
 "Mapping","acquisition_date","acquisition_time-span","rdfs:label","ca_object_lots.accession_date",

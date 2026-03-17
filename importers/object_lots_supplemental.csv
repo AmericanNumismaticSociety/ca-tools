@@ -1,0 +1,20 @@
+Rule type,Source,CA table.element,Group,Options,Refinery,Refinery parameters,Original values,Replacement values,Source description,Notes
+Mapping,1,ca_object_lots.preferred_labels,,,,,,,,
+Mapping,1,ca_object_lots.idno_stub,,,,,,,,
+Mapping,2,ca_object_lots.acquisition_type,,,,,,,,
+Mapping,3,ca_object_lots.access,,,,,"yes
+no","public_access
+internal_only",,
+,,,,,,,,,,
+,Setting name,Setting value,Description,Notes,,,,,,
+Setting,name,Accession History - Type,,,,,,,,
+Setting,code,accessionHistory_supplemental,,,,,,,,
+Setting,inputFormats,CSVDelimited,,,,,,,,
+Setting,table,ca_object_lots,,,,,,,,
+Setting,type,donation,,,,,,,,
+Setting,numInitialRowsToSkip,1,,,,,,,,
+Setting,existingRecordPolicy,merge_on_idno_with_replace,,,,,,,,
+Setting,errorPolicy,stop,,,,,,,,
+Setting,archiveMapping,no,,,,,,,,
+Setting,archiveDataSets,no,,,,,,,,
+Setting,basePath,,,,,,,,,

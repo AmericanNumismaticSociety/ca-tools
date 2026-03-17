@@ -26,13 +26,31 @@
 "Constant","set_id_name_type_href","set_id_name_type","@rdf:resource","http://vocab.getty.edu/aat/300404628",
 ,,,,,
 ,,,,,
-"#Linked Art compatible provenance",,,,,
+,,,,,
+,,,,,
+,,,,,
+"#Linked Art set description",,,,,
 "Mapping","set_exemplified","set","la:members_exemplified_by",,
 "Mapping","hmo","set_exemplified","crm:E22_Human-Made_Object",,
+,,,,,
+"#Extent",,,,,
+"Mapping","extent","hmo","crm:P43_has_dimension",,"{""context"": ""ca_object_lots.extent_cluster""}"
+"Mapping","dimension","extent","crm:E54_Dimension",,
+"Mapping","count","dimension","crm:P90_has_value","extent_number","{""omitIfEmpty"": ""extent_number"" }"
+"Mapping","object_has_type","dimension","crm:P2_has_type",,"{""omitIfEmpty"": ""extent_objectType"" }"
+"Mapping","object_type","object_has_type","crm:E55_Type",,
+"Mapping","object_type_label","object_type","rdfs:label","extent_objectType",
+"Constant","object_type_type","object_type","crm:P2_has_type","http://vocab.getty.edu/aat/300435443",
+"Mapping","department_has_type","dimension","crm:P2_has_type",,"{""omitIfEmpty"": ""extent_department"" }"
+"Mapping","department_type","department_has_type","crm:E55_Type",,
+"Mapping","department_type_label","department_type","rdfs:label","extent_department",
+"Constant","department_type_type","department_type","crm:P2_has_type","http://vocab.getty.edu/aat/300263534",
+,,,,,
+"#provenance",,,,,
 "Mapping","hmo_changed_ownership","hmo","crm:P24i_changed_ownership_through",,
 "Mapping","acquisition","hmo_changed_ownership","crm:E8_Acquisition",,
-"Mapping","acquisition_type","acquisition","crm:P2_has_type","ca_object_lots.type_id","{""convertCodesToDisplayText"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
-"#Mapping","acquisition_type_href","acquisition_type","@rdf:resource","ca_object_lots.type_id.concept_uri",
+"Mapping","acquisition_type","acquisition","crm:P2_has_type",,"{""context"": ""ca_object_lots.acquisition_type"",""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","acquisition_type_href","acquisition_type","@rdf:resource","acquisition_type.concept_uri",
 "Mapping","acquisition_has_time-span","acquisition","crm:P4_has_time-span",,"{""omitIfEmpty"":""ca_object_lots.accession_date""}"
 "Mapping","acquisition_time-span","acquisition_has_time-span","crm:E52_Time-Span",,
 "Mapping","acquisition_date","acquisition_time-span","rdfs:label","ca_object_lots.accession_date",
@@ -40,11 +58,16 @@
 "Mapping","acquisition_to_date","acquisition_time-span","crm:P82b_end_of_the_end","ca_object_lots.accession_date","{""end_as_iso8601"":1}"
 "Mapping","transfer_to","acquisition","crm:P22_transferred_title_to",,
 "Constant","transfer_to_href","transfer_to","@rdf:resource","http://nomisma.org/id/ans",
-"Mapping","transfer_from","acquisition","crm:P23_transferred_title_from",,"{""context"":""ca_object_lots_x_entities"",""omitIfEmpty"":""ca_entities.preferred_labels"",""original_values"":""\n\n"",""replacement_values"":""\n\n""}"
+"Mapping","transfer_from","acquisition","crm:P23_transferred_title_from",,"{""context"":""ca_object_lots_x_entities"",""omitIfEmpty"":""ca_entities.preferred_labels"",""original_values"":""\n\n"",""replacement_values"":""\n\n"", ""skipIfExpression"": ""^ca_object_lots.anonymous_donation = \""boolean_true\""""}"
 "Mapping","transfer_from_href","transfer_from","@rdf:resource","ca_entities.idno","{""omitIfEmpty"":""ca_entities.idno"",""original_values"":""^(.*)\n"",""replacement_values"":""http://numismatics.org/search/entity/$1\n""}"
+"Mapping","referred_to_by","acquisition","crm:P67i_is_referred_to_by",,"{""omitIfEmpty"": ""ca_object_lots.acknowledgment""}"
+"Mapping","acknowledgment","referred_to_by","crm:E33_Linguistic_Object",,
+"Mapping","statement_type","acknowledgment","crm:P2_has_type",,
+"Constant","statement_type_href","statement_type","@rdf:resource","http://vocab.getty.edu/aat/300026687",
+"Mapping","statement_content","acknowledgment","crm:P190_has_symbolic_content","ca_object_lots.acknowledgment",
 ,,,,,
 "#Entities",,,,,
-"Mapping","entity","rdf","crm:E21_Person",,"{""context"":""ca_object_lots_x_entities"",""omitIfEmpty"":""ca_entities.preferred_labels"",""original_values"":""\n\n"",""replacement_values"":""\n\n""}"
+"Mapping","entity","rdf","crm:E21_Person",,"{""context"":""ca_object_lots_x_entities"",""omitIfEmpty"":""ca_entities.preferred_labels"",""original_values"":""\n\n"",""replacement_values"":""\n\n"", ""skipIfExpression"": ""^ca_object_lots.anonymous_donation = \""boolean_true\""""}"
 "Mapping","entity_href","entity","@rdf:about","ca_entities.idno","{""omitIfEmpty"":""ca_entities.idno"",""original_values"":""^(.*)\n"",""replacement_values"":""http://numismatics.org/search/entity/$1\n""}"
 "Mapping","entity_label","entity","rdfs:label","ca_entities.preferred_labels",
 "Mapping","equivalent","entity","la:equivalent",,"{""omitIfEmpty"":""ca_entities.concept_uri"",""original_values"":""\n\n"",""replacement_values"":""\n\n""}"
@@ -54,3 +77,8 @@
 "Mapping","entity_name_content","entity_name","crm:P190_has_symbolic_content","ca_entities.preferred_labels",
 "Mapping","entity_name_type","entity_name","crm:P2_has_type",,
 "Constant","entity_name_type_href","entity_name_type","@rdf:resource","http://vocab.getty.edu/aat/300404670",
+,,,,,
+"#Acquisition Type",,,,,
+"Mapping","acquisition_e55_type","rdf","crm:E55_Type",,
+"Mapping","acquisition_e55_type_href","acquisition_e55_type","@rdf:about","ca_object_lots.acquisition_type.concept_uri",
+"Mapping","acquisition_e55_type_label","acquisition_e55_type","rdfs:label","ca_object_lots.acquisition_type","{""convertCodesToDisplayText"":1, ""original_values"":""\n"",""replacement_values"":""\n""}"

@@ -75,6 +75,8 @@
 "Mapping","category","subjectSet","subject","ca_objects.category","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""original_values"":""\n"",""replacement_values"":""\n"",  ""template"": ""^ca_objects.category.ca_list_items.hierarchy.preferred_labels.name_plural%delimiter=--""}"
 "Mapping","category_id","category","@xml:id","ca_objects.category","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1,""original_values"":""\n"",""replacement_values"":""\n"",  ""template"": ""^ca_objects.category.ca_list_items.hierarchy.idno%delimiter=--""}"
 "Constant","category_localType","category","@localType","category",
+"Mapping","subject_keyword","subjectSet","subject","ca_objects.keyword","{""convertCodesToDisplayText"":1,""repeat_element_for_multiple_values"":1}"
+"Constant","subject_keyword_localtype","subject_keyword","@localType","keyword",
 "#deprecated subject",,,,,
 "Mapping","subject_deprecated","subjectSet","subject","subject_deprecated_topic","{""repeat_element_for_multiple_values"":1,""original_values"":""\n"",""replacement_values"":""\n"", ""context"":""ca_objects.subject_deprecated"", ""omitIfEmpty"":""subject_deprecated_topic""}"
 "Mapping","subject_deprecated_type","subject_deprecated","@localType","subject_deprecated_type",
@@ -91,10 +93,10 @@
 "Mapping","toDate_issued_standardDate","toDate_issued","@standardDate","ca_objects.issue_dates.to_date","{""start_as_iso8601"":1,""timeOmit"":1,""original_values"":""^(\\-?\\d+)\\-.*"",""replacement_values"":""$1""}"
 "Mapping","date_issued","typeDesc","date","ca_objects.issue_dates.from_date","{""original_values"":""\n"",""replacement_values"":""\n"",""skipIfExpression"":""^ca_objects.issue_dates.from_date != ^ca_objects.issue_dates.to_date"", ""omitIfEmpty"":""ca_objects.issue_dates.from_date""}"
 "Mapping","date_issued_standardDate","date_issued","@standardDate","ca_objects.issue_dates.from_date","{""start_as_iso8601"":1,""timeOmit"":1,""original_values"":""^(\\-?\\d+)\\-.*"",""replacement_values"":""$1""}"
-"Mapping","dateOnObject","typeDesc","dateOnObject",,"{""convertCodesToDisplayText"":1,""context"": ""ca_objects.date_on_object"",""omitIfEmpty"":""ca_objects.date_on_object.date_on_object_value"",""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
-"Mapping","dateOnObject_calendar","dateOnObject","@calendar","era_field","{""omitIfEmpty"":""ca_objects.date_on_object.era_field"",""convertCodesToDisplayText"":1}"
+"Mapping","dateOnObject","typeDesc","dateOnObject",,"{""context"": ""ca_objects.date_on_object"",""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
+"Mapping","dateOnObject_calendar","dateOnObject","@calendar","era_field","{""omitIfEmpty"":""era_field"",""convertCodesToDisplayText"":1}"
 "Mapping","dateOnObject_date","dateOnObject","date","date_on_object_value","{""original_values"":""\n"",""replacement_values"":""\n""}"
-"Mapping","dateOnObject_date_standardDate","dateOnObject_date","@standardDate","date_on_object_standard","{""omitIfEmpty"":""ca_objects.date_on_object.date_on_object_standard"",""skipIfExpression"":""^ca_objects.date_on_object.date_on_object_standard =~ \/BCE\/"",""timeOmit"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
+"Mapping","dateOnObject_date_standardDate","dateOnObject_date","@standardDate","date_on_object_standard","{""omitIfEmpty"":""date_on_object_standard"",""skipIfExpression"":""^date_on_object_standard =~ \/BCE\/"",""timeOmit"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
 "#Mapping","dateOnObject_date_notBefore","dateOnObject_date","@notBefore","date_on_object_standard","{""omitIfEmpty"":""ca_objects.date_on_object.date_on_object_standard"",""skipIfExpression"":""^ca_objects.date_on_object.date_on_object_standard =~ \/^[BCE]\/"",""timeOmit"":1,""original_values"":""\n"",""replacement_values"":""\n""}"
 ,,,,,
 "Mapping","denomination","typeDesc","denomination","ca_objects.denomination","{""convertCodesToDisplayText"":1,""original_values"":""\n"",""replacement_values"":""\n"", ""context"":""ca_objects.denomination""}"
@@ -357,9 +359,6 @@
 "Mapping","imageSponsor","adminDesc","acknowledgment","ca_objects.image_sponsor","{""repeat_element_for_multiple_values"":1,""context"":""ca_objects.image_sponsor"",""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfEmpty"": ""image_sponsor""}"
 "Mapping","imageSponsor_uri","imageSponsor","@xlink:href","image_sponsor.concept_uri","{""omitIfEmpty"":""image_sponsor.concept_uri""}"
 "Constant","imageSponsor_type","imageSponsor","@localType","imageSponsor",
-"Mapping","imageSponsor_ronus","adminDesc","acknowledgment","internal_keyword","{""convertCodesToDisplayText"":1, ""context"": ""ca_objects.internal_keyword"", ""skipIfExpression"": ""^internal_keyword !~ \/ronus\/"", ""original_values"":""ronus"", ""replacement_values"": ""McCormack, John""}"
-"Constant","imageSponsor_ronus_type","imageSponsor_ronus",,"imageSponsor",
-,,,,,
 "#provenance",,,,,
 "Mapping","provenance","adminDesc","provenance",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"
 "Mapping","chronList","provenance","chronList",,"{""original_values"":""\n"",""replacement_values"":""\n"", ""omitIfNoChildren"":1}"

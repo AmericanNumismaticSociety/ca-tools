@@ -211,9 +211,11 @@ function process_response ($database, $response, $q){
                     //evaluate accessibility of the record. If it is publicly accessible, then create an update. If it is not, execute a deletion from eXist-db and Solr.
                     if ($record->access == 'public_access'){
                         
+                        $filePath = TMP_NUDS . '/' . $database;
+                        
                         //create /tmp/nuds if it doesn't exist
-                        if (!file_exists(TMP_NUDS)) {
-                            mkdir(TMP_NUDS, 0777, true);
+                        if (!file_exists($filePath)) {
+                            mkdir($filePath, 0777, true);
                         }
                         
                         $accnum = $record->idno;                       
@@ -251,10 +253,6 @@ function process_response ($database, $response, $q){
 //zip NUDS files and then SCP them to the production server
 function zip_and_upload($database, $ssh_credentials){
     $filePath = TMP_NUDS . '/' . $database . '/';
-    
-    if (!file_exists($filePath)) {
-        mkdir($filePath, 0777, true);
-    }
     
     $zip = new ZipArchive;
     if ($zip->open("/tmp/ca_{$database}.zip", ZipArchive::CREATE) === TRUE) {

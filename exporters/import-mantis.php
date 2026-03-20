@@ -34,6 +34,7 @@ $eXist_config = simplexml_load_file($eXist_config_path);
 //execute
 if (isset($argv[1])){
     $collection = $argv[1];
+    $filePath = TMP_NUDS . '/' . $collection;
     
     //evaluate the collection string and confirm it exists in eXist-db
     $file_headers = @get_headers($eXist_config->url . $collection);
@@ -41,7 +42,7 @@ if (isset($argv[1])){
         echo "Found collection {$collection}.\n";
         
         //purge /tmp/nuds before beginning new process
-        rmdir_recursive(TMP_NUDS);
+        rmdir_recursive($filePath);
         
         //unzip file
         $zip = new ZipArchive();
@@ -52,7 +53,7 @@ if (isset($argv[1])){
             $zip->close();
             
             //read /tmp/nuds and iterate through every XML file
-            foreach(scandir(TMP_NUDS) as $file) {
+            foreach(scandir($filePath) as $file) {
                 if ($file != '.' && $file != '..') {
                     $accnum = str_replace('.xml', '', $file);
                     
@@ -73,7 +74,7 @@ if (isset($argv[1])){
             unlink("/tmp/ca_{$collection}.zip");
             
             //remove nuds folder
-            rmdir_recursive(TMP_NUDS);
+            rmdir_recursive($filePath);
         } else {
             echo "Error reading object zip file.\n";
         }
@@ -139,7 +140,8 @@ function update_record_in_numishare ($accnum, $collection){
         $fileURL = $eXist_url . $collection . '/objects/' . $accnum . '.xml';
     }
     
-    $fileName = TMP_NUDS . '/' . $accnum . '.xml';    
+    $filePath = TMP_NUDS . '/' . $collection;
+    $fileName = $filePath . '/' . $accnum . '.xml';    
     //echo "{$fileName}\n";
     
     if (($readFile = fopen($fileName, 'r')) === FALSE){

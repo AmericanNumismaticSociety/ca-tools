@@ -250,16 +250,22 @@ function process_response ($database, $response, $q){
  *****/
 //zip NUDS files and then SCP them to the production server
 function zip_and_upload($database, $ssh_credentials){
+    $filePath = TMP_NUDS . '/' . $database . '/';
+    
+    if (!file_exists($filePath)) {
+        mkdir($filePath, 0777, true);
+    }
+    
     $zip = new ZipArchive;
     if ($zip->open("/tmp/ca_{$database}.zip", ZipArchive::CREATE) === TRUE) {
-        if ($handle = opendir(TMP_NUDS))
+        if ($handle = opendir($filePath))
         {
             // Add all files inside the directory
             while (false !== ($file = readdir($handle)))
             {
-                if ($file != "." && $file != ".." && !is_dir('/tmp/nuds/' . $file))
+                if ($file != "." && $file != ".." && !is_dir($filePath . $file))
                 {
-                    $zip->addFile('/tmp/nuds/' . $file, 'nuds/' . $file);
+                    $zip->addFile($filePath . $file, 'nuds/' . $database . '/' . $file);
                 }
             }
             closedir($handle);
@@ -280,7 +286,7 @@ function zip_and_upload($database, $ssh_credentials){
         echo "Zip file uploaded to production server. Numishare publication workflow commencing.\n";
         
         unlink("/tmp/ca_{$database}.zip");
-        rmdir_recursive(TMP_NUDS);
+        rmdir_recursive($filePath);
     } else {
         die('Public Key Authentication Failed');
     }
@@ -313,7 +319,7 @@ function export_record($database, $record, $count){
         }
     }
     
-    $fileName = TMP_NUDS . "/{$accnum}.xml";
+    $fileName = TMP_NUDS . "/{$database}/{$accnum}.xml";
     
     $cmd = CA_UTILS[$database] . " export-data -m nuds -i {$id} -f {$fileName}";
     
@@ -344,7 +350,7 @@ function export_record($database, $record, $count){
         }
         
         $writer = new XMLWriter();
-        $writer->openURI(TMP_NUDS . "/{$accnum}-images.xml");
+        $writer->openURI(TMP_NUDS . "/{$database}/{$accnum}-images.xml");
         //$writer->openURI('php://output');
         $writer->startDocument('1.0','UTF-8');
         $writer->setIndent(true);
@@ -509,10 +515,10 @@ function export_record($database, $record, $count){
         
         //merge the digRep XML document into the NUDS file
         $digRep = new DOMDocument;        
-        $digRep->load(TMP_NUDS . "/{$accnum}-images.xml");
+        $digRep->load(TMP_NUDS . "/{$database}/{$accnum}-images.xml");
         $nuds->documentElement->appendChild($nuds->importNode($digRep->documentElement, true));
         $nuds->save($fileName);
-        unlink(TMP_NUDS . "/{$accnum}-images.xml");
+        unlink(TMP_NUDS . "/{$database}/{$accnum}-images.xml");
         
     } else {
         //if there aren't images, remove empty xlink:href attributes and either remove or replace @certainty or @variant values.        

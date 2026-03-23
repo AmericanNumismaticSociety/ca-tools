@@ -146,7 +146,7 @@ function query_ca($database, $q) {
             }
             
             //zip exported record after each object has been exported to NUDS from CA
-            if (is_dir(TMP_NUDS)) {
+            if (is_dir(TMP_NUDS . '/' . $database)) {
                 zip_and_upload($database, $ssh_credentials);
             }
             

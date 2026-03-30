@@ -1,7 +1,7 @@
 <?php 
 /*****
  * Author: Ethan Gruber
- * Date: January 2024
+ * Date: March 2026
  * Function: Execute an API request to CollectiveAccess to get a list of records edited the previous day.
  * Other Lucene-syntax queries can also be sent to update records that meet other search requirements.
  * 
@@ -89,7 +89,7 @@ function query_ca($database, $q) {
             
             //add the ca_objects.portal query to SITNAM
             if ($database == 'sitnam') {
-                $q = $q . '+AND+ca_objects.portal:' . $portal;
+                $q = $q . '+AND+ca_objects.portal:' . $database;
             }
             
             $apiURL = CA_URL[$database] . "service.php/json/find/ca_objects?q={$q}&sort=ca_objects.idno&pretty=1&authToken={$authToken}";

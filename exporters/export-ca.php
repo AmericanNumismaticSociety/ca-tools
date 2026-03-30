@@ -86,6 +86,12 @@ function query_ca($database, $q) {
         $authToken = login_to_ca($database, $ca_credentials['username'], $ca_credentials['password']);
         
         if (isset($authToken)){
+            
+            //add the ca_objects.portal query to SITNAM
+            if ($database == 'sitnam') {
+                $q = $q . '+AND+ca_objects.portal:' . $portal;
+            }
+            
             $apiURL = CA_URL[$database] . "service.php/json/find/ca_objects?q={$q}&sort=ca_objects.idno&pretty=1&authToken={$authToken}";
             
             $bundle = array("bundles"=>

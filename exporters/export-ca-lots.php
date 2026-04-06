@@ -66,7 +66,7 @@ function query_ca($database, $q) {
         $authToken = login_to_ca($database, $ca_credentials['username'], $ca_credentials['password']);
         
         if (isset($authToken)){
-            $apiURL = CA_URL[$database] . "service.php/json/find/ca_object_lots?q={$q}&pretty=1&authToken={$authToken}";
+            $apiURL = CA_URL[$database] . "service.php/json/find/ca_object_lots?q={$q}&sort=ca_object_lots.idno_stub&pretty=1&authToken={$authToken}";
             
             $bundle = array("bundles"=>
                 array("access"=>

@@ -35,7 +35,7 @@ if (isset($argv[1])){
         
         if ($database == 'mantis') {
             //read the image file list
-            $fp=fopen('/data/images/files.list', 'r');
+            $fp=fopen('/data/collectiveaccess/images/files.list', 'r');
             while (!feof($fp)){
                 $line=fgets($fp);
                 
@@ -117,11 +117,11 @@ function query_ca($database, $q) {
             
             //initiate export of any new images uploaded in the image-processor workflow, applies to Mantis only
             if ($database == 'mantis') {
-                if (file_exists('/data/images/newImages.txt')){
+                if (file_exists('/data/collectiveaccess/images/newImages.txt')){
                     echo "Processing new image records.\n";
                     
                     $new_images = array();
-                    $fp=fopen('/data/images/newImages.txt', 'r');
+                    $fp=fopen('/data/collectiveaccess/images/newImages.txt', 'r');
                     while (!feof($fp)){
                         $line=fgets($fp);
                         $new_images[] = trim($line);
@@ -157,7 +157,7 @@ function query_ca($database, $q) {
             }
             
             //blank new images since they cannot be deleted by user database
-            file_put_contents("/data/images/newImages.txt", "");
+            file_put_contents("/data/collectiveaccess/images/newImages.txt", "");
             
         } else {
             echo "CA authToken error.\n";

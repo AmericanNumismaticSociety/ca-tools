@@ -22,8 +22,8 @@
 
 define("INDEX_COUNT", 500);
 define("START", 0);
-define("CA_URL", array("mantis"=>"https://test.numismatics.org/collectiveaccess/", "sitnam"=>"https://test.numismatics.org/sitnam/"));
-define("CA_UTILS", array("mantis"=>"/usr/local/projects/providence-2.0/support/bin/caUtils", "sitnam"=>"/usr/local/projects/sitnam-providence-2.0/support/bin/caUtils"));
+define("CA_URL", array("mantis"=>"https://ca.numismatics.org/", "sitnam"=>"https://test.numismatics.org/sitnam/"));
+define("CA_UTILS", array("mantis"=>"/var/www/ca.numismatics.org/html/support/bin/caUtils", "sitnam"=>"/usr/local/projects/sitnam-providence-2.0/support/bin/caUtils"));
 define("TMP_NUDS", "/tmp/nuds");
 
 $image_files = array();
